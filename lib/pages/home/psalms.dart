@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/l10n/app_localizations.dart';
 import 'package:jungers_psalter/models/enums/bookmark_type.dart';
 import 'package:jungers_psalter/ui/components/list_view_card.dart';
 import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';

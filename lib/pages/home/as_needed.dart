@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/l10n/app_localizations.dart';
 
 class AsNeeded extends StatefulWidget {
   const AsNeeded({super.key});
