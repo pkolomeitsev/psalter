@@ -1,17 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/models/enums/bookmark_type.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jungers_psalter/models/enums/entity_type.dart';
 
 class ListViewCard extends StatefulWidget {
+  final int id;
   final String title;
   final String description;
-  final BookmarkType? bookmarkType;
+  final EntityType? type;
+  final bool isBookmarked;
 
   const ListViewCard({
     super.key,
+    required this.id,
     required this.title,
     this.description = '',
-    this.bookmarkType = BookmarkType.none,
+    this.type = EntityType.none,
+    this.isBookmarked = false,
   });
 
   @override
@@ -35,9 +40,9 @@ class _ListViewCardState extends State<ListViewCard> {
   }
 
   IconData getBookmarkIcon() {
-    return (BookmarkType.none == widget.bookmarkType)
-        ? Icons.bookmark_outline
-        : Icons.bookmark;
+    return (widget.isBookmarked)
+        ? Icons.bookmark
+        : Icons.bookmark_outline;
   }
 
   @override
@@ -46,8 +51,11 @@ class _ListViewCardState extends State<ListViewCard> {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
+          print(widget.id);
           print(widget.title);
           print(widget.description);
+
+          context.go('/${widget.type!.name}/${widget.id}');
         },
         child: Padding(
           padding: EdgeInsetsGeometry.all(20),
@@ -63,7 +71,7 @@ class _ListViewCardState extends State<ListViewCard> {
                 icon: Icon(this.getBookmarkIcon()),
                 tooltip: 'addToBookmarks'.tr(),
                 onPressed: () {
-                  print('Bookmark ${widget.bookmarkType}');
+                  print('Bookmark ${widget.type}');
 
                   setState(() {
                     ///

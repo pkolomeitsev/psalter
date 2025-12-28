@@ -1,12 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:jungers_psalter/models/language_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jungers_psalter/models/enums/entity_type.dart';
+import 'package:jungers_psalter/pages/home/kathisma.dart';
+import 'package:jungers_psalter/pages/home/psalm.dart';
 import 'package:jungers_psalter/pages/main_application.dart';
-// import 'package:provider/provider.dart';
-// import 'package:jungers_psalter/l10n/app_localizations.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,17 +37,38 @@ void main() async {
   ));
 }
 
+final GoRouter _router = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const MainApplication(),
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/${EntityType.psalm.name}/:psalmId',
+          builder: (context, state) =>
+              Psalm(psalmId: state.pathParameters['psalmId']),
+        ),
+        GoRoute(
+          path: '/${EntityType.kathisma.name}/:kathismaId',
+          builder: (context, state) =>
+              Kathisma(kathismaId: state.pathParameters['kathismaId']),
+        ),
+      ],
+    ),
+  ],
+);
+
 class PsalterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainApplication(),
+      routerConfig: _router,
     );
   }
 }

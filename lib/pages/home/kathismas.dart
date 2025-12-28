@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/models/enums/bookmark_type.dart';
+import 'package:jungers_psalter/models/enums/entity_type.dart';
 import 'package:jungers_psalter/ui/components/list_view_card.dart';
 import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';
 
@@ -48,9 +48,11 @@ class _KathismasState extends State<Kathismas> with TickerProviderStateMixin {
     for (int i = 0; i < Kathismas.kathismasAmount; i++) {
       psalms.add(
         ListViewCard(
+          id: (i + 1),
           title: '${'kathisma'.tr()} ${i+1}',
           description: '${'psalms'.tr()} ${Kathismas.kathismasMap[i]}',
-          bookmarkType: BookmarkType.none,
+          type: EntityType.kathisma,
+          isBookmarked: false,
         ),
       );
     }
