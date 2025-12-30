@@ -4,8 +4,6 @@ import 'package:jungers_psalter/models/enums/entity_type.dart';
 import 'package:jungers_psalter/ui/components/bookmark_card.dart';
 import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';
 
-// import '../../l10n/app_localizations.dart';
-
 class Kathismas extends StatefulWidget {
   const Kathismas({super.key});
 
@@ -39,8 +37,6 @@ class Kathismas extends StatefulWidget {
 }
 
 class _KathismasState extends State<Kathismas> with TickerProviderStateMixin {
-  late final TabController _tabController;
-
   @override
   Widget build(BuildContext context) {
     List<Widget> psalms = [];

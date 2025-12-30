@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:jungers_psalter/ui/components/settings_card.dart';
+import 'package:jungers_psalter/ui/components/settings_card_title.dart';
 import 'package:jungers_psalter/ui/components/settings_selector.dart';
+import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -10,44 +13,50 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  List languageNames = [];
+  List languageNames = [
+    {'languageCode': 'en', 'languageName': 'langNameEn'},
+    {'languageCode': 'ru', 'languageName': 'langNameRu'},
+    {'languageCode': 'cu', 'languageName': 'langNameRuSlav'},
+  ];
+
+  List<Widget> getSettingsWidget(BuildContext pageContext) {
+    List<Widget> langList = [];
+    for (var lang in languageNames) {
+      String code = lang['languageCode'];
+      String name = pageContext.tr(lang['languageName']);
+      String currentLocale = Localizations.localeOf(pageContext).languageCode;
+      langList.add(
+          SettingsSelector(
+            isSelected: currentLocale == code,
+            name: name,
+            onTap: () => _changeAppLanguage(pageContext, languageCode: code),
+          )
+      );
+    }
+
+    return langList;
+  }
 
   @override
   Widget build(BuildContext context) {
-    this.languageNames = [
-      {'languageCode': 'en', 'languageName': 'langNameEn'.tr()},
-      {'languageCode': 'ru', 'languageName': 'langNameRu'.tr()},
-      {'languageCode': 'cu', 'languageName': 'langNameRuSlav'.tr()},
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: Text('appTitle'.tr(), style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
-      body: ListView.builder(
-        prototypeItem: const SizedBox(height: 50.0),
-        itemCount: this.languageNames.length,
-        itemBuilder: (context, index) {
-          String code = this.languageNames[index]['languageCode'];
-          String name = this.languageNames[index]['languageName'];
-
-          return SettingsSelector(
-            isSelected: Localizations.localeOf(context).languageCode == code,
-            name: name,
-            onTap: () => _changeAppLanguage(context, languageCode: code),
-          );
-        },
-      ),
+      body: ListViewWrapper(data: [
+        SettingsCardTitle(text: 'changeLanguage'.tr()),
+        SettingsCard(
+            children: getSettingsWidget(context)
+        ),
+      ]),
     );
   }
 
-  void _changeAppLanguage(
-    BuildContext context, {
+  void _changeAppLanguage(BuildContext context, {
     required String languageCode,
   }) {
     context.setLocale(Locale(languageCode));
-    print('lang code changed: $languageCode');
   }
 }

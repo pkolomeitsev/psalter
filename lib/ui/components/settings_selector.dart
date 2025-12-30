@@ -14,7 +14,10 @@ final class SettingsSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textColor = theme.colorScheme.primary;
+    final textColor = isSelected
+        ? Colors.indigo
+        : theme.colorScheme.secondary;
+
     return TextButton(
       onPressed: onTap,
       style: ButtonStyle(
@@ -30,16 +33,15 @@ final class SettingsSelector extends StatelessWidget {
         }),
         shape: WidgetStateProperty.all(const BeveledRectangleBorder()),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: SizedBox(
-          height: 50.0,
-          child: Row(
-            children: [
-              Expanded(child: Text(name)),
-              Visibility(visible: isSelected, child: const Icon(Icons.check)),
-            ],
-          ),
+      child: SizedBox(
+        height: 40.0,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(name, style: TextStyle(color: textColor)),
+            ),
+            Visibility(visible: isSelected, child: const Icon(Icons.check)),
+          ],
         ),
       ),
     );

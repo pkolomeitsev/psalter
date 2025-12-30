@@ -31,17 +31,17 @@ class _MainApplicationState extends State<MainApplication> {
           NavigationDestination(
             icon: Icon(Icons.home),
             selectedIcon: Icon(Icons.home, color: Colors.white),
-            label: 'home'.tr(),
+            label: context.tr('home'),
           ),
           NavigationDestination(
             icon: Icon(Icons.bookmark),
             selectedIcon: Icon(Icons.bookmark, color: Colors.white),
-            label: 'bookmarks'.tr(),
+            label: context.tr('bookmarks'),
           ),
           NavigationDestination(
             icon: Icon(Icons.settings),
             selectedIcon: Icon(Icons.settings, color: Colors.white),
-            label: 'settings'.tr(),
+            label: context.tr('settings'),
           ),
         ],
       ),
