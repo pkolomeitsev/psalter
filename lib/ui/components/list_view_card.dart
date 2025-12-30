@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jungers_psalter/models/enums/entity_type.dart';
 
-class ListViewCard extends StatefulWidget {
+class BookmarkCard extends StatefulWidget {
   final int id;
   final String title;
   final String description;
   final EntityType? type;
   final bool isBookmarked;
 
-  const ListViewCard({
+  const BookmarkCard({
     super.key,
     required this.id,
     required this.title,
@@ -20,10 +20,10 @@ class ListViewCard extends StatefulWidget {
   });
 
   @override
-  State<ListViewCard> createState() => _ListViewCardState();
+  State<BookmarkCard> createState() => _BookmarkCardState();
 }
 
-class _ListViewCardState extends State<ListViewCard> {
+class _BookmarkCardState extends State<BookmarkCard> {
   List<Widget> getLeftSideWidgets() {
     List<Widget> text = [];
     text.add(

@@ -47,7 +47,7 @@ class _KathismasState extends State<Kathismas> with TickerProviderStateMixin {
 
     for (int i = 0; i < Kathismas.kathismasAmount; i++) {
       psalms.add(
-        ListViewCard(
+        BookmarkCard(
           id: (i + 1),
           title: '${'kathisma'.tr()} ${i+1}',
           description: '${'psalms'.tr()} ${Kathismas.kathismasMap[i]}',

@@ -20,7 +20,7 @@ class _PsalmsState extends State<Psalms> {
 
     for (int i = 1; i <= psalmsAmount; i++) {
       psalms.add(
-        ListViewCard(
+        BookmarkCard(
           id: i,
           title: '${'psalm'.tr()} $i',
           description: '',
