@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:jungers_psalter/storage/locale_storage.dart';
 import 'package:jungers_psalter/ui/components/settings_card.dart';
 import 'package:jungers_psalter/ui/components/settings_card_title.dart';
 import 'package:jungers_psalter/ui/components/settings_selector.dart';
@@ -13,15 +14,11 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  List languageNames = [
-    {'languageCode': 'en', 'languageName': 'langNameEn'},
-    {'languageCode': 'ru', 'languageName': 'langNameRu'},
-    {'languageCode': 'cu', 'languageName': 'langNameRuSlav'},
-  ];
+  List languages = LocaleStorage.languages;
 
   List<Widget> getSettingsWidget(BuildContext pageContext) {
     List<Widget> langList = [];
-    for (var lang in languageNames) {
+    for (var lang in languages) {
       String code = lang['languageCode'];
       String name = pageContext.tr(lang['languageName']);
       String currentLocale = Localizations.localeOf(pageContext).languageCode;
