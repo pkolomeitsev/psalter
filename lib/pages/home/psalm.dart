@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:jungers_psalter/models/psalm.dart' as psalm_model;
 import 'package:jungers_psalter/storage/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Psalm extends StatefulWidget {
   final String? psalmId;
+
   const Psalm({super.key, this.psalmId = ''});
 
   @override
@@ -22,10 +24,11 @@ class _PsalmState extends State<Psalm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-            color: Colors.white
+        leading: BackButton(color: Colors.white),
+        title: Text(
+          '${'psalm'.tr()} ${widget.psalmId}',
+          style: TextStyle(color: Colors.white),
         ),
-        title: Text('${'psalm'.tr()} ${widget.psalmId}', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
@@ -37,8 +40,19 @@ class _PsalmState extends State<Psalm> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            return Center(
-              child: Text('Data loaded: ${snapshot.data!.getPsalmDescription()}'),
+            return TextPageViewWrapper(
+              data: [
+                DefaultTextStyle.merge(
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  child: Text(snapshot.data!.getPsalmDescription(), textAlign: TextAlign.center),
+                ),
+                SizedBox(height: 10),
+                DefaultTextStyle.merge(
+                  style: const TextStyle(fontSize: 16),
+                  child: Text(snapshot.data!.getPsalmText()),
+                ),
+                SizedBox(height: 50),
+              ],
             );
           } else {
             return const Center(child: Text('No data found'));
