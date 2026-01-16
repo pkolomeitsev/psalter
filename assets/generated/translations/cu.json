@@ -1,0 +1,17 @@
+{
+  "@@locale": "cu",
+  "changeLanguage": "Изменить язык",
+  "langNameEn": "Английский",
+  "langNameRu": "Русский",
+  "langNameRuSlav": "Русский (церковнослав.)",
+  "helloWorld": "Hola Mundo!!!",
+  "appTitle": "Псалтырь",
+  "psalms": "Псалмы",
+  "kathismas": "Кафизмы",
+  "asNeeded": "По требованию",
+  "psalm": "Псалом",
+  "kathisma": "Кафизма",
+  "addToBookmarks": "Добавить в Избранное",
+  "bookmarkeAddedMessage": "Добавлено в Избранное!",
+  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!"
+}

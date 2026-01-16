@@ -15,7 +15,7 @@ void main() async {
       Locale('en'),
       Locale('ru')
     ],
-    path: 'assets/langs',
+    path: 'assets/generated/translations',
     child: PsalterApp(),
     // fallbackLocale: Locale('en', 'US'),
     // startLocale: Locale('de', 'DE'),

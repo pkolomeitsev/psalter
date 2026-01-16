@@ -1,0 +1,23 @@
+{
+  "@@locale": "en",
+  "changeLanguage": "Change language",
+  "langNameEn": "English",
+  "langNameRu": "Russian",
+  "langNameRuSlav": "Russian (Slavic)",
+  "themeMode": "Theme mode",
+  "dark": "Dark",
+  "light": "Light",
+  "home": "Home",
+  "bookmarks": "Bookmarks",
+  "settings": "Settings",
+  "appTitle": "Psalter",
+  "helloWorld": "Hello World!",
+  "psalms": "Psalms",
+  "kathismas": "Kathismas",
+  "asNeeded": "As needed",
+  "psalm": "Psalm",
+  "kathisma": "Kathisma",
+  "addToBookmarks": "Add to Bookmarks",
+  "bookmarkeAddedMessage": "Bookmark added!",
+  "bookmarkeAlreadyAddedMessage": "Bookmark already added!"
+}
