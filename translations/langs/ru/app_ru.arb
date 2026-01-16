@@ -1,0 +1,21 @@
+{
+  "@@locale": "ru",
+
+  "home": "Главная",
+  "bookmarks": "Закладки",
+  "settings": "Настройки",
+  "helloWorld": "¡Hola Mundo!",
+
+  "appTitle": "Псалтырь",
+
+  "psalms": "Псалмы",
+  "kathismas": "Кафизмы",
+  "asNeeded": "На потребу",
+
+  "psalm": "Псалом",
+  "kathisma": "Кафизма",
+
+  "addToBookmarks": "Добавить в Избранное",
+  "bookmarkeAddedMessage": "Добавлено в Избранное!",
+  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!"
+}

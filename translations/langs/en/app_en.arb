@@ -1,0 +1,21 @@
+{
+  "@@locale": "en",
+
+  "home": "Home",
+  "bookmarks": "Bookmarks",
+  "settings": "Settings",
+
+  "appTitle": "Psalter",
+  "helloWorld": "Hello World!",
+
+  "psalms": "Psalms",
+  "kathismas": "Kathismas",
+  "asNeeded": "As needed",
+
+  "psalm": "Psalm",
+  "kathisma": "Kathisma",
+
+  "addToBookmarks": "Add to Bookmarks",
+  "bookmarkeAddedMessage": "Bookmark added!",
+  "bookmarkeAlreadyAddedMessage": "Bookmark already added!"
+}

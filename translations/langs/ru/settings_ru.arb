@@ -1,0 +1,12 @@
+{
+  "@@locale": "ru",
+
+  "changeLanguage": "Изменить язык",
+  "langNameEn": "Английский",
+  "langNameRu": "Русский",
+  "langNameRuSlav": "Русский (церковнослав.)",
+
+  "themeMode": "Тема оформления",
+  "dark": "Темная",
+  "light": "Светлая"
+}
