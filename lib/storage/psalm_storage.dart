@@ -10,7 +10,7 @@ class PsalmStorage {
 
     String languageCode = await LocaleStorage.getLocale();
 
-    String filePath = 'assets/psalms/$languageCode.json';
+    String filePath = 'assets/data/psalms/$languageCode.json';
 
     final String response = await rootBundle.loadString(filePath);
     final data = await json.decode(response);
