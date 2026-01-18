@@ -3,120 +3,120 @@
     "num": 1,
     "psalmFrom": 1,
     "psalmTo": 8,
-    "glory": [3, 6]
+    "gloryAfter": [3, 6]
   },
   {
     "num": 2,
     "psalmFrom": 9,
     "psalmTo": 16,
-    "glory": [10, 13]
+    "gloryAfter": [10, 13]
   },
   {
     "num": 3,
     "psalmFrom": 17,
     "psalmTo": 23,
-    "glory": [17, 20]
+    "gloryAfter": [17, 20]
   },
   {
     "num": 4,
     "psalmFrom": 24,
     "psalmTo": 31,
-    "glory": [26, 29]
+    "gloryAfter": [26, 29]
   },
   {
     "num": 5,
     "psalmFrom": 32,
     "psalmTo": 36,
-    "glory": [33, 35]
+    "gloryAfter": [33, 35]
   },
   {
     "num": 6,
     "psalmFrom": 37,
     "psalmTo": 45,
-    "glory": [39, 42]
+    "gloryAfter": [39, 42]
   },
   {
     "num": 7,
     "psalmFrom": 46,
     "psalmTo": 54,
-    "glory": [48, 50]
+    "gloryAfter": [48, 50]
   },
   {
     "num": 8,
     "psalmFrom": 55,
     "psalmTo": 63,
-    "glory": [57, 60]
+    "gloryAfter": [57, 60]
   },
   {
     "num": 9,
     "psalmFrom": 64,
     "psalmTo": 69,
-    "glory": [66, 67]
+    "gloryAfter": [66, 67]
   },
   {
     "num": 10,
     "psalmFrom": 70,
     "psalmTo": 76,
-    "glory": [71, 73]
+    "gloryAfter": [71, 73]
   },
   {
     "num": 11,
     "psalmFrom": 77,
     "psalmTo": 84,
-    "glory": [77, 80]
+    "gloryAfter": [77, 80]
   },
   {
     "num": 12,
     "psalmFrom": 85,
     "psalmTo": 90,
-    "glory": [87, 88]
+    "gloryAfter": [87, 88]
   },
   {
     "num": 13,
     "psalmFrom": 91,
     "psalmTo": 100,
-    "glory": [93, 96]
+    "gloryAfter": [93, 96]
   },
   {
     "num": 14,
     "psalmFrom": 101,
     "psalmTo": 104,
-    "glory": [102, 103]
+    "gloryAfter": [102, 103]
   },
   {
     "num": 15,
     "psalmFrom": 105,
     "psalmTo": 108,
-    "glory": [105, 106]
+    "gloryAfter": [105, 106]
   },
   {
     "num": 16,
     "psalmFrom": 109,
     "psalmTo": 117,
-    "glory": [111, 114]
+    "gloryAfter": [111, 114]
   },
   {
     "num": 17,
     "psalmFrom": 118,
     "psalmTo": 118,
-    "glory": []
+    "gloryAfter": []
   },
   {
     "num": 18,
     "psalmFrom": 119,
     "psalmTo": 133,
-    "glory": [123, 128]
+    "gloryAfter": [123, 128]
   },
   {
     "num": 19,
     "psalmFrom": 134,
     "psalmTo": 142,
-    "glory": [136, 139]
+    "gloryAfter": [136, 139]
   },
   {
     "num": 20,
     "psalmFrom": 143,
     "psalmTo": 151,
-    "glory": [136, 139]
+    "gloryAfter": [136, 139]
   }
 ]

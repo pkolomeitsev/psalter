@@ -3,17 +3,17 @@ class Kathisma {
   String? title = '';
   int? psalmFrom;
   int? psalmTo;
-  Map<int, int>? slava = {};
+  Map<int, int>? gloryAfter = {};
   String? troparion;
-  String? molitva;
+  String? prayer;
 
   Kathisma({
     this.num,
     this.title,
     this.psalmFrom,
     this.psalmTo,
-    this.slava,
+    this.gloryAfter,
     this.troparion,
-    this.molitva,
+    this.prayer,
   });
 }
