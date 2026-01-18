@@ -3,8 +3,8 @@
 
   "changeLanguage": "Change language",
   "langNameEn": "English",
-  "langNameRu": "Russian",
-  "langNameRuSlav": "Russian (Slavic)",
+  "langNameRu": "Russian (P.A. Yungerov)",
+  "langNameRuSlav": "Russian (Church Slavic)",
 
   "themeMode": "Theme mode",
   "dark": "Dark",
