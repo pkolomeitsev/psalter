@@ -1,11 +1,14 @@
+import 'package:jungers_psalter/models/psalm.dart';
+
 class Kathisma {
   int? num;
   String? title = '';
   int? psalmFrom;
   int? psalmTo;
-  Map<int, int>? gloryAfter = {};
+  List<dynamic>? gloryAfter = [];
   String? troparion;
   String? prayer;
+  List<Psalm> psalms;
 
   Kathisma({
     this.num,
@@ -15,5 +18,10 @@ class Kathisma {
     this.gloryAfter,
     this.troparion,
     this.prayer,
+    required this.psalms,
   });
+
+  getPsalms() {
+    return this.psalms;
+  }
 }
