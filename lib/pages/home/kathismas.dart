@@ -8,6 +8,7 @@ class Kathismas extends StatefulWidget {
   const Kathismas({super.key});
 
   static const int kathismasAmount = 20;
+  //@TODO: refactor with JSON data
   static const List kathismasMap = [
     '1-8',
     '9-16',
@@ -31,12 +32,11 @@ class Kathismas extends StatefulWidget {
     '143-150'
   ];
 
-
   @override
   State<Kathismas> createState() => _KathismasState();
 }
 
-class _KathismasState extends State<Kathismas> with TickerProviderStateMixin {
+class _KathismasState extends State<Kathismas> {
   @override
   Widget build(BuildContext context) {
     List<Widget> psalms = [];

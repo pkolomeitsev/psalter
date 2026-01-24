@@ -1,19 +1,29 @@
 class Psalm {
   int num;
+  String? title;
   String description;
   String text;
 
-  Psalm({required this.num, required this.description, required this.text});
+  Psalm({
+    required this.num,
+    this.title,
+    required this.description,
+    required this.text
+  });
 
-  getPsalmNumber() {
+  getNumber() {
     return this.num;
   }
 
-  getPsalmDescription() {
+  getTitle() {
+    return this.title;
+  }
+
+  getDescription() {
     return this.description;
   }
 
-  getPsalmText() {
+  getText() {
     return this.text;
   }
 }

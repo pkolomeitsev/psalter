@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AsNeeded extends StatefulWidget {
@@ -14,10 +13,7 @@ class _AsNeededState extends State<AsNeeded> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'This is the 3 tab ${'psalms'.tr()}',
-        style: const TextStyle(fontSize: 36),
-      ),
+      child: Placeholder(),
     );
   }
 }

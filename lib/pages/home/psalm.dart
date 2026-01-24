@@ -14,8 +14,6 @@ class Psalm extends StatefulWidget {
 }
 
 class _PsalmState extends State<Psalm> {
-  late psalm_model.Psalm psalm;
-
   Future<psalm_model.Psalm> fetchData() async {
     return await PsalmStorage.getPsalmById(widget.psalmId ?? '');
   }
@@ -44,12 +42,12 @@ class _PsalmState extends State<Psalm> {
               data: [
                 DefaultTextStyle.merge(
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  child: Text(snapshot.data!.getPsalmDescription(), textAlign: TextAlign.center),
+                  child: Text(snapshot.data!.getDescription(), textAlign: TextAlign.center),
                 ),
                 SizedBox(height: 10),
                 DefaultTextStyle.merge(
                   style: const TextStyle(fontSize: 16),
-                  child: Text(snapshot.data!.getPsalmText()),
+                  child: Text(snapshot.data!.getText()),
                 ),
                 SizedBox(height: 50),
               ],
