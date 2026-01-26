@@ -16,7 +16,7 @@ class KathismaStorage {
 
     int start = statData[0]['psalmFrom'];
     int end = statData[0]['psalmTo'];
-    List<int> ids = List<int>.generate(end - start, (i) => start + i);
+    List<int> ids = List<int>.generate(end - start + 1, (i) => start + i);
     final psalms = await PsalmStorage.getPsalmsByIds(ids);
 
     return Kathisma(
