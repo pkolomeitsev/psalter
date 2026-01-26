@@ -42,7 +42,7 @@ class _KathismaState extends State<Kathisma> {
             // build everything here
             return TextPageViewWrapper(
               data: [
-                this.renderPsalms(snapshot.data!.getPsalms()),
+                this.renderPsalms(context, snapshot.data!.getPsalms()),
                 SizedBox(height: 50),
               ],
             );
@@ -54,10 +54,11 @@ class _KathismaState extends State<Kathisma> {
     );
   }
 
-  Widget renderPsalms(List<Psalm> psalms) {
+  Widget renderPsalms(BuildContext context, List<Psalm> psalms) {
     List<Widget> psalmWidgets = [];
 
     for(final psalm in psalms) {
+      psalm.setTitle("${context.tr('psalm')} ${psalm.getNumber()}");
       psalmWidgets.add(PsalmView(psalm: psalm));
     }
 

@@ -22,6 +22,7 @@ class PsalmView extends StatelessWidget {
         style: const TextStyle(fontSize: 16),
         child: Text(this.psalm.getText()),
       ),
+      SizedBox(height: 10),
     ]);
   }
 }

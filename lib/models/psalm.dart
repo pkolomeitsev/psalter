@@ -11,6 +11,10 @@ class Psalm {
     required this.text
   });
 
+  setTitle(String title) {
+    this.title = title;
+  }
+
   getNumber() {
     return this.num;
   }
