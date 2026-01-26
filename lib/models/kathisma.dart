@@ -5,7 +5,7 @@ class Kathisma {
   String? title = '';
   int? psalmFrom;
   int? psalmTo;
-  List<dynamic>? gloryAfter = [];
+  List<int>? gloryAfter = [];
   String? troparion;
   String? prayer;
   List<Psalm> psalms;
@@ -23,5 +23,9 @@ class Kathisma {
 
   getPsalms() {
     return this.psalms;
+  }
+
+  getGloryAfter() {
+    return this.gloryAfter;
   }
 }
