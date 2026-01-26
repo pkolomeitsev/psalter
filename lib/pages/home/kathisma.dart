@@ -5,6 +5,7 @@ import 'package:jungers_psalter/models/psalm.dart';
 import 'package:jungers_psalter/storage/kathisma_storage.dart';
 import 'package:jungers_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:jungers_psalter/ui/components/glory_forever_widget.dart';
+import 'package:jungers_psalter/ui/components/trisagion_2_our_father_widget.dart';
 import 'package:jungers_psalter/ui/views/psalm_view.dart';
 import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
 
@@ -28,7 +29,7 @@ class _KathismaState extends State<Kathisma> {
         leading: BackButton(
             color: Colors.white
         ),
-        title: Text('${'kathisma'.tr()} ${widget.kathismaId}', style: TextStyle(color: Colors.white)),
+        title: Text('${context.tr('kathisma')} ${widget.kathismaId}', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
@@ -45,6 +46,7 @@ class _KathismaState extends State<Kathisma> {
             return TextPageViewWrapper(
               data: [
                 this.renderPsalms(context, snapshot.data),
+                this.renderTrisagion2OurFather(),
                 SizedBox(height: 50),
               ],
             );
@@ -74,6 +76,14 @@ class _KathismaState extends State<Kathisma> {
 
     return Column(
       children: psalmWidgets,
+    );
+  }
+
+  Widget renderTrisagion2OurFather() {
+    return Column(
+      children: [
+        Trisagion2OurFatherWidget()
+      ],
     );
   }
 }
