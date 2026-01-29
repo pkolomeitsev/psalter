@@ -3,6 +3,7 @@ import 'package:jungers_psalter/models/psalm.dart';
 import 'package:jungers_psalter/storage/locale_storage.dart';
 
 class PsalmStorage {
+  static const int psalmsAmount = 151;
 
   static Future<dynamic> getJsonData() async {
     String languageCode = await LocaleStorage.getLocale();
