@@ -28,4 +28,12 @@ class Kathisma {
   getGloryAfter() {
     return this.gloryAfter;
   }
+
+  getTroparion() {
+    return this.troparion;
+  }
+
+  getPrayer() {
+    return this.prayer;
+  }
 }

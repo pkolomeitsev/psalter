@@ -6,6 +6,7 @@ import 'package:jungers_psalter/storage/kathisma_storage.dart';
 import 'package:jungers_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:jungers_psalter/ui/components/glory_forever_widget.dart';
 import 'package:jungers_psalter/ui/components/trisagion_2_our_father_widget.dart';
+import 'package:jungers_psalter/ui/components/troparion_widget.dart';
 import 'package:jungers_psalter/ui/views/psalm_view.dart';
 import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
 
@@ -47,6 +48,7 @@ class _KathismaState extends State<Kathisma> {
               data: [
                 this.renderPsalms(context, snapshot.data),
                 this.renderTrisagion2OurFather(),
+                this.renderTroparion(snapshot.data),
                 SizedBox(height: 50),
               ],
             );
@@ -80,6 +82,22 @@ class _KathismaState extends State<Kathisma> {
   }
 
   Widget renderTrisagion2OurFather() {
+    return Column(
+      children: [
+        Trisagion2OurFatherWidget()
+      ],
+    );
+  }
+
+  Widget renderTroparion(kathisma_model.Kathisma? kathisma) {
+    return Column(
+      children: [
+        TroparionWidget(kathisma: kathisma)
+      ],
+    );
+  }
+
+  Widget renderPrayer() {
     return Column(
       children: [
         Trisagion2OurFatherWidget()
