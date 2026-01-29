@@ -25,7 +25,7 @@ class KathismaStorage {
       psalmTo: statData[0]['psalmTo'],
       gloryAfter: statData[0]['gloryAfter'].cast<int>(),
       troparion: prayerData[0]['troparion'],
-      prayer: prayerData[0]['troparion'],
+      prayer: prayerData[0]['prayer'],
       psalms: psalms
     );
   }

@@ -5,6 +5,7 @@ import 'package:jungers_psalter/models/psalm.dart';
 import 'package:jungers_psalter/storage/kathisma_storage.dart';
 import 'package:jungers_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:jungers_psalter/ui/components/glory_forever_widget.dart';
+import 'package:jungers_psalter/ui/components/prayer_widget.dart';
 import 'package:jungers_psalter/ui/components/trisagion_2_our_father_widget.dart';
 import 'package:jungers_psalter/ui/components/troparion_widget.dart';
 import 'package:jungers_psalter/ui/views/psalm_view.dart';
@@ -49,6 +50,12 @@ class _KathismaState extends State<Kathisma> {
                 this.renderPsalms(context, snapshot.data),
                 this.renderTrisagion2OurFather(),
                 this.renderTroparion(snapshot.data),
+                DefaultTextStyle.merge(
+                  style: const TextStyle(fontSize: 18),
+                  child: Text(context.tr('lordHaveMercy40T')),
+                ),
+                SizedBox(height: 10),
+                this.renderPrayer(snapshot.data),
                 SizedBox(height: 50),
               ],
             );
@@ -84,7 +91,7 @@ class _KathismaState extends State<Kathisma> {
   Widget renderTrisagion2OurFather() {
     return Column(
       children: [
-        Trisagion2OurFatherWidget()
+        Trisagion2OurFatherWidget(),
       ],
     );
   }
@@ -92,15 +99,15 @@ class _KathismaState extends State<Kathisma> {
   Widget renderTroparion(kathisma_model.Kathisma? kathisma) {
     return Column(
       children: [
-        TroparionWidget(kathisma: kathisma)
+        TroparionWidget(kathisma: kathisma),
       ],
     );
   }
 
-  Widget renderPrayer() {
+  Widget renderPrayer(kathisma_model.Kathisma? kathisma) {
     return Column(
       children: [
-        Trisagion2OurFatherWidget()
+        PrayerWidget(kathisma: kathisma),
       ],
     );
   }
