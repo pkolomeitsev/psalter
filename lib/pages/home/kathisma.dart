@@ -70,7 +70,7 @@ class _KathismaState extends State<Kathisma> {
   Widget renderPsalms(BuildContext context, kathisma_model.Kathisma? kathisma) {
     List<Widget> psalmWidgets = [];
     List<Psalm> psalms = kathisma!.getPsalms() ?? [];
-    List<int> gloryAfter = kathisma!.getGloryAfter() ?? [];
+    List<int> gloryAfter = kathisma.getGloryAfter() ?? [];
 
     for(final psalm in psalms) {
       psalm.setTitle("${context.tr('psalm')} ${psalm.getNumber()}");
