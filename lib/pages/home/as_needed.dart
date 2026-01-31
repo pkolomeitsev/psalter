@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jungers_psalter/models/enums/entity_type.dart';
 import 'package:jungers_psalter/storage/psalm_storage.dart';
 import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
 
@@ -55,13 +57,24 @@ class _AsNeededState extends State<AsNeeded> {
       String description = context.tr('psalm${num}AsNeeded');
 
       psalms.add(
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(child: Text('$num.')),
-            Expanded(flex: 9, child: Text(description))
-          ],
-        )
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(child: Text('$num.')),
+              Expanded(flex: 9,
+                  child: InkWell(
+                      onTap: () {
+                        context.go('/${EntityType.psalm.name}/$num');
+                      },
+                      child: Text(description,
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                        ),
+                      )
+                  )
+              )
+            ],
+          )
       );
 
       psalms.add(SizedBox(height: 10));
