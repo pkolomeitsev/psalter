@@ -16,24 +16,6 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   List languages = LocaleStorage.languages;
 
-  List<Widget> getSettingsWidget(BuildContext pageContext) {
-    List<Widget> langList = [];
-    for (var lang in languages) {
-      String code = lang['languageCode'];
-      String name = pageContext.tr(lang['languageName']);
-      String currentLocale = Localizations.localeOf(pageContext).languageCode;
-      langList.add(
-          SettingsSelector(
-            isSelected: currentLocale == code,
-            name: name,
-            onTap: () => _changeAppLanguage(pageContext, languageCode: code),
-          )
-      );
-    }
-
-    return langList;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +27,28 @@ class _SettingsState extends State<Settings> {
       body: ListViewWrapper(data: [
         SettingsCardTitle(text: 'changeLanguage'.tr()),
         SettingsCard(
-            children: getSettingsWidget(context)
+            children: getLanguageItems(context)
         ),
       ]),
     );
+  }
+
+  List<Widget> getLanguageItems(BuildContext pageContext) {
+    List<Widget> langItems = [];
+    for (var lang in languages) {
+      String code = lang['languageCode'];
+      String name = pageContext.tr(lang['languageName']);
+      String currentLocale = Localizations.localeOf(pageContext).languageCode;
+      langItems.add(
+          SettingsSelector(
+            isSelected: currentLocale == code,
+            name: name,
+            onTap: () => _changeAppLanguage(pageContext, languageCode: code),
+          )
+      );
+    }
+
+    return langItems;
   }
 
   void _changeAppLanguage(BuildContext context, {
