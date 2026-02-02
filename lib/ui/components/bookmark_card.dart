@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jungers_psalter/models/enums/entity_type.dart';
+import 'package:jungers_psalter/storage/bookmark_storage.dart';
 
 class BookmarkCard extends StatefulWidget {
   final int id;
@@ -24,6 +25,14 @@ class BookmarkCard extends StatefulWidget {
 }
 
 class _BookmarkCardState extends State<BookmarkCard> {
+  bool isBookmarkedState = false;
+
+  @override
+  void initState() {
+    super.initState();
+    this.isBookmarkedState = widget.isBookmarked;
+  }
+
   List<Widget> getLeftSideWidgets() {
     List<Widget> text = [];
     text.add(
@@ -40,7 +49,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
   }
 
   IconData getBookmarkIcon() {
-    return (widget.isBookmarked)
+    return (this.isBookmarkedState)
         ? Icons.bookmark
         : Icons.bookmark_outline;
   }
@@ -69,22 +78,33 @@ class _BookmarkCardState extends State<BookmarkCard> {
               ),
               IconButton(
                 icon: Icon(this.getBookmarkIcon()),
-                tooltip: 'addToBookmarks'.tr(),
                 onPressed: () {
                   print('Bookmark ${widget.type}');
 
                   setState(() {
-                    ///
+                    isBookmarkedState = !isBookmarkedState;
+                    if(isBookmarkedState) {
+                      BookmarkStorage.addBookmark(
+                          widget.type ?? EntityType.none,
+                          widget.id
+                      );
+                      return;
+                    }
+
+                    BookmarkStorage.deleteBookmark(
+                        widget.type ?? EntityType.none,
+                        widget.id
+                    );
                   });
 
                   //@TODO add to the Store model
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'bookmarkeAddedMessage'.tr(),
-                      ),
-                    ),
-                  );
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(
+                  //     content: Text(
+                  //       widget.isBookmarked.toString(),
+                  //     ),
+                  //   ),
+                  // );
                 },
               ),
             ],
