@@ -17,5 +17,6 @@
 
   "addToBookmarks": "Добавить в Избранное",
   "bookmarkeAddedMessage": "Добавлено в Избранное!",
-  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!"
+  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!",
+  "noBookmarks": "На данный момент нет закладок"
 }

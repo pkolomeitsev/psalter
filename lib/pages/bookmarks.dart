@@ -15,6 +15,10 @@ class Bookmarks extends StatefulWidget {
 }
 
 class _BookmarksState extends State<Bookmarks> {
+  List<int> psalmIds = BookmarkStorage.getBookmarks(EntityType.psalm);
+  List<int> kathismaIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
+  List<int> asNeededIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,16 +32,24 @@ class _BookmarksState extends State<Bookmarks> {
       ),
       body: TextPageViewWrapper(
         data: [
-          this.renderBookmarks(context, EntityType.psalm),
-          this.renderBookmarks(context, EntityType.kathisma),
+          if (psalmIds.isEmpty && kathismaIds.isEmpty && asNeededIds.isEmpty) ...[
+            Text(context.tr('noBookmarks'))
+          ]
+          else ...[
+            this.renderBookmarks(context, EntityType.psalm, psalmIds),
+            this.renderBookmarks(context, EntityType.kathisma, kathismaIds),
+          ]
         ],
       ),
     );
   }
 
-  Widget renderBookmarks(BuildContext context, EntityType type) {
-    List<int> ids = BookmarkStorage.getBookmarks(type);
-    String cardTitle = (type == EntityType.psalm) ? 'psalms' : 'kathismas';
+  Widget renderBookmarks(BuildContext context, EntityType type, List<int> ids) {
+    String cardTitle = '${type.name}s';
+
+    if (ids.isEmpty) {
+      return SizedBox();
+    }
 
     return Column(
       children: [
@@ -73,7 +85,6 @@ class _BookmarksState extends State<Bookmarks> {
     }
 
     return Wrap(
-        // alignment: WrapAlignment.center,
         spacing: 5.0,
         children: chips
     );
