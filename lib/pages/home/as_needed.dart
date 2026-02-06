@@ -62,7 +62,7 @@ class _AsNeededState extends State<AsNeeded> {
       psalms.add(
           BookmarkCard(
             id: i,
-            title: '${'psalm'.tr()} $i',
+            title: '${context.tr('psalm')} $i',
             description: description,
             type: EntityType.asNeeded,
             isBookmarked: bookmarks.contains(i),
@@ -75,8 +75,7 @@ class _AsNeededState extends State<AsNeeded> {
         psalms.add(
             DefaultTextStyle.merge(
               style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-              child: Text(
-                  context.tr('psalm149150AsNeededHelp')),
+              child: Text(context.tr('psalm149150AsNeededHelp')),
             )
         );
         psalms.add(SizedBox(height: 10));
