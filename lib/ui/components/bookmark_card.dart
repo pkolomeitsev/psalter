@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jungers_psalter/helpers/debouncer_helper.dart';
 import 'package:jungers_psalter/models/enums/entity_type.dart';
 import 'package:jungers_psalter/storage/bookmark_storage.dart';
 
@@ -25,6 +25,7 @@ class BookmarkCard extends StatefulWidget {
 }
 
 class _BookmarkCardState extends State<BookmarkCard> {
+  final debouncer = DebouncerHelper(milliseconds: 500);
   bool isBookmarkedState = false;
 
   @override
@@ -60,10 +61,6 @@ class _BookmarkCardState extends State<BookmarkCard> {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
-          print(widget.id);
-          print(widget.title);
-          print(widget.description);
-
           context.go('/${widget.type!.name}/${widget.id}');
         },
         child: Padding(
@@ -79,15 +76,14 @@ class _BookmarkCardState extends State<BookmarkCard> {
               IconButton(
                 icon: Icon(this.getBookmarkIcon()),
                 onPressed: () {
-                  print('Bookmark ${widget.type}');
-
-                  setState(() {
+                  debouncer.run(() => setState(() {
                     isBookmarkedState = !isBookmarkedState;
                     if(isBookmarkedState) {
                       BookmarkStorage.addBookmark(
                           widget.type ?? EntityType.none,
                           widget.id
                       );
+
                       return;
                     }
 
@@ -95,16 +91,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
                         widget.type ?? EntityType.none,
                         widget.id
                     );
-                  });
-
-                  //@TODO add to the Store model
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   SnackBar(
-                  //     content: Text(
-                  //       widget.isBookmarked.toString(),
-                  //     ),
-                  //   ),
-                  // );
+                  }));
                 },
               ),
             ],
