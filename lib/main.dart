@@ -59,6 +59,11 @@ final GoRouter _router = GoRouter(
           builder: (context, state) =>
               Kathisma(kathismaId: state.pathParameters['kathismaId']),
         ),
+        GoRoute(
+          path: '/${EntityType.asNeeded.name}/:psalmId',
+          builder: (context, state) =>
+              Psalm(psalmId: state.pathParameters['psalmId']),
+        ),
       ],
     ),
   ],
