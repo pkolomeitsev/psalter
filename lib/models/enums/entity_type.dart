@@ -1,1 +1,1 @@
-enum EntityType { none, psalm, kathisma }
+enum EntityType { none, psalm, kathisma, asNeeded }

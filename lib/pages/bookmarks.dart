@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jungers_psalter/models/enums/entity_type.dart';
 import 'package:jungers_psalter/storage/bookmark_storage.dart';
+import 'package:jungers_psalter/ui/components/bookmark_card.dart';
 import 'package:jungers_psalter/ui/components/settings_card.dart';
 import 'package:jungers_psalter/ui/components/settings_card_title.dart';
 import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
@@ -17,7 +18,7 @@ class Bookmarks extends StatefulWidget {
 class _BookmarksState extends State<Bookmarks> {
   List<int> psalmIds = BookmarkStorage.getBookmarks(EntityType.psalm);
   List<int> kathismaIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
-  List<int> asNeededIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
+  List<int> asNeededIds = BookmarkStorage.getBookmarks(EntityType.asNeeded);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class _BookmarksState extends State<Bookmarks> {
           else ...[
             this.renderBookmarks(context, EntityType.psalm, psalmIds),
             this.renderBookmarks(context, EntityType.kathisma, kathismaIds),
+            this.renderBookmarks(context, EntityType.asNeeded, asNeededIds),
           ]
         ],
       ),
@@ -45,7 +47,9 @@ class _BookmarksState extends State<Bookmarks> {
   }
 
   Widget renderBookmarks(BuildContext context, EntityType type, List<int> ids) {
-    String cardTitle = '${type.name}s';
+    String cardTitle = (type == EntityType.asNeeded)
+        ? type.name
+        : '${type.name}s';
 
     if (ids.isEmpty) {
       return SizedBox();
@@ -58,7 +62,12 @@ class _BookmarksState extends State<Bookmarks> {
             Expanded(child: SettingsCardTitle(text: context.tr(cardTitle))),
           ],
         ),
-        SettingsCard(children: [this.renderBookmarksChips(context, type, ids)]),
+        if (type == EntityType.asNeeded) ...[
+          this.renderBookmarksCards(context, type, ids),
+        ]
+        else ...[
+          SettingsCard(children: [this.renderBookmarksChips(context, type, ids)]),
+        ]
       ],
     );
   }
@@ -87,6 +96,33 @@ class _BookmarksState extends State<Bookmarks> {
     return Wrap(
         spacing: 5.0,
         children: chips
+    );
+  }
+
+  Widget renderBookmarksCards(
+    BuildContext context,
+    EntityType type,
+    List<int> ids
+  ) {
+    List<Widget> cards = [];
+    List<int> bookmarks = BookmarkStorage.getBookmarks(EntityType.asNeeded);
+
+    for (var id in ids) {
+      String description = context.tr('psalm${id}AsNeeded');
+
+      cards.add(
+          BookmarkCard(
+            id: id,
+            title: '${context.tr('psalm')} $id',
+            description: description,
+            type: EntityType.asNeeded,
+            isBookmarked: bookmarks.contains(id),
+          )
+      );
+    }
+
+    return Column(
+      children: cards,
     );
   }
 }
