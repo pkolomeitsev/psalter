@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:jungers_psalter/interfaces/entity_object_interface.dart';
+import 'package:jungers_psalter/models/bookmark.dart';
 import 'package:jungers_psalter/models/enums/entity_type.dart';
 import 'package:jungers_psalter/storage/bookmark_storage.dart';
 import 'package:jungers_psalter/ui/components/bookmark_card.dart';
+import 'package:jungers_psalter/ui/components/chip_list.dart';
 import 'package:jungers_psalter/ui/components/settings_card.dart';
 import 'package:jungers_psalter/ui/components/settings_card_title.dart';
 import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
@@ -77,26 +79,15 @@ class _BookmarksState extends State<Bookmarks> {
     EntityType type,
     List<int> ids,
   ) {
-    List<Widget> chips = [];
+    List<EntityObjectInterface> chips = [];
 
     for (var id in ids) {
       chips.add(
-        InputChip(
-          label: Text('${context.tr(type.name)} $id'),
-          onSelected: (bool selected) {
-            context.go('/${type.name}/$id');
-          },
-          onDeleted: () {
-            ids.remove(id);
-          },
-        ),
+        Bookmark(id: id, title: '${context.tr(type.name)} $id', type: type)
       );
     }
 
-    return Wrap(
-        spacing: 5.0,
-        children: chips
-    );
+    return ChipList(chipList: chips);
   }
 
   Widget renderBookmarksCards(
