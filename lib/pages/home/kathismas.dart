@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:jungers_psalter/models/enums/entity_type.dart';
+import 'package:jungers_psalter/storage/bookmark_storage.dart';
 import 'package:jungers_psalter/ui/components/bookmark_card.dart';
 import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';
 
@@ -40,15 +41,16 @@ class _KathismasState extends State<Kathismas> {
   @override
   Widget build(BuildContext context) {
     List<Widget> psalms = [];
+    List<int> bookmarks = BookmarkStorage.getBookmarks(EntityType.kathisma);
 
-    for (int i = 0; i < Kathismas.kathismasAmount; i++) {
+    for (int i = 1; i <= Kathismas.kathismasAmount; i++) {
       psalms.add(
         BookmarkCard(
-          id: (i + 1),
-          title: '${'kathisma'.tr()} ${i+1}',
-          description: '${'psalms'.tr()} ${Kathismas.kathismasMap[i]}',
+          id: i,
+          title: '${context.tr('kathisma')} $i',
+          description: '${'psalms'.tr()} ${Kathismas.kathismasMap[i-1]}',
           type: EntityType.kathisma,
-          isBookmarked: false,
+          isBookmarked: bookmarks.contains(i),
         ),
       );
     }
