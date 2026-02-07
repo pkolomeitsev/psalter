@@ -20,12 +20,12 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('appTitle'.tr(), style: TextStyle(color: Colors.white)),
+        title: Text(context.tr('appTitle'), style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.indigo,
       ),
       body: ListViewWrapper(data: [
-        SettingsCardTitle(text: 'changeLanguage'.tr()),
+        SettingsCardTitle(text: context.tr('changeLanguage')),
         SettingsCard(
             children: getLanguageItems(context)
         ),
@@ -43,7 +43,7 @@ class _SettingsState extends State<Settings> {
           SettingsSelector(
             isSelected: currentLocale == code,
             name: name,
-            onTap: () => _changeAppLanguage(pageContext, languageCode: code),
+            onTap: () => this.changeAppLanguage(pageContext, code),
           )
       );
     }
@@ -51,9 +51,7 @@ class _SettingsState extends State<Settings> {
     return langItems;
   }
 
-  void _changeAppLanguage(BuildContext context, {
-    required String languageCode,
-  }) {
+  void changeAppLanguage(BuildContext context, String languageCode) {
     context.setLocale(Locale(languageCode));
   }
 }
