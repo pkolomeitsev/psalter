@@ -25,7 +25,7 @@ class BookmarkCard extends StatefulWidget {
 }
 
 class _BookmarkCardState extends State<BookmarkCard> {
-  final debouncer = DebouncerHelper(milliseconds: 500);
+  final debouncer = DebouncerHelper();
   bool isBookmarkedState = false;
 
   @override

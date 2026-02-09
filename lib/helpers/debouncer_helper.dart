@@ -1,10 +1,10 @@
 import 'dart:async';
 
 class DebouncerHelper {
-  int milliseconds = 300;
+  int milliseconds;
   Timer? timer;
 
-  DebouncerHelper({required this.milliseconds});
+  DebouncerHelper({this.milliseconds = 300});
 
   void run(void Function() action) {
     this.timer?.cancel();
