@@ -6,7 +6,6 @@
   "settings": "Settings",
 
   "appTitle": "(+) Psalter",
-  "helloWorld": "Hello World!",
 
   "psalms": "Psalms",
   "kathismas": "Kathismas",
@@ -18,7 +17,7 @@
   "addToBookmarks": "Add to Bookmarks",
   "bookmarkeAddedMessage": "Bookmark added!",
   "bookmarkeAlreadyAddedMessage": "Bookmark already added!",
-
+  "noBookmarks": "There are no bookmarks at the moment",
   "deleteBookmarkConfirm": "Are you sure you want to delete \"{chipName}\"?",
   "cancel": "Cancel",
   "delete": "Delete"
