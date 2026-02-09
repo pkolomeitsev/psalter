@@ -10,7 +10,7 @@
   "home": "Home",
   "bookmarks": "Bookmarks",
   "settings": "Settings",
-  "appTitle": "Psalter",
+  "appTitle": "(+) Psalter",
   "helloWorld": "Hello World!",
   "psalms": "Psalms",
   "kathismas": "Kathismas",
@@ -19,5 +19,8 @@
   "kathisma": "Kathisma",
   "addToBookmarks": "Add to Bookmarks",
   "bookmarkeAddedMessage": "Bookmark added!",
-  "bookmarkeAlreadyAddedMessage": "Bookmark already added!"
+  "bookmarkeAlreadyAddedMessage": "Bookmark already added!",
+  "deleteBookmarkConfirm": "Are you sure you want to delete \"{chipName}\"?",
+  "cancel": "Cancel",
+  "delete": "Delete"
 }
