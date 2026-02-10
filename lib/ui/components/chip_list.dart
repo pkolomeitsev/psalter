@@ -31,7 +31,7 @@ class _ChipListState extends State<ChipList> {
         InputChip(
           label: Text(object.getTitle()),
           onSelected: (bool selected) {
-            context.go('/${object.getType()}/${object.getId()}');
+            context.go('/${object.getType().name}/${object.getId()}');
           },
           onDeleted: () async {
             final bool? didConfirm = await deleteConfirmDialog(
