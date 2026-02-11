@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:jungers_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
 
 class BookmarkStorage {
   static getBookmarks(EntityType type) {

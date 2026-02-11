@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jungers_psalter/helpers/debouncer_helper.dart';
-import 'package:jungers_psalter/models/enums/entity_type.dart';
-import 'package:jungers_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/helpers/debouncer_helper.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/storage/bookmark_storage.dart';
 
 class BookmarkCard extends StatefulWidget {
   final int id;

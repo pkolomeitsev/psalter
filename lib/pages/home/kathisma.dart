@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:jungers_psalter/models/kathisma.dart' as kathisma_model;
-import 'package:jungers_psalter/models/psalm.dart';
-import 'package:jungers_psalter/storage/kathisma_storage.dart';
-import 'package:jungers_psalter/ui/components/glory_forever_short_widget.dart';
-import 'package:jungers_psalter/ui/components/glory_forever_widget.dart';
-import 'package:jungers_psalter/ui/components/prayer_widget.dart';
-import 'package:jungers_psalter/ui/components/trisagion_2_our_father_widget.dart';
-import 'package:jungers_psalter/ui/components/troparion_widget.dart';
-import 'package:jungers_psalter/ui/views/psalm_view.dart';
-import 'package:jungers_psalter/ui/views/text_page_view_wrapper.dart';
+import 'package:orth_psalter/models/kathisma.dart' as kathisma_model;
+import 'package:orth_psalter/models/psalm.dart';
+import 'package:orth_psalter/storage/kathisma_storage.dart';
+import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
+import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
+import 'package:orth_psalter/ui/components/prayer_widget.dart';
+import 'package:orth_psalter/ui/components/trisagion_2_our_father_widget.dart';
+import 'package:orth_psalter/ui/components/troparion_widget.dart';
+import 'package:orth_psalter/ui/views/psalm_view.dart';
+import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Kathisma extends StatefulWidget {
   final String? kathismaId;

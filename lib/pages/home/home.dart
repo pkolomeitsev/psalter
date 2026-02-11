@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/pages/home/as_needed.dart';
-import 'package:jungers_psalter/pages/home/kathismas.dart';
-import 'package:jungers_psalter/pages/home/psalms.dart';
+import 'package:orth_psalter/pages/home/as_needed.dart';
+import 'package:orth_psalter/pages/home/kathismas.dart';
+import 'package:orth_psalter/pages/home/psalms.dart';
 
-// import 'package:jungers_psalter/l10n/app_localizations.dart';
+// import 'package:orth_psalter/l10n/app_localizations.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

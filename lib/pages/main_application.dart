@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/pages/bookmarks.dart';
-import 'package:jungers_psalter/pages/home/home.dart';
-import 'package:jungers_psalter/pages/settings.dart';
+import 'package:orth_psalter/pages/bookmarks.dart';
+import 'package:orth_psalter/pages/home/home.dart';
+import 'package:orth_psalter/pages/settings.dart';
 
 class MainApplication extends StatefulWidget {
   const MainApplication({super.key});

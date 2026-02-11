@@ -3,10 +3,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:jungers_psalter/models/enums/entity_type.dart';
-import 'package:jungers_psalter/pages/home/kathisma.dart';
-import 'package:jungers_psalter/pages/home/psalm.dart';
-import 'package:jungers_psalter/pages/main_application.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/pages/home/kathisma.dart';
+import 'package:orth_psalter/pages/home/psalm.dart';
+import 'package:orth_psalter/pages/main_application.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,6 +70,8 @@ final GoRouter _router = GoRouter(
 );
 
 class PsalterApp extends StatelessWidget {
+  const PsalterApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/models/psalm.dart';
+import 'package:orth_psalter/models/psalm.dart';
 
 class PsalmView extends StatelessWidget {
   final Psalm psalm;

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/storage/locale_storage.dart';
-import 'package:jungers_psalter/ui/components/settings_card.dart';
-import 'package:jungers_psalter/ui/components/settings_card_title.dart';
-import 'package:jungers_psalter/ui/components/settings_selector.dart';
-import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';
+import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/ui/components/settings_card.dart';
+import 'package:orth_psalter/ui/components/settings_card_title.dart';
+import 'package:orth_psalter/ui/components/settings_selector.dart';
+import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});

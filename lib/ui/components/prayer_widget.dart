@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:jungers_psalter/models/kathisma.dart';
+import 'package:orth_psalter/models/kathisma.dart';
 
 class PrayerWidget extends StatelessWidget {
   final Kathisma? kathisma;

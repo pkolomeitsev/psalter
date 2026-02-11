@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:jungers_psalter/models/enums/entity_type.dart';
-import 'package:jungers_psalter/storage/bookmark_storage.dart';
-import 'package:jungers_psalter/storage/psalm_storage.dart';
-import 'package:jungers_psalter/ui/components/bookmark_card.dart';
-import 'package:jungers_psalter/ui/views/list_view_wrapper.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/psalm_storage.dart';
+import 'package:orth_psalter/ui/components/bookmark_card.dart';
+import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 
 class Psalms extends StatefulWidget {
   const Psalms({super.key});

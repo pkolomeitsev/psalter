@@ -1,4 +1,4 @@
-import 'package:jungers_psalter/models/psalm.dart';
+import 'package:orth_psalter/models/psalm.dart';
 
 class Kathisma {
   int? num;

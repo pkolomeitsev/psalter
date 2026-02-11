@@ -1,6 +1,6 @@
-import 'package:jungers_psalter/helpers/json_helper.dart';
-import 'package:jungers_psalter/models/psalm.dart';
-import 'package:jungers_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/helpers/json_helper.dart';
+import 'package:orth_psalter/models/psalm.dart';
+import 'package:orth_psalter/storage/locale_storage.dart';
 
 class PsalmStorage {
   static const int psalmsAmount = 151;

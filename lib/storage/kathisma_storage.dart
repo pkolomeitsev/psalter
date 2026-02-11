@@ -1,7 +1,7 @@
-import 'package:jungers_psalter/helpers/json_helper.dart';
-import 'package:jungers_psalter/models/kathisma.dart';
-import 'package:jungers_psalter/storage/locale_storage.dart';
-import 'package:jungers_psalter/storage/psalm_storage.dart';
+import 'package:orth_psalter/helpers/json_helper.dart';
+import 'package:orth_psalter/models/kathisma.dart';
+import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/storage/psalm_storage.dart';
 
 class KathismaStorage {
   static Future<Kathisma> getKathismaById(int kathismaId) async {
