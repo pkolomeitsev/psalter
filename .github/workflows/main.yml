@@ -1,11 +1,11 @@
-name: 🛠 Android CI / Build & Release
+name: Build & Release
 
 on:
   push:
-    branches: [ master ]
+#    branches: [ master ]
     tags:    [ 'v*.*.*' ]
-  pull_request:
-    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 
 permissions:
   contents: write   # allow creating/updating Releases & uploading assets
@@ -85,11 +85,11 @@ jobs:
 #          cp build/app/outputs/flutter-apk/*.apk artifacts/
 #
 #       ─────────────── ONLY ON TAGS ───────────────
-#      - name: 🏷️ Create or update Release
-#        if: startsWith(github.ref, 'refs/tags/v')
-#        uses: ncipollo/release-action@v1.16.0
-#        with:
-#          tag:       ${{ github.ref_name }}
-#          name:      Release ${{ github.ref_name }}
-#          artifacts: artifacts/*.apk
-#          token:     ${{ secrets.GITHUB_TOKEN }}
+      - name: 🏷️ Create or update Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: ncipollo/release-action@v1.16.0
+        with:
+          tag:       ${{ github.ref_name }}
+          name:      Release ${{ github.ref_name }}
+          artifacts: artifacts/*.apk
+          token:     ${{ secrets.GITHUB_TOKEN }}
