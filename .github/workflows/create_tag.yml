@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jacopocarlini/action-autotag@stable
+      - uses: jacopocarlini/action-autotag@3.0.0
         with:
           GITHUB_TOKEN: "${{ secrets.TOKEN }}"
           tag_prefix: "v"
