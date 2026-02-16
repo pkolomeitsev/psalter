@@ -28,8 +28,22 @@ jobs:
           channel: stable
       - run: flutter pub get
       - run: flutter --version
-      - run: flutter build apk
-      - run: flutter build appbundle
+      - run: flutter build apk --release --split-per-abi
+#      - run: flutter build appbundle
+
+      - name: 📦 Prepare artifacts
+        run: |
+          mkdir -p artifacts
+          cp build/app/outputs/flutter-apk/*.apk artifacts/
+
+      - name: 🏷️ Create or update Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          tag:       ${{ github.ref_name }}
+          name:      Release ${{ github.ref_name }}
+          artifacts: artifacts/*.apk
+          token:     ${{ secrets.GITHUB_TOKEN }}
 
   build_ios:
     runs-on: macos-latest
@@ -43,6 +57,21 @@ jobs:
       - run: flutter pub get
       - run: flutter --version
       - run: flutter build ios --release --no-codesign
+
+      - name: 📦 Prepare artifacts
+        run: |
+          mkdir -p artifacts
+          cp build/ios/iphoneos/*.app artifacts/
+
+      - name: 🏷️ Create or update Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          tag:       ${{ github.ref_name }}
+          name:      Release ${{ github.ref_name }}
+          artifacts: artifacts/*.app
+          token:     ${{ secrets.GITHUB_TOKEN }}
+
 
 
 #  build_and_release:
@@ -85,11 +114,11 @@ jobs:
 #          cp build/app/outputs/flutter-apk/*.apk artifacts/
 #
 #       ─────────────── ONLY ON TAGS ───────────────
-      - name: 🏷️ Create or update Release
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: ncipollo/release-action@v1.16.0
-        with:
-          tag:       ${{ github.ref_name }}
-          name:      Release ${{ github.ref_name }}
-          artifacts: artifacts/*.apk
-          token:     ${{ secrets.GITHUB_TOKEN }}
+#      - name: 🏷️ Create or update Release
+#        if: startsWith(github.ref, 'refs/tags/v')
+#        uses: ncipollo/release-action@v1.16.0
+#        with:
+#          tag:       ${{ github.ref_name }}
+#          name:      Release ${{ github.ref_name }}
+#          artifacts: artifacts/*.apk
+#          token:     ${{ secrets.GITHUB_TOKEN }}
