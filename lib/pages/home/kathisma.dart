@@ -33,7 +33,7 @@ class _KathismaState extends State<Kathisma> {
         ),
         title: Text('${context.tr('kathisma')} ${widget.kathismaId}', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.blue[700],
       ),
       body:  FutureBuilder<kathisma_model.Kathisma>(
         future: this.fetchData(),

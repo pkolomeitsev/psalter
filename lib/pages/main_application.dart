@@ -25,7 +25,7 @@ class _MainApplicationState extends State<MainApplication> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.indigo,
+        indicatorColor: Colors.blue[700],
         selectedIndex: currentPageIndex,
         destinations: <Widget>[
           NavigationDestination(

@@ -15,7 +15,7 @@ final class SettingsSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textColor = isSelected
-        ? Colors.indigo
+        ? (Colors.blue[700] ?? Colors.blue)
         : theme.colorScheme.secondary;
 
     return TextButton(

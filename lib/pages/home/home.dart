@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
           ),
           indicatorColor: Colors.white,
         ),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.blue[700],
       ),
       body: TabBarView(children: [Psalms(), Kathismas(), AsNeeded()]),
     );

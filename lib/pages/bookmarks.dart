@@ -31,7 +31,7 @@ class _BookmarksState extends State<Bookmarks> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.blue[700],
       ),
       body: TextPageViewWrapper(
         data: [

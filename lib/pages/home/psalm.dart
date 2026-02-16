@@ -28,7 +28,7 @@ class _PsalmState extends State<Psalm> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.blue[700],
       ),
       body: FutureBuilder<psalm_model.Psalm>(
         future: this.fetchData(),
