@@ -24,11 +24,10 @@ class _PsalmState extends State<Psalm> {
       appBar: AppBar(
         leading: BackButton(color: Colors.white),
         title: Text(
-          '${'psalm'.tr()} ${widget.psalmId}',
+          '${context.tr('psalm')} ${widget.psalmId}',
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue[700],
       ),
       body: FutureBuilder<psalm_model.Psalm>(
         future: this.fetchData(),

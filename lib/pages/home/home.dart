@@ -4,8 +4,6 @@ import 'package:orth_psalter/pages/home/as_needed.dart';
 import 'package:orth_psalter/pages/home/kathismas.dart';
 import 'package:orth_psalter/pages/home/psalms.dart';
 
-// import 'package:orth_psalter/l10n/app_localizations.dart';
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -20,22 +18,20 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('appTitle'.tr(), style: TextStyle(color: Colors.white)),
+        title: Text(context.tr('appTitle'), style: TextStyle(color: Colors.white)),
         centerTitle: true,
         bottom: TabBar(
           tabs: [
-            Tab(text: 'psalms'.tr()),
-            Tab(text: 'kathismas'.tr()),
-            Tab(text: 'asNeeded'.tr()),
+            Tab(text: context.tr('psalms')),
+            Tab(text: context.tr('kathismas')),
+            Tab(text: context.tr('asNeeded')),
           ],
           unselectedLabelColor: Colors.white70,
           labelStyle: TextStyle(
             color: Colors.white,
-            // fontStyle: FontStyle.italic
           ),
           indicatorColor: Colors.white,
         ),
-        backgroundColor: Colors.blue[700],
       ),
       body: TabBarView(children: [Psalms(), Kathismas(), AsNeeded()]),
     );
