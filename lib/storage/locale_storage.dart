@@ -1,3 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:intl/intl_standalone.dart'
+    if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleStorage {
@@ -10,6 +13,13 @@ class LocaleStorage {
 
   static Future<String> getLocale() async {
     final preferences = await SharedPreferences.getInstance();
-    return preferences.getString('locale') ?? LocaleStorage.defaultLocale;
+    final foundPlatformLocale = await findSystemLocale();
+
+    return preferences.getString('locale')
+      ?? foundPlatformLocale.toLocale().languageCode;
+  }
+
+  static getDefaultLocale() {
+    return LocaleStorage.defaultLocale;
   }
 }
