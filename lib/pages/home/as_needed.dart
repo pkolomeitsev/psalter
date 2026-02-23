@@ -40,12 +40,6 @@ class _AsNeededState extends State<AsNeeded> {
                     context.tr('psalterReadingRuleByStArseniosTheCappadocian')),
               ),
               SizedBox(height: 10),
-              DefaultTextStyle.merge(
-                style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-                child: Text(
-                    context.tr('psalterReadingAsNeededHelp')),
-              ),
-              SizedBox(height: 10),
               this.renderPsalms(context),
             ],
           )
