@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/kathisma.dart';
+import 'package:orth_psalter/theme/app_font.dart';
 
 class TroparionWidget extends StatelessWidget {
   final Kathisma? kathisma;
@@ -19,7 +20,7 @@ class TroparionWidget extends StatelessWidget {
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
           child: Text(this.kathisma!.getTroparion()),
         ),
         SizedBox(height: 10),
