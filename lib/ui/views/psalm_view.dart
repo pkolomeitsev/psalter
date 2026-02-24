@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/psalm.dart';
+import 'package:orth_psalter/theme/app_font.dart';
 
 class PsalmView extends StatelessWidget {
   final Psalm psalm;
@@ -19,7 +20,7 @@ class PsalmView extends StatelessWidget {
       ),
       SizedBox(height: 10),
       DefaultTextStyle.merge(
-        style: const TextStyle(fontSize: 16),
+        style: const TextStyle(fontSize: AppFont.comfortReadingSize),
         child: Text(this.psalm.getText()),
       ),
       SizedBox(height: 10),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:orth_psalter/pages/bookmarks.dart';
 import 'package:orth_psalter/pages/home/home.dart';
 import 'package:orth_psalter/pages/settings.dart';
+import 'package:orth_psalter/theme/app_colors.dart';
 
 class MainApplication extends StatefulWidget {
   const MainApplication({super.key});
@@ -16,7 +17,6 @@ class _MainApplicationState extends State<MainApplication> {
 
   @override
   Widget build(BuildContext context) {
-    // final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       bottomNavigationBar: NavigationBar(
@@ -25,7 +25,7 @@ class _MainApplicationState extends State<MainApplication> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.indigo,
+        indicatorColor: AppColors.brandBgColor,
         selectedIndex: currentPageIndex,
         destinations: <Widget>[
           NavigationDestination(

@@ -22,7 +22,6 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         title: Text(context.tr('appTitle'), style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: Colors.indigo,
       ),
       body: ListViewWrapper(data: [
         SettingsCardTitle(text: context.tr('changeLanguage')),
