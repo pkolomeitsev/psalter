@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/theme/app_colors.dart';
 
 final class SettingsSelector extends StatelessWidget {
   final String name;
@@ -15,7 +16,7 @@ final class SettingsSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final textColor = isSelected
-        ? Colors.indigo
+        ? (AppColors.brandBgColor ?? Colors.blue)
         : theme.colorScheme.secondary;
 
     return TextButton(

@@ -6,6 +6,7 @@ import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
+import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -82,7 +83,9 @@ class PsalterApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.brandBgColor,
+        ),
       ),
       routerConfig: _router,
     );
