@@ -51,21 +51,18 @@ class _AsNeededState extends State<AsNeeded> {
     List<int> bookmarks = BookmarkStorage.getBookmarks(EntityType.asNeeded);
 
     for (var i = 1; i <= widget.psalmAmount; i++) {
-      String description = context.tr('psalm${i}AsNeeded');
-
       psalms.add(
           BookmarkCard(
             id: i,
             title: '${context.tr('psalm')} $i',
-            description: description,
+            description: context.tr('psalm${i}AsNeeded'),
             type: EntityType.asNeeded,
             isBookmarked: bookmarks.contains(i),
           )
       );
 
-      psalms.add(SizedBox(height: 10));
-
       if (i == 148) {
+        psalms.add(SizedBox(height: 10));
         psalms.add(
             DefaultTextStyle.merge(
               style: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
