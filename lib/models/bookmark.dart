@@ -1,4 +1,4 @@
-import 'package:orth_psalter/interfaces/entity_object_interface.dart';
+import 'package:orth_psalter/models/interfaces/entity_object_interface.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 
 class Bookmark implements EntityObjectInterface{

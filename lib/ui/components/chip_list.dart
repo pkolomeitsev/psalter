@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:orth_psalter/interfaces/entity_object_interface.dart';
+import 'package:orth_psalter/models/interfaces/entity_object_interface.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 
 class ChipList extends StatefulWidget {
