@@ -12,11 +12,13 @@ class TextPageViewWrapper extends StatefulWidget {
 class _TextPageViewWrapperState extends State<TextPageViewWrapper> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsetsGeometry.all(10),
-        child: Column(
-            children: widget.data
+    return Scrollbar(
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsetsGeometry.all(10),
+          child: Column(
+              children: widget.data
+          ),
         ),
       ),
     );
