@@ -84,6 +84,8 @@ class _ChipListState extends State<ChipList> {
               },
             ),
           ],
+          contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+          actionsPadding: EdgeInsets.fromLTRB(10, 0, 10, 10),
         );
       },
     );
