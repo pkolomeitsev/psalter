@@ -10,6 +10,7 @@ class BookmarkCard extends StatefulWidget {
   final String description;
   final EntityType? type;
   final bool isBookmarked;
+  final bool isActive;
 
   const BookmarkCard({
     super.key,
@@ -18,6 +19,7 @@ class BookmarkCard extends StatefulWidget {
     this.description = '',
     this.type = EntityType.none,
     this.isBookmarked = false,
+    this.isActive = false,
   });
 
   @override
@@ -27,11 +29,13 @@ class BookmarkCard extends StatefulWidget {
 class _BookmarkCardState extends State<BookmarkCard> {
   final debouncer = DebouncerHelper();
   bool isBookmarkedState = false;
+  bool isActiveState = false;
 
   @override
   void initState() {
     super.initState();
     this.isBookmarkedState = widget.isBookmarked;
+    this.isActiveState = widget.isActive;
   }
 
   List<Widget> getLeftSideWidgets() {
@@ -55,10 +59,23 @@ class _BookmarkCardState extends State<BookmarkCard> {
         : Icons.bookmark_outline;
   }
 
+  ShapeBorder? getBorderStyle(context) {
+    return (this.isActiveState)
+        ? RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+            side: BorderSide(
+              color: Colors.blue[700]!.withValues(alpha: 0.5),
+              width: 2,
+            ),
+          )
+        : Theme.of(context).cardTheme.shape;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.hardEdge,
+      shape: this.getBorderStyle(context),
       child: InkWell(
         onTap: () {
           context.go('/${widget.type!.name}/${widget.id}');
