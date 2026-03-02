@@ -8,7 +8,7 @@ class BookmarkCard extends StatefulWidget {
   final int id;
   final String title;
   final String description;
-  final EntityType? type;
+  final EntityType type;
   final bool isBookmarked;
   final bool isActive;
 
@@ -78,7 +78,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
       shape: this.getBorderStyle(context),
       child: InkWell(
         onTap: () {
-          context.go('/${widget.type!.name}/${widget.id}');
+          context.go('/${widget.type.name}/${widget.id}');
         },
         child: Padding(
           padding: EdgeInsetsGeometry.all(20),
@@ -97,7 +97,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
                     isBookmarkedState = !isBookmarkedState;
                     if(isBookmarkedState) {
                       BookmarkStorage.addBookmark(
-                          widget.type ?? EntityType.none,
+                          widget.type,
                           widget.id
                       );
 
@@ -105,7 +105,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
                     }
 
                     BookmarkStorage.deleteBookmark(
-                        widget.type ?? EntityType.none,
+                        widget.type,
                         widget.id
                     );
                   }));
