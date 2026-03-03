@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/kathisma.dart' as kathisma_model;
 import 'package:orth_psalter/models/psalm.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
+import 'package:orth_psalter/storage/last_viewed_storage.dart';
 import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
 import 'package:orth_psalter/ui/components/prayer_widget.dart';
@@ -12,7 +14,7 @@ import 'package:orth_psalter/ui/views/psalm_view.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Kathisma extends StatefulWidget {
-  final String? kathismaId;
+  final String kathismaId;
   const Kathisma({super.key, this.kathismaId = ''});
 
   @override
@@ -21,7 +23,13 @@ class Kathisma extends StatefulWidget {
 
 class _KathismaState extends State<Kathisma> {
   Future<kathisma_model.Kathisma> fetchData() async {
-    return await KathismaStorage.getKathismaById(int.parse(widget.kathismaId ?? ''));
+    return await KathismaStorage.getKathismaById(int.parse(widget.kathismaId));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    LastViewedStorage.set(EntityType.kathisma, int.parse(widget.kathismaId));
   }
 
   @override
