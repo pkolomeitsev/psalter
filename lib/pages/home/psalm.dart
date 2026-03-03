@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/psalm.dart' as psalm_model;
+import 'package:orth_psalter/storage/last_viewed_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Psalm extends StatefulWidget {
-  final String? psalmId;
+  final String psalmId;
 
   const Psalm({super.key, this.psalmId = ''});
 
@@ -16,7 +18,13 @@ class Psalm extends StatefulWidget {
 
 class _PsalmState extends State<Psalm> {
   Future<psalm_model.Psalm> fetchData() async {
-    return await PsalmStorage.getPsalmById(widget.psalmId ?? '');
+    return await PsalmStorage.getPsalmById(widget.psalmId);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    LastViewedStorage.set(EntityType.psalm, int.parse(widget.psalmId));
   }
 
   @override
