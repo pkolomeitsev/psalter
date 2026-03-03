@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/helpers/debouncer_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 
 class BookmarkCard extends StatefulWidget {
@@ -11,6 +12,7 @@ class BookmarkCard extends StatefulWidget {
   final EntityType type;
   final bool isBookmarked;
   final bool isActive;
+  final LastViewedNotifier? notifier;
 
   const BookmarkCard({
     super.key,
@@ -20,6 +22,7 @@ class BookmarkCard extends StatefulWidget {
     this.type = EntityType.none,
     this.isBookmarked = false,
     this.isActive = false,
+    this.notifier = null,
   });
 
   @override
@@ -35,6 +38,12 @@ class _BookmarkCardState extends State<BookmarkCard> {
   void initState() {
     super.initState();
     this.isBookmarkedState = widget.isBookmarked;
+    this.isActiveState = widget.isActive;
+  }
+
+  @override
+  void didUpdateWidget(covariant BookmarkCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
     this.isActiveState = widget.isActive;
   }
 
@@ -78,6 +87,10 @@ class _BookmarkCardState extends State<BookmarkCard> {
       shape: this.getBorderStyle(context),
       child: InkWell(
         onTap: () {
+          if (widget.notifier != null) {
+            widget.notifier!.setId(widget.id);
+          }
+
           context.go('/${widget.type.name}/${widget.id}');
         },
         child: Padding(
