@@ -6,8 +6,9 @@ import 'package:orth_psalter/storage/bookmark_storage.dart';
 
 class ChipList extends StatefulWidget {
   final List<EntityObjectInterface> chipList;
+  final int selectedId;
 
-  const ChipList({super.key, required this.chipList});
+  const ChipList({super.key, required this.chipList, this.selectedId = 0});
 
   @override
   State<ChipList> createState() => _ChipListState();
@@ -19,7 +20,7 @@ class _ChipListState extends State<ChipList> {
   @override
   void initState() {
     super.initState();
-    chipListState = widget.chipList;
+    this.chipListState = widget.chipList;
   }
 
   @override
@@ -30,6 +31,8 @@ class _ChipListState extends State<ChipList> {
       chips.add(
         InputChip(
           label: Text(object.getTitle()),
+          showCheckmark: false,
+          selected: (widget.selectedId == object.getId()),
           onSelected: (bool selected) {
             context.go('/${object.getType().name}/${object.getId()}');
           },
