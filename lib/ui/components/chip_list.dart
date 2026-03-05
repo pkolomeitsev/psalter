@@ -2,13 +2,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/models/interfaces/entity_object_interface.dart';
+import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 
 class ChipList extends StatefulWidget {
   final List<EntityObjectInterface> chipList;
   final int selectedId;
+  final LastViewedNotifier? notifier;
 
-  const ChipList({super.key, required this.chipList, this.selectedId = 0});
+  const ChipList({
+    super.key,
+    required this.chipList,
+    this.selectedId = 0,
+    this.notifier = null,
+  });
 
   @override
   State<ChipList> createState() => _ChipListState();
@@ -34,6 +41,10 @@ class _ChipListState extends State<ChipList> {
           showCheckmark: false,
           selected: (widget.selectedId == object.getId()),
           onSelected: (bool selected) {
+            if (widget.notifier != null) {
+              widget.notifier!.notify(object.getId(), object.getType());
+            }
+
             context.go('/${object.getType().name}/${object.getId()}');
           },
           onDeleted: () async {
