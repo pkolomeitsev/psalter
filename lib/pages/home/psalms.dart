@@ -17,14 +17,14 @@ class Psalms extends StatefulWidget {
 
 class _PsalmsState extends State<Psalms> {
   int psalmsAmount = PsalmStorage.psalmsAmount;
-  int lastViewedState = 0;
+  int lastViewedId = 0;
   List<int> bookmarks = [];
   final LastViewedPsalmsNotifier psalmsNotifier = LastViewedPsalmsNotifier();
 
   @override
   void initState() {
     super.initState();
-    this.lastViewedState = LastViewedStorage.get(EntityType.psalm);
+    this.lastViewedId = LastViewedStorage().get(EntityType.psalm);
     this.bookmarks = BookmarkStorage.getBookmarks(EntityType.psalm);
   }
 
@@ -34,7 +34,7 @@ class _PsalmsState extends State<Psalms> {
       listenable: psalmsNotifier,
       builder: (BuildContext context, Widget? child) {
         if (psalmsNotifier.getId() > 0) {
-          this.lastViewedState = psalmsNotifier.id;
+          this.lastViewedId = psalmsNotifier.id;
         }
 
         return ListViewWrapper(data: this.renderPsalms(context));
@@ -51,7 +51,7 @@ class _PsalmsState extends State<Psalms> {
             title: '${context.tr('psalm')} $i',
             type: EntityType.psalm,
             isBookmarked: this.bookmarks.contains(i),
-            isActive: (i == this.lastViewedState),
+            isActive: (i == this.lastViewedId),
             notifier: this.psalmsNotifier,
           )
       );

@@ -2,17 +2,19 @@ import 'package:hive/hive.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 
 class LastViewedStorage {
-  static getName() {
-    return 'lastviewed';
+  final String name = 'lastviewed';
+
+  getName() {
+    return name;
   }
 
-  static int get(EntityType type) {
-    final box = Hive.box(LastViewedStorage.getName());
+  int get(EntityType type) {
+    final box = Hive.box(this.getName());
     return box.get(type.name) ?? 0;
   }
 
-  static set(EntityType type, int value) {
-    final box = Hive.box(LastViewedStorage.getName());
+  void set(EntityType type, int value) {
+    final box = Hive.box(this.getName());
     box.put(type.name, value);
   }
 }

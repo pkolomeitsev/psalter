@@ -7,6 +7,7 @@ import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,7 +23,8 @@ void main() async {
   await Hive.openBox(BookmarkStorage.getName(EntityType.psalm.name));
   await Hive.openBox(BookmarkStorage.getName(EntityType.asNeeded.name));
 
-  await Hive.openBox(LastViewedStorage.getName());
+  await Hive.openBox(LastViewedStorage().getName());
+  await Hive.openBox(LastViewedBookmarksStorage().getName());
 
   runApp(EasyLocalization(
     supportedLocales: [

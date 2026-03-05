@@ -88,7 +88,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
       child: InkWell(
         onTap: () {
           if (widget.notifier != null) {
-            widget.notifier!.setId(widget.id);
+            widget.notifier!.notify(widget.id, widget.type);
           }
 
           context.go('/${widget.type.name}/${widget.id}');

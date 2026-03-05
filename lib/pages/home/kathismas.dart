@@ -17,7 +17,7 @@ class Kathismas extends StatefulWidget {
 
 class _KathismasState extends State<Kathismas> {
   int kathismasAmount = 0;
-  int lastViewedState = 0;
+  int lastViewedId = 0;
   List<String> psalmsMap = [];
   List<int> bookmarks = [];
   final LastViewedKathismasNotifier kathismasNotifier =
@@ -27,7 +27,7 @@ class _KathismasState extends State<Kathismas> {
   void initState() {
     super.initState();
     this.kathismasAmount = KathismaStorage.kathismasAmount;
-    this.lastViewedState = LastViewedStorage.get(EntityType.kathisma);
+    this.lastViewedId = LastViewedStorage().get(EntityType.kathisma);
     this.psalmsMap = KathismaStorage.psalmsMap;
     this.bookmarks = BookmarkStorage.getBookmarks(EntityType.kathisma);
   }
@@ -38,7 +38,7 @@ class _KathismasState extends State<Kathismas> {
       listenable: kathismasNotifier,
       builder: (BuildContext context, Widget? child) {
         if (kathismasNotifier.getId() > 0) {
-          this.lastViewedState = kathismasNotifier.id;
+          this.lastViewedId = kathismasNotifier.id;
         }
 
         return ListViewWrapper(data: this.renderKathismas(context));
@@ -56,7 +56,7 @@ class _KathismasState extends State<Kathismas> {
           description: '${context.tr('psalms')} ${this.psalmsMap[i - 1]}',
           type: EntityType.kathisma,
           isBookmarked: bookmarks.contains(i),
-          isActive: (i == this.lastViewedState),
+          isActive: (i == this.lastViewedId),
           notifier: this.kathismasNotifier,
         ),
       );

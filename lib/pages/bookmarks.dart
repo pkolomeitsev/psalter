@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/interfaces/entity_object_interface.dart';
 import 'package:orth_psalter/models/bookmark.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/models/notifiers/last_viewed_bookmarks_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
 import 'package:orth_psalter/ui/components/bookmark_card.dart';
 import 'package:orth_psalter/ui/components/chip_list.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
@@ -18,32 +20,61 @@ class Bookmarks extends StatefulWidget {
 }
 
 class _BookmarksState extends State<Bookmarks> {
-  List<int> psalmIds = BookmarkStorage.getBookmarks(EntityType.psalm);
-  List<int> kathismaIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
-  List<int> asNeededIds = BookmarkStorage.getBookmarks(EntityType.asNeeded);
+  List<int> psalmIds = [], kathismaIds = [], asNeededIds = [];
+  Map<EntityType, int> lastViewed = {};
+  LastViewedBookmarksNotifier bookmarksNotifier =
+    LastViewedBookmarksNotifier();
+
+  @override
+  void initState() {
+    super.initState();
+    this.psalmIds = BookmarkStorage.getBookmarks(EntityType.psalm);
+    this.kathismaIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
+    this.asNeededIds = BookmarkStorage.getBookmarks(EntityType.asNeeded);
+    this.lastViewed = {
+      EntityType.psalm: LastViewedBookmarksStorage().get(EntityType.psalm),
+      EntityType.kathisma: LastViewedBookmarksStorage().get(EntityType.kathisma),
+      EntityType.asNeeded: LastViewedBookmarksStorage().get(EntityType.asNeeded),
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.tr('appTitle'),
-          style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          title: Text(
+            context.tr('appTitle'),
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: TextPageViewWrapper(
-        data: [
-          if (psalmIds.isEmpty && kathismaIds.isEmpty && asNeededIds.isEmpty) ...[
-            Text(context.tr('noBookmarks'))
-          ]
-          else ...[
-            this.renderBookmarks(context, EntityType.psalm, psalmIds),
-            this.renderBookmarks(context, EntityType.kathisma, kathismaIds),
-            this.renderBookmarks(context, EntityType.asNeeded, asNeededIds),
-          ]
-        ],
-      ),
+        body: ListenableBuilder(
+          listenable: bookmarksNotifier,
+          builder: (BuildContext context, Widget? child) {
+            for(var type in EntityType.values) {
+              if (bookmarksNotifier.getIdByType(type) > 0) {
+                lastViewed[type] = bookmarksNotifier.getIdByType(type);
+              }
+            }
+
+            return TextPageViewWrapper(
+              data: [
+                if (psalmIds.isEmpty && kathismaIds.isEmpty &&
+                    asNeededIds.isEmpty) ...[
+                  Text(context.tr('noBookmarks'))
+                ]
+                else
+                  ...[
+                    this.renderBookmarks(context, EntityType.psalm, psalmIds),
+                    this.renderBookmarks(
+                        context, EntityType.kathisma, kathismaIds),
+                    this.renderBookmarks(
+                        context, EntityType.asNeeded, asNeededIds),
+                  ]
+              ],
+            );
+          },
+        )
     );
   }
 
@@ -86,7 +117,7 @@ class _BookmarksState extends State<Bookmarks> {
       );
     }
 
-    return ChipList(chipList: chips);
+    return ChipList(chipList: chips, selectedId: this.lastViewed[type] ?? 0);
   }
 
   Widget renderBookmarksCards(
@@ -95,7 +126,6 @@ class _BookmarksState extends State<Bookmarks> {
     List<int> ids
   ) {
     List<Widget> cards = [];
-    List<int> bookmarks = BookmarkStorage.getBookmarks(EntityType.asNeeded);
 
     for (var id in ids) {
       String description = context.tr('psalm${id}AsNeeded');
@@ -106,7 +136,9 @@ class _BookmarksState extends State<Bookmarks> {
             title: '${context.tr('psalm')} $id',
             description: description,
             type: EntityType.asNeeded,
-            isBookmarked: bookmarks.contains(id),
+            isBookmarked: true,
+            isActive: (id == (this.lastViewed[type] ?? 0)),
+            notifier: this.bookmarksNotifier,
           )
       );
     }
