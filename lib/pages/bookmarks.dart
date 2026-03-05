@@ -22,8 +22,7 @@ class Bookmarks extends StatefulWidget {
 class _BookmarksState extends State<Bookmarks> {
   List<int> psalmIds = [], kathismaIds = [], asNeededIds = [];
   Map<EntityType, int> lastViewed = {};
-  LastViewedBookmarksNotifier bookmarksNotifier =
-    LastViewedBookmarksNotifier();
+  LastViewedBookmarksNotifier bookmarksNotifier = LastViewedBookmarksNotifier();
 
   @override
   void initState() {
@@ -117,7 +116,11 @@ class _BookmarksState extends State<Bookmarks> {
       );
     }
 
-    return ChipList(chipList: chips, selectedId: this.lastViewed[type] ?? 0);
+    return ChipList(
+      chipList: chips,
+      selectedId: this.lastViewed[type] ?? 0,
+      notifier: this.bookmarksNotifier,
+    );
   }
 
   Widget renderBookmarksCards(
