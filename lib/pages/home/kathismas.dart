@@ -38,7 +38,7 @@ class _KathismasState extends State<Kathismas> {
       listenable: kathismasNotifier,
       builder: (BuildContext context, Widget? child) {
         if (kathismasNotifier.getId() > 0) {
-          this.lastViewedId = kathismasNotifier.id;
+          this.lastViewedId = kathismasNotifier.getId();
         }
 
         return ListViewWrapper(data: this.renderKathismas(context));

@@ -34,7 +34,7 @@ class _PsalmsState extends State<Psalms> {
       listenable: psalmsNotifier,
       builder: (BuildContext context, Widget? child) {
         if (psalmsNotifier.getId() > 0) {
-          this.lastViewedId = psalmsNotifier.id;
+          this.lastViewedId = psalmsNotifier.getId();
         }
 
         return ListViewWrapper(data: this.renderPsalms(context));
