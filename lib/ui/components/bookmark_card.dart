@@ -4,6 +4,7 @@ import 'package:orth_psalter/helpers/debouncer_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/theme/app_colors.dart';
 
 class BookmarkCard extends StatefulWidget {
   final int id;
@@ -73,7 +74,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
         ? RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
             side: BorderSide(
-              color: Colors.blue[700]!.withValues(alpha: 0.5),
+              color: AppColors.brandBgColor!.withValues(alpha: 0.5),
               width: 2,
             ),
           )
