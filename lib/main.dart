@@ -6,6 +6,9 @@ import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
+import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
+import 'package:orth_psalter/storage/last_viewed_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -16,9 +19,12 @@ void main() async {
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
 
-  await Hive.openBox(EntityType.kathisma.name);
-  await Hive.openBox(EntityType.psalm.name);
-  await Hive.openBox(EntityType.asNeeded.name);
+  await Hive.openBox(BookmarkStorage.getName(EntityType.kathisma.name));
+  await Hive.openBox(BookmarkStorage.getName(EntityType.psalm.name));
+  await Hive.openBox(BookmarkStorage.getName(EntityType.asNeeded.name));
+
+  await Hive.openBox(LastViewedStorage().getName());
+  await Hive.openBox(LastViewedBookmarksStorage().getName());
 
   runApp(EasyLocalization(
     supportedLocales: [
@@ -56,17 +62,17 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: '/${EntityType.psalm.name}/:psalmId',
           builder: (context, state) =>
-              Psalm(psalmId: state.pathParameters['psalmId']),
+              Psalm(psalmId: state.pathParameters['psalmId'].toString()),
         ),
         GoRoute(
           path: '/${EntityType.kathisma.name}/:kathismaId',
           builder: (context, state) =>
-              Kathisma(kathismaId: state.pathParameters['kathismaId']),
+              Kathisma(kathismaId: state.pathParameters['kathismaId'].toString()),
         ),
         GoRoute(
           path: '/${EntityType.asNeeded.name}/:psalmId',
           builder: (context, state) =>
-              Psalm(psalmId: state.pathParameters['psalmId']),
+              Psalm(psalmId: state.pathParameters['psalmId'].toString()),
         ),
       ],
     ),

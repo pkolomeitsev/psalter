@@ -4,6 +4,30 @@ import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
 
 class KathismaStorage {
+  static const int kathismasAmount = 20;
+  static const List<String> psalmsMap = [
+    '1-8',
+    '9-16',
+    '17-23',
+    '24-31',
+    '32-36',
+    '37-45',
+    '46-54',
+    '55-63',
+    '64-69',
+    '70-76',
+    '77-84',
+    '85-90',
+    '91-100',
+    '101-104',
+    '105-108',
+    '109-117',
+    '118',
+    '119-133',
+    '134-142',
+    '143-150'
+  ];
+
   static Future<Kathisma> getKathismaById(int kathismaId) async {
     String languageCode = await LocaleStorage.getLocale();
     String filePath = 'assets/data/kathismas/prayer_$languageCode.json';
