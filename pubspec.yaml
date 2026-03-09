@@ -59,6 +59,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   arb_merge: ^1.2.2
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -78,6 +79,7 @@ flutter:
     - assets/generated/translations/
     - assets/data/psalms/
     - assets/data/kathismas/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -104,3 +106,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/orthodox-cross-blue-1024.svg"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/icons/orthodox-cross-blue-1024.png"
+  adaptive_icon_monochrome: "assets/icons/orthodox-cross-monochrome-1024.png" # only available for Android 13 devices and above
+  adaptive_icon_foreground_inset: 26
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
