@@ -6,6 +6,7 @@ import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_bookmarks_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
+import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/bookmark_card.dart';
 import 'package:orth_psalter/ui/components/chip_list.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
@@ -40,13 +41,7 @@ class _BookmarksState extends State<Bookmarks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            context.tr('appTitle'),
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
-        ),
+        appBar: AppBar(title: AppTitle()),
         body: ListenableBuilder(
           listenable: bookmarksNotifier,
           builder: (BuildContext context, Widget? child) {
