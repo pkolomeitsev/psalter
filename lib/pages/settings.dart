@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/components/settings_selector.dart';
@@ -20,8 +21,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.tr('appTitle'), style: TextStyle(color: Colors.white)),
-        centerTitle: true,
+        title: AppTitle(),
       ),
       body: ListViewWrapper(data: [
         SettingsCardTitle(text: context.tr('changeLanguage')),

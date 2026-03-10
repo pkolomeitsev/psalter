@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:orth_psalter/pages/home/as_needed.dart';
 import 'package:orth_psalter/pages/home/kathismas.dart';
 import 'package:orth_psalter/pages/home/psalms.dart';
+import 'package:orth_psalter/ui/components/app_title.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,8 +19,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.tr('appTitle'), style: TextStyle(color: Colors.white)),
-        centerTitle: true,
+        title: AppTitle(),
         bottom: TabBar(
           tabs: [
             Tab(text: context.tr('psalms')),
@@ -27,9 +27,7 @@ class _HomeState extends State<Home> {
             Tab(text: context.tr('asNeeded')),
           ],
           unselectedLabelColor: Colors.white70,
-          labelStyle: TextStyle(
-            color: Colors.white,
-          ),
+          labelStyle: TextStyle(color: Colors.white),
           indicatorColor: Colors.white,
         ),
       ),
