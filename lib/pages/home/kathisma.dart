@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/models/kathisma.dart' as kathisma_model;
 import 'package:orth_psalter/models/psalm.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
+import 'package:orth_psalter/theme/app_font.dart';
 import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
 import 'package:orth_psalter/ui/components/prayer_widget.dart';
@@ -50,7 +51,7 @@ class _KathismaState extends State<Kathisma> {
                 this.renderTrisagion2OurFather(),
                 this.renderTroparion(snapshot.data),
                 DefaultTextStyle.merge(
-                  style: const TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: AppFont.comfortReadingSize),
                   child: Text(context.tr('lordHaveMercy40T')),
                 ),
                 SizedBox(height: 10),
