@@ -10,7 +10,7 @@ class AppTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/icons/orthodox-cross-white-1024.png',
+          'assets/icons/orthodox-cross-white-50.png',
           height: 24,
         ),
         const SizedBox(width: 10),
