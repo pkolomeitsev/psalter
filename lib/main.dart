@@ -29,10 +29,12 @@ void main() async {
   runApp(EasyLocalization(
     supportedLocales: [
       Locale('en'),
-      Locale('ru')
+      Locale('ru'),
+      Locale('cu'),
+      Locale('uk'),
     ],
     path: 'assets/generated/translations',
-    // fallbackLocale: Locale('en', 'US'),
+    fallbackLocale: Locale('ru'),
     startLocale: Locale('ru'),
     // saveLocale: false,
     // useOnlyLangCode: true,
