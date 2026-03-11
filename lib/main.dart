@@ -32,9 +32,8 @@ void main() async {
       Locale('ru')
     ],
     path: 'assets/generated/translations',
-    child: PsalterApp(),
     // fallbackLocale: Locale('en', 'US'),
-    // startLocale: Locale('de', 'DE'),
+    startLocale: Locale('ru'),
     // saveLocale: false,
     // useOnlyLangCode: true,
     // ignorePluralRules: false,
@@ -50,6 +49,7 @@ void main() async {
     // assetLoader: XmlAssetLoader() //multiple files
     // assetLoader: XmlSingleAssetLoader() //single file
     // assetLoader: CodegenLoader()
+    child: PsalterApp(),
   ));
 }
 
