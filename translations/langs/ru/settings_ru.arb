@@ -4,9 +4,5 @@
   "changeLanguage": "Изменить язык",
   "langNameEn": "Английский",
   "langNameRu": "Русский (П.А. Юнгерова)",
-  "langNameRuSlav": "Русский (церковнослав.)",
-
-  "themeMode": "Тема оформления",
-  "dark": "Темная",
-  "light": "Светлая"
+  "langNameRuSlav": "Русский (церковнослав.)"
 }
