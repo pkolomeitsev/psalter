@@ -16,7 +16,7 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   List languages = LocaleStorage.languages;
-  List tmpDisabled = ['en', 'cu'];
+  List tmpDisabled = ['en', 'cu', 'uk'];
 
   @override
   Widget build(BuildContext context) {
