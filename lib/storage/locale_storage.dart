@@ -4,11 +4,13 @@ import 'package:intl/intl_standalone.dart'
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleStorage {
-  static String defaultLocale = 'en';
+  static String defaultLocale = 'ru';
+  /// @see https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
   static List languages = [
     {'languageCode': 'en', 'languageName': 'langNameEn'},
     {'languageCode': 'ru', 'languageName': 'langNameRu'},
     {'languageCode': 'cu', 'languageName': 'langNameRuSlav'},
+    {'languageCode': 'uk', 'languageName': 'langNameUk'},
   ];
 
   static Future<String> getLocale() async {
@@ -16,6 +18,7 @@ class LocaleStorage {
     final foundPlatformLocale = await findSystemLocale();
 
     return preferences.getString('locale')
+      ?? LocaleStorage.defaultLocale
       ?? foundPlatformLocale.toLocale().languageCode;
   }
 
