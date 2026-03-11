@@ -24,7 +24,7 @@ final class SettingsSelector extends StatelessWidget {
     final disabledColor = this.isDisabled ? Colors.grey : null;
 
     return TextButton(
-      onPressed: this.isDisabled ? () => {} : onTap,
+      onPressed: this.isDisabled ? null : onTap,
       style: ButtonStyle(
         elevation: WidgetStateProperty.all(1.0),
         backgroundColor: WidgetStateProperty.all(Colors.transparent),

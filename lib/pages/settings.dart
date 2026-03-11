@@ -16,6 +16,7 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   List languages = LocaleStorage.languages;
+  List tmpDisabled = ['en', 'cu'];
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class _SettingsState extends State<Settings> {
         title: AppTitle(),
       ),
       body: ListViewWrapper(data: [
-        SettingsCardTitle(text: context.tr('changeLanguage')),
+        SettingsCardTitle(text: context.tr('language')),
         SettingsCard(
             children: getLanguageItems(context)
         ),
@@ -41,6 +42,7 @@ class _SettingsState extends State<Settings> {
       langItems.add(
           SettingsSelector(
             isSelected: currentLocale == code,
+            isDisabled: tmpDisabled.contains(code),
             name: name,
             onTap: () => this.changeAppLanguage(pageContext, code),
           )
