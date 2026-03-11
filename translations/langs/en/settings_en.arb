@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
 
-  "changeLanguage": "Change language",
+  "language": "Language",
   "langNameEn": "English",
   "langNameRu": "Russian (P.A. Yungerov)",
   "langNameRuSlav": "Russian (Church Slavic)",
