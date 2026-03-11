@@ -4,23 +4,27 @@ import 'package:orth_psalter/theme/app_colors.dart';
 final class SettingsSelector extends StatelessWidget {
   final String name;
   final bool isSelected;
+  final bool isDisabled;
   final VoidCallback onTap;
 
   const SettingsSelector({
+    super.key,
     required this.name,
-    required this.isSelected,
+    this.isSelected = false,
+    this.isDisabled = false,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final textColor = isSelected
+    final textColor = this.isSelected
         ? (AppColors.brandBgColor ?? Colors.blue)
         : theme.colorScheme.secondary;
+    final disabledColor = this.isDisabled ? Colors.grey : null;
 
     return TextButton(
-      onPressed: onTap,
+      onPressed: this.isDisabled ? () => {} : onTap,
       style: ButtonStyle(
         elevation: WidgetStateProperty.all(1.0),
         backgroundColor: WidgetStateProperty.all(Colors.transparent),
@@ -39,7 +43,7 @@ final class SettingsSelector extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Text(name, style: TextStyle(color: textColor)),
+              child: Text(name, style: TextStyle(color: disabledColor ?? textColor)),
             ),
             Visibility(visible: isSelected, child: const Icon(Icons.check)),
           ],
