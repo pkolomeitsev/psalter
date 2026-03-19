@@ -36,7 +36,9 @@ final class SettingsSelector extends StatelessWidget {
           }
           return textColor;
         }),
-        shape: WidgetStateProperty.all(const BeveledRectangleBorder()),
+        shape: WidgetStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        )),
       ),
       child: SizedBox(
         height: 40.0,
