@@ -12,5 +12,6 @@
   "aboutText": "Мобильное приложение для чтения и молитвы Православной Христанской Псалтыри.",
   "sourceCodeInfo": "To see the source code for this app, please visit the link bellow:",
   "sourceCodeLink": "https://github.com/pkolomeitsev/orth_psalter",
-  "sourceCodeLinkLabel": "GitHub"
+  "sourceCodeLinkLabel": "Source code",
+  "lastUpdated": "Last updated"
 }

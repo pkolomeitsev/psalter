@@ -72,36 +72,35 @@ class _SettingsState extends State<Settings> {
           context: context,
           applicationName: context.tr('appTitle'),
           applicationIcon: AppIcon(),
-          applicationVersion: '${appInfo.version} ($lastUpdate)',
+          applicationVersion: appInfo.version,
           children: [
             Text(context.tr('aboutText'), style: textStyle),
             const SizedBox(height: 18),
             Text(context.tr('sourceCodeInfo'), style: textStyle),
-            TextButton(
-              onPressed: () async {
-                final Uri toLaunch = Uri.parse(context.tr('sourceCodeLink'));
-                if (!await launchUrl(toLaunch, mode: LaunchMode.inAppBrowserView)) {
-                  throw Exception('Could not launch $toLaunch');
-                }
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min, // Keep the row size minimal
-                children: [
-                  Text(
-                    context.tr('sourceCodeLinkLabel'),
-                    style: const TextStyle(
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  const Icon(
-                    Icons.launch,
-                    color: Colors.blue,
-                    size: 16,
-                  ),
-                ],
+            Center(
+              child: TextButton.icon(
+                iconAlignment: IconAlignment.end,
+                onPressed: () async {
+                  final Uri toLaunch = Uri.parse(context.tr('sourceCodeLink'));
+                  if (!await launchUrl(
+                    toLaunch,
+                    mode: LaunchMode.inAppBrowserView,
+                  )) {
+                    throw Exception('Could not launch $toLaunch');
+                  }
+                },
+                label: Text(
+                  context.tr('sourceCodeLinkLabel'),
+                  style: const TextStyle(color: Colors.blue),
+                ),
+                icon: const Icon(
+                  Icons.launch,
+                  color: Colors.blue,
+                  size: 16,
+                ),
               ),
             ),
+            Text('${context.tr('lastUpdated')}: $lastUpdate', style: textStyle),
           ],
         );
       },
