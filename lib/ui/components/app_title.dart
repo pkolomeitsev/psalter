@@ -14,7 +14,7 @@ class AppTitle extends StatelessWidget {
           height: 24,
         ),
         const SizedBox(width: 10),
-        Text(context.tr('appTitle'), style: TextStyle(color: Colors.white)),
+        Text(context.tr('appTitle')),
       ],
     );
   }

@@ -93,6 +93,7 @@ class PsalterApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.brandBgColor,
+          foregroundColor: AppColors.titleTextColor,
         ),
       ),
       routerConfig: _router,
