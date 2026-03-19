@@ -5,4 +5,6 @@ class AppColors {
   static final brandBgColor = Colors.blue[700];
 
   static final brandColorLight = Colors.blue[100];
+
+  static final titleTextColor = Colors.white;
 }
