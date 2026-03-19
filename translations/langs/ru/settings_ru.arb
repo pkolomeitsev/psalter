@@ -5,5 +5,12 @@
   "langNameEn": "Английский",
   "langNameRu": "Русский (П.А. Юнгерова)",
   "langNameRuSlav": "Русский (церковнослав.)",
-  "langNameUk": "Украинский"
+  "langNameUk": "Украинский",
+
+  "info": "Информация",
+  "about": "О программе",
+  "aboutText": "Мобильное приложение для чтения и молитвы Православной Христанской Псалтыри.",
+  "sourceCodeInfo": "Исходный код приложения можно найти по ссылке ниже:",
+  "sourceCodeLink": "https://github.com/pkolomeitsev/orth_psalter",
+  "sourceCodeLinkLabel": "GitHub"
 }
