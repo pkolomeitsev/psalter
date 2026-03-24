@@ -61,7 +61,7 @@ jobs:
       - name: 📦 Prepare artifacts
         run: |
           mkdir -p artifacts
-          cp build/ios/iphoneos/*.app artifacts/
+          cp -R build/ios/iphoneos/*.app artifacts/
 
       - name: 🏷️ Create or update Release
         if: startsWith(github.ref, 'refs/tags/v')
