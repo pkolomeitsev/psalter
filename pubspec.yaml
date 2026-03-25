@@ -111,17 +111,18 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 
+# usage: dart run flutter_launcher_icons
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icons/orthodox-cross-blue-1024.png"
+  image_path: "assets/icons/orthodox-cross-blue-1024_2.png"
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/icons/orthodox-cross-blue-1024.png"
   adaptive_icon_monochrome: "assets/icons/orthodox-cross-monochrome-1024.png" # only available for Android 13 devices and above
-  adaptive_icon_foreground_inset: 26
   min_sdk_android: 21 # android min sdk min:16, default 21
   remove_alpha_ios: true
 
+# usage: dart run flutter_app_name_localization
 flutter_app_name_localization:
   default: "Psalter"
   locales:
