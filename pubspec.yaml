@@ -115,7 +115,7 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icons/orthodox-cross-blue-1024_2.png"
+  image_path: "assets/icons/orthodox-cross-blue-1024.png"
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/icons/orthodox-cross-blue-1024.png"
   adaptive_icon_monochrome: "assets/icons/orthodox-cross-monochrome-1024.png" # only available for Android 13 devices and above
