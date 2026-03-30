@@ -42,12 +42,12 @@ class _PsalmState extends State<Psalm> {
               data: [
                 DefaultTextStyle.merge(
                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  child: Text(snapshot.data!.getDescription(), textAlign: TextAlign.center),
+                  child: SelectableText(snapshot.data!.getDescription(), textAlign: TextAlign.center),
                 ),
                 SizedBox(height: 10),
                 DefaultTextStyle.merge(
                   style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-                  child: Text(snapshot.data!.getText()),
+                  child: SelectableText(snapshot.data!.getText()),
                 ),
                 SizedBox(height: 50),
               ],

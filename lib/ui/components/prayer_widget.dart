@@ -21,7 +21,7 @@ class PrayerWidget extends StatelessWidget {
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(this.kathisma!.getPrayer()),
+          child: SelectableText(this.kathisma!.getPrayer()),
         ),
         SizedBox(height: 10),
       ],

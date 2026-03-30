@@ -52,7 +52,7 @@ class _KathismaState extends State<Kathisma> {
                 this.renderTroparion(snapshot.data),
                 DefaultTextStyle.merge(
                   style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-                  child: Text(context.tr('lordHaveMercy40T')),
+                  child: SelectableText(context.tr('lordHaveMercy40T')),
                 ),
                 SizedBox(height: 10),
                 this.renderPrayer(snapshot.data),

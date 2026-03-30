@@ -21,7 +21,7 @@ class TroparionWidget extends StatelessWidget {
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(this.kathisma!.getTroparion()),
+          child: SelectableText(this.kathisma!.getTroparion()),
         ),
         SizedBox(height: 10),
       ],

@@ -11,17 +11,17 @@ class PsalmView extends StatelessWidget {
     return Column(children: [
       DefaultTextStyle.merge(
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        child: Text(this.psalm.getTitle() ?? '', textAlign: TextAlign.center),
+        child: SelectableText(this.psalm.getTitle() ?? '', textAlign: TextAlign.center),
       ),
       SizedBox(height: 10),
       DefaultTextStyle.merge(
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        child: Text(this.psalm.getDescription(), textAlign: TextAlign.center),
+        child: SelectableText(this.psalm.getDescription(), textAlign: TextAlign.center),
       ),
       SizedBox(height: 10),
       DefaultTextStyle.merge(
         style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-        child: Text(this.psalm.getText()),
+        child: SelectableText(this.psalm.getText()),
       ),
       SizedBox(height: 10),
     ]);
