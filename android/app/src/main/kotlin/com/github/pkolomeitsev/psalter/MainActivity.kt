@@ -1,4 +1,4 @@
-package com.github.pkolomeitsev.orth_psalter
+package com.github.pkolomeitsev.psalter
 
 import io.flutter.embedding.android.FlutterActivity
 
