@@ -52,9 +52,9 @@ class _PsalmState extends State<Psalm> {
                 SizedBox(height: 50),
               ],
             );
-          } else {
-            return const Center(child: Text('No data found'));
           }
+
+          return const Center(child: Text('No data found'));
         },
       ),
     );

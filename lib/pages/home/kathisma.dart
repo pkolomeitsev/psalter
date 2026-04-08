@@ -43,8 +43,6 @@ class _KathismaState extends State<Kathisma> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'));
           } else if (snapshot.hasData) {
-
-            // build everything here
             return TextPageViewWrapper(
               data: [
                 this.renderPsalms(context, snapshot.data),
