@@ -28,13 +28,16 @@ jobs:
           channel: stable
       - run: flutter pub get
       - run: flutter --version
-      - run: flutter build apk --release --split-per-abi
+#      - run: flutter build apk --release --split-per-abi
 #      - run: flutter build appbundle
+
+      - name: Build AAB
+        run: flutter build appbundle --release
 
       - name: 📦 Prepare artifacts
         run: |
           mkdir -p artifacts
-          cp build/app/outputs/flutter-apk/*.apk artifacts/
+          cp build/app/outputs/bundle/release/*.aab artifacts/
 
       - name: 🏷️ Create or update Release
         if: startsWith(github.ref, 'refs/tags/v')
@@ -42,7 +45,7 @@ jobs:
         with:
           tag:       ${{ github.ref_name }}
           name:      Release ${{ github.ref_name }}
-          artifacts: artifacts/*.apk
+          artifacts: artifacts/*.aab
           token:     ${{ secrets.GITHUB_TOKEN }}
 
 #  build_ios:
