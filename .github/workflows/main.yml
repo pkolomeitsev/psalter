@@ -17,39 +17,60 @@ concurrency:
 
 jobs:
 
-  build_android:
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v2
+
+      - uses: cedvdb/action-flutter-build-android@v1
         with:
-          channel: stable
-      - run: flutter pub get
-      - run: flutter --version
-#      - run: flutter build apk --release --split-per-abi
-#      - run: flutter build appbundle
+          keystore-base64: ${{ secrets.KEYSTORE_BASE64 }}
+          keystore-password: "${{ secrets.KEY_PASSWORD }}"
+          # optionals
+          build-cmd: flutter build appbundle --release
+          working-directory: ./
 
-      - name: check path
-        run: pwd
+#      - name: Archive APK
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: release-apk
+#          # Try running the build locally with the build command to be sure of this path
+#          path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: Struc
-        run: ls -lha
+#  build_android:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Clone repository
+#        uses: actions/checkout@v4
+#      - name: Set up Flutter
+#        uses: subosito/flutter-action@v2
+#        with:
+#          channel: stable
+#      - run: flutter pub get
+#      - run: flutter --version
+##      - run: flutter build apk --release --split-per-abi
+##      - run: flutter build appbundle
 #
-      - name: Create properties
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/release.keystore
+#      - name: check path
+#        run: pwd
 
-      - name: Setup properties
-        run: |
-          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/keystore.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
-          echo "storeFile=android/release.keystore" >> android/keystore.properties
-
-      - name: Build AAB
-        run: flutter build appbundle --release
-
+#      - name: Struc
+#        run: ls -lha
+##
+#      - name: Create properties
+#        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/release.keystore
+#
+#      - name: Setup properties
+#        run: |
+#          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/keystore.properties
+#          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
+#          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
+#          echo "storeFile=android/release.keystore" >> android/keystore.properties
+#
+#      - name: Build AAB
+#        run: flutter build appbundle --release
+#
       - name: 📦 Prepare artifacts
         run: |
           mkdir -p artifacts
