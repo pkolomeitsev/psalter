@@ -31,6 +31,13 @@ jobs:
 #      - run: flutter build apk --release --split-per-abi
 #      - run: flutter build appbundle
 
+      - run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/release.keystore
+      - run: |
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
+          echo "storeFile=release.keystore" >> android/keystore.properties
+
       - name: Build AAB
         run: flutter build appbundle --release
 
