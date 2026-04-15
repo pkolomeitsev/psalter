@@ -1,0 +1,25 @@
+appId: com.github.pkolomeitsev.psalter
+---
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd:
+    timeout: 5000
+
+- assertVisible:
+    id: psalms
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/psalms
+
+- tapOn:
+    id: kathismas
+- assertVisible:
+    id: kathismas_list
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/kathismas
+
+- tapOn:
+    id: as_needed
+- assertVisible:
+    id: as_needed_view
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/as_needed
