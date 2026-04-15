@@ -33,33 +33,36 @@ jobs:
 
       - name: check path
         run: pwd
+
+      - name: Struc
+        run: ls -lha
 #
-#      - name: Create properties
-#        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/release.keystore
-#
-#      - name: Setup properties
-#        run: |
-#          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/keystore.properties
-#          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
-#          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
-#          echo "storeFile=release.keystore" >> android/keystore.properties
-#
-#      - name: Build AAB
-#        run: flutter build appbundle --release
-#
-#      - name: 📦 Prepare artifacts
-#        run: |
-#          mkdir -p artifacts
-#          cp build/app/outputs/bundle/release/*.aab artifacts/
-#
-#      - name: 🏷️ Create or update Release
-#        if: startsWith(github.ref, 'refs/tags/v')
-#        uses: ncipollo/release-action@v1.20.0
-#        with:
-#          tag:       ${{ github.ref_name }}
-#          name:      Release ${{ github.ref_name }}
-#          artifacts: artifacts/*.aab
-#          token:     ${{ secrets.GITHUB_TOKEN }}
+      - name: Create properties
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/release.keystore
+
+      - name: Setup properties
+        run: |
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" > android/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/keystore.properties
+          echo "storeFile=android/release.keystore" >> android/keystore.properties
+
+      - name: Build AAB
+        run: flutter build appbundle --release
+
+      - name: 📦 Prepare artifacts
+        run: |
+          mkdir -p artifacts
+          cp build/app/outputs/bundle/release/*.aab artifacts/
+
+      - name: 🏷️ Create or update Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          tag:       ${{ github.ref_name }}
+          name:      Release ${{ github.ref_name }}
+          artifacts: artifacts/*.aab
+          token:     ${{ secrets.GITHUB_TOKEN }}
 
 #  build_ios:
 #    runs-on: macos-latest
