@@ -37,26 +37,32 @@ class _AsNeededState extends State<AsNeeded> {
           this.lastViewedId = asNeededNotifier.getId();
         }
 
-        return ListView(
-          padding: const EdgeInsets.all(10),
-          children: [
-            DefaultTextStyle.merge(
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              child: Text(
-                context.tr('psalterReadingAsNeeded'),
-                textAlign: TextAlign.center,
+        return Semantics(
+          identifier: 'as_needed_view',
+          child: ListView(
+            padding: const EdgeInsets.all(10),
+            children: [
+              DefaultTextStyle.merge(
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                child: Text(
+                  context.tr('psalterReadingAsNeeded'),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-            SizedBox(height: 10),
-            DefaultTextStyle.merge(
-              style: const TextStyle(fontSize: 16),
-              child: Text(
-                context.tr('psalterReadingRuleByStArseniosTheCappadocian'),
+              SizedBox(height: 10),
+              DefaultTextStyle.merge(
+                style: const TextStyle(fontSize: 16),
+                child: Text(
+                  context.tr('psalterReadingRuleByStArseniosTheCappadocian'),
+                ),
               ),
-            ),
-            SizedBox(height: 10),
-            ...this.renderPsalms(context),
-          ],
+              SizedBox(height: 10),
+              ...this.renderPsalms(context),
+            ],
+          ),
         );
       },
     );

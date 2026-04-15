@@ -22,9 +22,18 @@ class _HomeState extends State<Home> {
         title: AppTitle(),
         bottom: TabBar(
           tabs: [
-            Tab(text: context.tr('psalms')),
-            Tab(text: context.tr('kathismas')),
-            Tab(text: context.tr('asNeeded')),
+            Semantics(
+              identifier: 'psalms',
+              child: Tab(text: context.tr('psalms'))
+            ),
+            Semantics(
+                identifier: 'kathismas',
+                child: Tab(text: context.tr('kathismas'))
+            ),
+            Semantics(
+                identifier: 'as_needed',
+                child: Tab(text: context.tr('asNeeded'))
+            ),
           ],
           unselectedLabelColor: Colors.white70,
           labelStyle: TextStyle(color: Colors.white),

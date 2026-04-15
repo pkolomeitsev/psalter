@@ -41,7 +41,10 @@ class _KathismasState extends State<Kathismas> {
           this.lastViewedId = kathismasNotifier.getId();
         }
 
-        return ListViewWrapper(data: this.renderKathismas(context));
+        return Semantics(
+          identifier: 'kathismas_list',
+          child: ListViewWrapper(data: this.renderKathismas(context))
+        );
       },
     );
   }
