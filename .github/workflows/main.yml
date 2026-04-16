@@ -17,30 +17,20 @@ concurrency:
 
 jobs:
 
-  build:
-    name: build
+  build_android:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Clone repository
+        uses: actions/checkout@v4
 
-      - uses: cedvdb/action-flutter-build-android@v1
+      - name: Build AAB
+        uses: cedvdb/action-flutter-build-android@v1
         with:
           keystore-base64: ${{ secrets.KEYSTORE_BASE64 }}
           keystore-password: "${{ secrets.KEY_PASSWORD }}"
-          # optionals
           build-cmd: flutter build appbundle --release
           working-directory: ./
 
-#      - name: Archive APK
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: release-apk
-#          # Try running the build locally with the build command to be sure of this path
-#          path: build/app/outputs/flutter-apk/app-release.apk
-
-#  build_android:
-#    runs-on: ubuntu-latest
-#    steps:
 #      - name: Clone repository
 #        uses: actions/checkout@v4
 #      - name: Set up Flutter
