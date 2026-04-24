@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/psalm.dart';
+import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 
 class PsalmView extends StatelessWidget {
@@ -10,12 +11,20 @@ class PsalmView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       DefaultTextStyle.merge(
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textHeadingColor
+        ),
         child: SelectableText(this.psalm.getTitle() ?? '', textAlign: TextAlign.center),
       ),
       SizedBox(height: 10),
       DefaultTextStyle.merge(
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: AppColors.textHeadingColor
+        ),
         child: SelectableText(this.psalm.getDescription(), textAlign: TextAlign.center),
       ),
       SizedBox(height: 10),

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 
 class GloryForeverWidget extends StatelessWidget {
@@ -10,7 +11,11 @@ class GloryForeverWidget extends StatelessWidget {
     return Column(
       children: [
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppColors.textHeadingColor,
+          ),
           child: Text(
             context.tr('gloryForeverShort'),
             textAlign: TextAlign.center,
