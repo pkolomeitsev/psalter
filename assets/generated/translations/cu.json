@@ -1,9 +1,5 @@
 {
   "@@locale": "cu",
-  "language": "Язык",
-  "langNameEn": "Английский",
-  "langNameRu": "Русский (П.А. Юнгерова)",
-  "langNameRuSlav": "Русский (церковнослав.)",
   "appTitle": "Псалтирь",
   "psalms": "Псалмы",
   "kathismas": "Кафизмы",
@@ -12,5 +8,9 @@
   "kathisma": "Кафизма",
   "addToBookmarks": "Добавить в Избранное",
   "bookmarkeAddedMessage": "Добавлено в Избранное!",
-  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!"
+  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!",
+  "language": "Язык",
+  "langNameEn": "Английский",
+  "langNameRu": "Русский (П.А. Юнгерова)",
+  "langNameRuSlav": "Русский (церковнослав.)"
 }

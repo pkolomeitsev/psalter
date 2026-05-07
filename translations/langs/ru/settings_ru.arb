@@ -1,11 +1,17 @@
 {
   "@@locale": "ru",
 
-  "language": "Язык",
+  "languageSetup": "Язык",
+  "appLanguage": "Приложения",
+  "psalterLanguage": "Псалтири",
+
   "langNameEn": "Английский",
-  "langNameRu": "Русский (П.А. Юнгерова)",
-  "langNameRuSlav": "Русский (церковнослав.)",
+  "langNameRu": "Русский",
   "langNameUk": "Украинский",
+
+  "transNameNkjv": "English (NKJV)",
+  "transNameJungerov": "Русский (П.А. Юнгерова)",
+  "transNameRucu": "Русский (церковнослав.)",
 
   "info": "Информация",
   "about": "О программе",
