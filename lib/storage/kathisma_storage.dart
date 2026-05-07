@@ -1,7 +1,7 @@
 import 'package:orth_psalter/helpers/json_helper.dart';
 import 'package:orth_psalter/models/kathisma.dart';
-import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
+import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 
 class KathismaStorage {
   static const int kathismasAmount = 20;
@@ -29,7 +29,7 @@ class KathismaStorage {
   ];
 
   static Future<Kathisma> getKathismaById(int kathismaId) async {
-    String languageCode = await LocaleStorage.getLocale();
+    String languageCode = await PsalterTranslationStorage.getTranslationCode();
     String filePath = 'assets/data/kathismas/prayer_$languageCode.json';
     dynamic prayerData = await JsonHelper.getJsonData(filePath);
     prayerData = JsonHelper.filterJsonByKey(prayerData, 'num', kathismaId);
