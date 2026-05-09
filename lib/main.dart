@@ -9,6 +9,7 @@ import 'package:orth_psalter/pages/main_application.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_storage.dart';
+import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -30,12 +31,11 @@ void main() async {
     supportedLocales: [
       Locale('en'),
       Locale('ru'),
-      Locale('cu'),
       Locale('uk'),
     ],
     path: 'assets/generated/translations',
-    fallbackLocale: Locale('ru'),
-    startLocale: Locale('ru'),
+    fallbackLocale: Locale(LocaleStorage.getDefaultLocale()),
+    // startLocale: Locale('ru'),
     // saveLocale: false,
     // useOnlyLangCode: true,
     // ignorePluralRules: false,
