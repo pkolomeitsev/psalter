@@ -54,7 +54,7 @@ class _KathismaState extends State<Kathisma> {
                 ),
                 SizedBox(height: 10),
                 this.renderPrayer(snapshot.data),
-                SizedBox(height: 50),
+                SizedBox(height: 10),
               ],
             );
           }
