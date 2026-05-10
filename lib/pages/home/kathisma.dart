@@ -77,6 +77,10 @@ class _KathismaState extends State<Kathisma> {
       if (gloryAfter.contains(psalm.getNumber())) {
         psalmWidgets.add(GloryForeverWidget());
       }
+      // short glory forever after 150 psalm
+      if(psalm.getNumber() == 150) {
+        psalmWidgets.add(GloryForeverShortWidget());
+      }
     }
     // add 3rd glory
     psalmWidgets.add(GloryForeverShortWidget());
