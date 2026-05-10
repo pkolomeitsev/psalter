@@ -202,7 +202,7 @@ class _SettingsState extends State<Settings> {
           Expanded(
             child: Text(
               context.tr('about'),
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+              style: TextStyle(color: Colors.black),
             ),
           ),
         ],
