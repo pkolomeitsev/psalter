@@ -14,12 +14,6 @@
   "languageSetup": "Language",
   "appLanguage": "Application",
   "psalterLanguage": "Psalter",
-  "langNameEn": "English",
-  "langNameRu": "Russian",
-  "langNameUk": "Ukrainian",
-  "transNameNkjv": "English (NKJV)",
-  "transNameJungerov": "Русский (П.А. Юнгерова)",
-  "transNameRucu": "Русский (церковнослав.)",
   "info": "Information",
   "about": "About",
   "aboutText": "Мобильное приложение для чтения и молитвы Православной Христанской Псалтыри.",
@@ -195,5 +189,11 @@
   "noBookmarks": "There are no bookmarks at the moment",
   "deleteBookmarkConfirm": "Are you sure you want to delete \"{chipName}\"?",
   "cancel": "Cancel",
-  "delete": "Delete"
+  "delete": "Delete",
+  "langNameEn": "English",
+  "langNameRu": "Русский",
+  "langNameUk": "Українська",
+  "transNameNkjv": "English (NKJV)",
+  "transNameJungerov": "Русский (П.А. Юнгерова)",
+  "transNameRucu": "Русский (церковнослав.)"
 }
