@@ -57,7 +57,7 @@ class _PsalmState extends State<Psalm> {
                   style: const TextStyle(fontSize: AppFont.comfortReadingSize),
                   child: SelectableText(snapshot.data!.getText()),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
               ],
             );
           }
