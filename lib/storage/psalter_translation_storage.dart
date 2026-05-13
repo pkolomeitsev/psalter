@@ -10,12 +10,12 @@ class PsalterTranslationStorage {
 
   /// @see https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
   static List defaultLocaleToTranslation = [
-    {'languageCode': 'en', 'translationCode': 'nkjv'},
+    {'languageCode': 'en', 'translationCode': 'kjv'},
     {'languageCode': 'ru', 'translationCode': 'jungerov'},
     {'languageCode': 'uk', 'translationCode': 'jungerov'},
   ];
 
-  static List<String> translationCodes = ['nkjv', 'jungerov', 'rucu'];
+  static List<String> translationCodes = ['kjv', 'jungerov', 'rucu'];
 
   static Future<String> getTranslationCode() async {
     final preferences = await SharedPreferences.getInstance();
