@@ -18,15 +18,16 @@ class PsalmView extends StatelessWidget {
         ),
         child: SelectableText(this.psalm.getTitle() ?? '', textAlign: TextAlign.center),
       ),
-      SizedBox(height: 10),
-      DefaultTextStyle.merge(
+      if (!this.psalm.getDescription().isEmpty) ...[
+        SizedBox(height: 10),
+        DefaultTextStyle.merge(
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
           color: AppColors.textHeadingColor
         ),
-        child: SelectableText(this.psalm.getDescription(), textAlign: TextAlign.center),
-      ),
+        child: SelectableText(this.psalm.getDescription(), textAlign: TextAlign.center))
+      ],
       SizedBox(height: 10),
       DefaultTextStyle.merge(
         style: const TextStyle(fontSize: AppFont.comfortReadingSize),
