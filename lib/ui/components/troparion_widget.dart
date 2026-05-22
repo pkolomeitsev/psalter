@@ -18,7 +18,7 @@ class TroparionWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppColors.textHeadingColor,
           ),
-          child: Text(context.tr('troparions'), textAlign: TextAlign.center),
+          child: Text(context.tr('troparia'), textAlign: TextAlign.center),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
