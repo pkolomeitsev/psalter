@@ -61,6 +61,16 @@ class _AsNeededState extends State<AsNeeded> {
               ),
               SizedBox(height: 10),
               ...this.renderPsalms(context),
+              SizedBox(height: 10),
+              const Image(image: AssetImage('assets/imgs/Saint_Arsenios_the_Cappadocian_and_Father_Paisios.jpg')),
+              SizedBox(height: 10),
+              DefaultTextStyle.merge(
+                style: const TextStyle(fontSize: 16),
+                child: Text(
+                  context.tr('iconImageTitle'),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ],
           ),
         );
