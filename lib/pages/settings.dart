@@ -34,7 +34,7 @@ class _SettingsState extends State<Settings> {
     this.languages = LocaleStorage.languageCodes;
     this.translations = PsalterTranslationStorage.translationCodes;
     // TODO: temporary solution
-    this.tmpDisabled = ['uk'];
+    this.tmpDisabled = [];
   }
 
   @override
