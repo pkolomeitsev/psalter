@@ -1,24 +1,24 @@
 {
   "@@locale": "uk",
 
-  "home": "Главная",
+  "home": "Головна",
   "bookmarks": "Закладки",
   "settings": "Настройки",
 
-  "appTitle": "Псалтирь",
+  "appTitle": "Псалтир",
 
-  "psalms": "Псалмы",
-  "kathismas": "Кафизмы",
+  "psalms": "Псалми",
+  "kathismas": "Кафізми",
   "asNeeded": "На потребу",
 
   "psalm": "Псалом",
-  "kathisma": "Кафизма",
+  "kathisma": "Кафізма",
 
-  "addToBookmarks": "Добавить в Избранное",
-  "bookmarkeAddedMessage": "Добавлено в Избранное!",
-  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!",
-  "noBookmarks": "На данный момент нет закладок",
-  "deleteBookmarkConfirm": "Вы уверены, что ходите удалить \"{chipName}\"?",
-  "cancel": "Отмена",
-  "delete": "Удалить"
+  "addToBookmarks": "Додати до Вибраного",
+  "bookmarkeAddedMessage": "Додано в Вибране!",
+  "bookmarkeAlreadyAddedMessage": "Вже було додано до Обраного!",
+  "noBookmarks": "На даний момент немає закладок",
+  "deleteBookmarkConfirm": "Ви впевнені, що ви бажаєте видалити \"{chipName}\"?",
+  "cancel": "Відміна",
+  "delete": "Видалити"
 }
