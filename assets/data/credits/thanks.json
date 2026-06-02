@@ -2,7 +2,7 @@
   {
     "num": 1,
     "title": "Slavic, English and other languages Psalms texts",
-    "linkLabel": "https://azbyka.ru/",
+    "linkLabel": "https://azbyka.ru",
     "link": "https://azbyka.ru/biblia/?Ps.1&a"
   },
   {
@@ -14,13 +14,19 @@
   {
     "num": 3,
     "title": "THE PSALTER AS A BOOK OF NEEDS",
-    "linkLabel": "https://www.scribd.com/",
+    "linkLabel": "https://www.scribd.com",
     "link": "https://www.scribd.com/document/361547715/Blessing-Psalter?language_settings_changed=English"
   },
   {
     "num": 4,
     "title": "Icon image of Saint Arsenios and Father Paisios",
-    "linkLabel": "https://dom-ikony.ru/",
+    "linkLabel": "https://dom-ikony.ru",
     "link": "https://dom-ikony.ru/upload/iblock/9d0/9d09f466bddde96391c4527330f4427e.jpg"
+  },
+  {
+    "num": 5,
+    "title": "Ukrainian translation",
+    "linkLabel": "https://blagovist.info",
+    "link": "https://blagovist.info/psaltyr"
   }
 ]
