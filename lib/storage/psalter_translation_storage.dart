@@ -12,10 +12,10 @@ class PsalterTranslationStorage {
   static List defaultLocaleToTranslation = [
     {'languageCode': 'en', 'translationCode': 'kjv'},
     {'languageCode': 'ru', 'translationCode': 'jungerov'},
-    {'languageCode': 'uk', 'translationCode': 'jungerov'},
+    {'languageCode': 'uk', 'translationCode': 'uk'},
   ];
 
-  static List<String> translationCodes = ['kjv', 'jungerov', 'rucu'];
+  static List<String> translationCodes = ['kjv', 'jungerov', 'rucu', 'uk'];
 
   static Future<String> getTranslationCode() async {
     final preferences = await SharedPreferences.getInstance();
