@@ -11,7 +11,7 @@ class PsalterTranslationStorage {
   /// @see https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
   static List defaultLocaleToTranslation = [
     {'languageCode': 'en', 'translationCode': 'kjv'},
-    {'languageCode': 'ru', 'translationCode': 'jungerov'},
+    {'languageCode': 'ru', 'translationCode': 'rucu'},
     {'languageCode': 'uk', 'translationCode': 'uk'},
   ];
 
