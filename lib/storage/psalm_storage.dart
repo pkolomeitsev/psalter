@@ -12,14 +12,14 @@ class PsalmStorage {
     return await JsonHelper.getJsonData(filePath);
   }
 
-  static Future<Psalm> getPsalmById(String psalmId) async {
+  static Future<Psalm> getPsalmById(int psalmId) async {
     String psalmKey = 'psalm$psalmId';
     String psalmDescriptionKey = 'psalmDesc$psalmId';
 
     final data = await PsalmStorage.getJsonData();
 
     return Psalm(
-      num: int.parse(psalmId),
+      num: psalmId,
       description: data[psalmDescriptionKey] ?? '',
       text: data[psalmKey] ?? '',
     );

@@ -64,17 +64,17 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: '/${EntityType.psalm.name}/:psalmId',
           builder: (context, state) =>
-              Psalm(psalmId: state.pathParameters['psalmId'].toString()),
+              Psalm(psalmId: int.parse(state.pathParameters['psalmId']!)),
         ),
         GoRoute(
           path: '/${EntityType.kathisma.name}/:kathismaId',
           builder: (context, state) =>
-              Kathisma(kathismaId: state.pathParameters['kathismaId'].toString()),
+              Kathisma(kathismaId: int.parse(state.pathParameters['kathismaId']!)),
         ),
         GoRoute(
           path: '/${EntityType.asNeeded.name}/:psalmId',
           builder: (context, state) =>
-              Psalm(psalmId: state.pathParameters['psalmId'].toString()),
+              Psalm(psalmId: int.parse(state.pathParameters['psalmId']!)),
         ),
       ],
     ),

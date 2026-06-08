@@ -13,8 +13,8 @@ import 'package:orth_psalter/ui/views/psalm_view.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Kathisma extends StatefulWidget {
-  final String kathismaId;
-  const Kathisma({super.key, this.kathismaId = ''});
+  final int kathismaId;
+  const Kathisma({super.key, required this.kathismaId});
 
   @override
   State<Kathisma> createState() => _KathismaState();
@@ -22,7 +22,7 @@ class Kathisma extends StatefulWidget {
 
 class _KathismaState extends State<Kathisma> {
   Future<kathisma_model.Kathisma> fetchData() async {
-    return await KathismaStorage.getKathismaById(int.parse(widget.kathismaId));
+    return await KathismaStorage.getKathismaById(widget.kathismaId);
   }
 
   @override

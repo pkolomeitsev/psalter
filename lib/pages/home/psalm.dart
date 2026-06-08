@@ -7,9 +7,9 @@ import 'package:orth_psalter/theme/app_font.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Psalm extends StatefulWidget {
-  final String psalmId;
+  final int psalmId;
 
-  const Psalm({super.key, this.psalmId = ''});
+  const Psalm({super.key, required this.psalmId});
 
   @override
   State<Psalm> createState() => _PsalmState();
