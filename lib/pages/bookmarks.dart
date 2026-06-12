@@ -25,20 +25,16 @@ class _BookmarksState extends State<Bookmarks> {
   Map<EntityType, int> lastViewed = {};
   LastViewedBookmarksNotifier bookmarksNotifier = LastViewedBookmarksNotifier();
 
-  @override
-  void initState() {
-    super.initState();
-    this.lastViewed = {
-      EntityType.psalm: LastViewedBookmarksStorage().get(EntityType.psalm),
-      EntityType.kathisma: LastViewedBookmarksStorage().get(EntityType.kathisma),
-      EntityType.asNeeded: LastViewedBookmarksStorage().get(EntityType.asNeeded),
-    };
-  }
-
   Future fetchBookmarks() async {
     this.psalmIds = await BookmarkStorage.getBookmarks(EntityType.psalm);
     this.kathismaIds = await BookmarkStorage.getBookmarks(EntityType.kathisma);
     this.asNeededIds = await BookmarkStorage.getBookmarks(EntityType.asNeeded);
+
+    this.lastViewed = {
+      EntityType.psalm: await LastViewedBookmarksStorage().get(EntityType.psalm),
+      EntityType.kathisma: await LastViewedBookmarksStorage().get(EntityType.kathisma),
+      EntityType.asNeeded: await LastViewedBookmarksStorage().get(EntityType.asNeeded),
+    };
 
     return true;
   }

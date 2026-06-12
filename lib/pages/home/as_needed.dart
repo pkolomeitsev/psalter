@@ -21,14 +21,11 @@ class _AsNeededState extends State<AsNeeded> {
   int lastViewedId = 0;
   List<int> bookmarks = [];
 
-  @override
-  void initState() {
-    super.initState();
-    this.lastViewedId = LastViewedStorage().get(EntityType.asNeeded);
-  }
-
   Future fetchBookmarks() async {
-    return await BookmarkStorage.getBookmarks(EntityType.asNeeded);
+    this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.asNeeded);
+    this.lastViewedId = await LastViewedStorage().get(EntityType.asNeeded);
+
+    return true;
   }
 
   @override
@@ -41,8 +38,6 @@ class _AsNeededState extends State<AsNeeded> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
-          this.bookmarks = snapshot.data ?? [];
-
           return ListenableBuilder(
             listenable: asNeededNotifier,
             builder: (BuildContext context, Widget? child) {

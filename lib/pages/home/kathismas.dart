@@ -27,12 +27,14 @@ class _KathismasState extends State<Kathismas> {
   void initState() {
     super.initState();
     this.kathismasAmount = KathismaStorage.kathismasAmount;
-    this.lastViewedId = LastViewedStorage().get(EntityType.kathisma);
     this.psalmsMap = KathismaStorage.psalmsMap;
   }
 
   Future fetchBookmarks() async {
-    return await BookmarkStorage.getBookmarks(EntityType.kathisma);
+    this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.kathisma);
+    this.lastViewedId = await LastViewedStorage().get(EntityType.kathisma);
+
+    return true;
   }
 
   @override
@@ -45,8 +47,6 @@ class _KathismasState extends State<Kathismas> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
-          this.bookmarks = snapshot.data ?? [];
-
           return ListenableBuilder(
             listenable: kathismasNotifier,
             builder: (BuildContext context, Widget? child) {

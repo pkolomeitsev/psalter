@@ -22,14 +22,11 @@ class _PsalmsState extends State<Psalms> {
   final LastViewedPsalmsNotifier lastViewedNotifier =
       LastViewedPsalmsNotifier();
 
-  @override
-  void initState() {
-    super.initState();
-    this.lastViewedId = LastViewedStorage().get(EntityType.psalm);
-  }
-
   Future fetchBookmarks() async {
-    return await BookmarkStorage.getBookmarks(EntityType.psalm);
+    this.lastViewedId = await LastViewedStorage().get(EntityType.psalm);
+    this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.psalm);
+
+    return true;
   }
 
   @override
@@ -42,8 +39,6 @@ class _PsalmsState extends State<Psalms> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
-          this.bookmarks = snapshot.data ?? [];
-
           return ListenableBuilder(
             listenable: lastViewedNotifier,
             builder: (BuildContext context, Widget? child) {
