@@ -16,7 +16,7 @@ class BookmarkStorage {
 
   static addBookmark(EntityType type, int value) async {
     final asyncPrefs = SharedPreferencesAsync();
-    List<int> bookmarks = UtilsHelper.stringListToInt(await BookmarkStorage.getBookmarks(type) ?? []);
+    List<int> bookmarks = await BookmarkStorage.getBookmarks(type) ?? [];
     if (!bookmarks.contains(value)) {
       bookmarks.add(value);
       await asyncPrefs.setStringList(

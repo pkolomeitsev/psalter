@@ -19,25 +19,44 @@ class _PsalmsState extends State<Psalms> {
   int psalmsAmount = PsalmStorage.psalmsAmount;
   int lastViewedId = 0;
   List<int> bookmarks = [];
-  final LastViewedPsalmsNotifier psalmsNotifier = LastViewedPsalmsNotifier();
+  final LastViewedPsalmsNotifier lastViewedNotifier =
+      LastViewedPsalmsNotifier();
 
   @override
   void initState() {
     super.initState();
     this.lastViewedId = LastViewedStorage().get(EntityType.psalm);
-    this.bookmarks = BookmarkStorage.getBookmarks(EntityType.psalm);
+  }
+
+  Future fetchBookmarks() async {
+    return await BookmarkStorage.getBookmarks(EntityType.psalm);
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: psalmsNotifier,
-      builder: (BuildContext context, Widget? child) {
-        if (psalmsNotifier.getId() > 0) {
-          this.lastViewedId = psalmsNotifier.getId();
+    return FutureBuilder(
+      future: this.fetchBookmarks(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          this.bookmarks = snapshot.data ?? [];
+
+          return ListenableBuilder(
+            listenable: lastViewedNotifier,
+            builder: (BuildContext context, Widget? child) {
+              if (lastViewedNotifier.getId() > 0) {
+                this.lastViewedId = lastViewedNotifier.getId();
+              }
+
+              return ListViewWrapper(data: this.renderPsalms(context));
+            },
+          );
         }
 
-        return ListViewWrapper(data: this.renderPsalms(context));
+        return const Center(child: Text('No data found'));
       },
     );
   }
@@ -46,14 +65,14 @@ class _PsalmsState extends State<Psalms> {
     List<Widget> psalms = [];
     for (int i = 1; i <= this.psalmsAmount; i++) {
       psalms.add(
-          BookmarkCard(
-            id: i,
-            title: '${context.tr('psalm')} $i',
-            type: EntityType.psalm,
-            isBookmarked: this.bookmarks.contains(i),
-            isActive: (i == this.lastViewedId),
-            notifier: this.psalmsNotifier,
-          )
+        BookmarkCard(
+          id: i,
+          title: '${context.tr('psalm')} $i',
+          type: EntityType.psalm,
+          isBookmarked: this.bookmarks.contains(i),
+          isActive: (i == this.lastViewedId),
+          notifier: this.lastViewedNotifier,
+        ),
       );
     }
 
