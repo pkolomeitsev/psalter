@@ -28,9 +28,6 @@ class _BookmarksState extends State<Bookmarks> {
   @override
   void initState() {
     super.initState();
-    this.psalmIds = BookmarkStorage.getBookmarks(EntityType.psalm);
-    this.kathismaIds = BookmarkStorage.getBookmarks(EntityType.kathisma);
-    this.asNeededIds = BookmarkStorage.getBookmarks(EntityType.asNeeded);
     this.lastViewed = {
       EntityType.psalm: LastViewedBookmarksStorage().get(EntityType.psalm),
       EntityType.kathisma: LastViewedBookmarksStorage().get(EntityType.kathisma),
@@ -38,37 +35,63 @@ class _BookmarksState extends State<Bookmarks> {
     };
   }
 
+  Future fetchBookmarks() async {
+    this.psalmIds = await BookmarkStorage.getBookmarks(EntityType.psalm);
+    this.kathismaIds = await BookmarkStorage.getBookmarks(EntityType.kathisma);
+    this.asNeededIds = await BookmarkStorage.getBookmarks(EntityType.asNeeded);
+
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: AppTitle()),
-        body: ListenableBuilder(
-          listenable: bookmarksNotifier,
-          builder: (BuildContext context, Widget? child) {
-            for(var type in EntityType.values) {
-              if (bookmarksNotifier.getIdByType(type) > 0) {
-                lastViewed[type] = bookmarksNotifier.getIdByType(type);
-              }
-            }
+      appBar: AppBar(title: AppTitle()),
+      body: FutureBuilder(
+        future: this.fetchBookmarks(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            return ListenableBuilder(
+              listenable: bookmarksNotifier,
+              builder: (BuildContext context, Widget? child) {
+                for (var type in EntityType.values) {
+                  if (bookmarksNotifier.getIdByType(type) > 0) {
+                    lastViewed[type] = bookmarksNotifier.getIdByType(type);
+                  }
+                }
 
-            return TextPageViewWrapper(
-              data: [
-                if (psalmIds.isEmpty && kathismaIds.isEmpty &&
-                    asNeededIds.isEmpty) ...[
-                  Text(context.tr('noBookmarks'))
-                ]
-                else
-                  ...[
-                    this.renderBookmarks(context, EntityType.psalm, psalmIds),
-                    this.renderBookmarks(
-                        context, EntityType.kathisma, kathismaIds),
-                    this.renderBookmarks(
-                        context, EntityType.asNeeded, asNeededIds),
-                  ]
-              ],
+                return TextPageViewWrapper(
+                  data: [
+                    if (psalmIds.isEmpty &&
+                        kathismaIds.isEmpty &&
+                        asNeededIds.isEmpty) ...[
+                      Text(context.tr('noBookmarks')),
+                    ] else ...[
+                      this.renderBookmarks(context, EntityType.psalm, psalmIds),
+                      this.renderBookmarks(
+                        context,
+                        EntityType.kathisma,
+                        kathismaIds,
+                      ),
+                      this.renderBookmarks(
+                        context,
+                        EntityType.asNeeded,
+                        asNeededIds,
+                      ),
+                    ],
+                  ],
+                );
+              },
             );
-          },
-        )
+          }
+
+          return const Center(child: Text('No data found'));
+        },
+      ),
     );
   }
 
@@ -90,10 +113,11 @@ class _BookmarksState extends State<Bookmarks> {
         ),
         if (type == EntityType.asNeeded) ...[
           this.renderBookmarksCards(context, type, ids),
-        ]
-        else ...[
-          SettingsCard(children: [this.renderBookmarksChips(context, type, ids)]),
-        ]
+        ] else ...[
+          SettingsCard(
+            children: [this.renderBookmarksChips(context, type, ids)],
+          ),
+        ],
       ],
     );
   }
@@ -107,7 +131,7 @@ class _BookmarksState extends State<Bookmarks> {
 
     for (var id in ids) {
       chips.add(
-        Bookmark(id: id, title: '${context.tr(type.name)} $id', type: type)
+        Bookmark(id: id, title: '${context.tr(type.name)} $id', type: type),
       );
     }
 
@@ -121,7 +145,7 @@ class _BookmarksState extends State<Bookmarks> {
   Widget renderBookmarksCards(
     BuildContext context,
     EntityType type,
-    List<int> ids
+    List<int> ids,
   ) {
     List<Widget> cards = [];
 
@@ -129,20 +153,18 @@ class _BookmarksState extends State<Bookmarks> {
       String description = context.tr('psalm${id}AsNeeded');
 
       cards.add(
-          BookmarkCard(
-            id: id,
-            title: '${context.tr('psalm')} $id',
-            description: description,
-            type: EntityType.asNeeded,
-            isBookmarked: true,
-            isActive: (id == (this.lastViewed[type] ?? 0)),
-            notifier: this.bookmarksNotifier,
-          )
+        BookmarkCard(
+          id: id,
+          title: '${context.tr('psalm')} $id',
+          description: description,
+          type: EntityType.asNeeded,
+          isBookmarked: true,
+          isActive: (id == (this.lastViewed[type] ?? 0)),
+          notifier: this.bookmarksNotifier,
+        ),
       );
     }
 
-    return Column(
-      children: cards,
-    );
+    return Column(children: cards);
   }
 }
