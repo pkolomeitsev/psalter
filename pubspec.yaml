@@ -43,10 +43,6 @@ dependencies:
   go_router: ^17.0.1
   shared_preferences: ^2.5.4
 
-  # DB management
-  hive: ^2.2.3
-  path_provider: ^2.1.5
-
   package_info_plus: ^9.0.0
   url_launcher: ^6.3.2
 
