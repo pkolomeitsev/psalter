@@ -1,38 +1,43 @@
-import 'package:hive/hive.dart';
+import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BookmarkStorage {
-
   static getName(String name) {
     return 'bookmarks_$name';
   }
 
-  static getBookmarks(EntityType type) {
-    List<int> bookmarksIds = [];
-    final box = Hive.box(BookmarkStorage.getName(type.name));
-    for (var i = 0; i < box.length; i++) {
-      bookmarksIds.add(box.getAt(i));
-    }
-
-    return bookmarksIds;
+  static getBookmarks(EntityType type) async {
+    final asyncPrefs = SharedPreferencesAsync();
+    return UtilsHelper.stringListToInt(
+      await asyncPrefs.getStringList(BookmarkStorage.getName(type.name)) ?? []
+    );
   }
 
-  static addBookmark(EntityType type, int value) {
-    final box = Hive.box(BookmarkStorage.getName(type.name));
-    box.add(value);
+  static addBookmark(EntityType type, int value) async {
+    final asyncPrefs = SharedPreferencesAsync();
+    List<int> bookmarks = await BookmarkStorage.getBookmarks(type) ?? [];
+    if (!bookmarks.contains(value)) {
+      bookmarks.add(value);
+      await asyncPrefs.setStringList(
+        BookmarkStorage.getName(type.name),
+        UtilsHelper.intListToString(bookmarks),
+      );
+    }
   }
 
-  static deleteBookmark(EntityType type, int value) {
-    final box = Hive.box(BookmarkStorage.getName(type.name));
-    for (var i = 0; i < box.length; i++) {
-      if (box.getAt(i) == value) {
-        box.deleteAt(i);
-      }
-    }
+  static deleteBookmark(EntityType type, int value) async {
+    final asyncPrefs = SharedPreferencesAsync();
+    List<int> bookmarks = await BookmarkStorage.getBookmarks(type);
+    bookmarks.remove(value);
+    await asyncPrefs.setStringList(
+      BookmarkStorage.getName(type.name),
+      UtilsHelper.intListToString(bookmarks),
+    );
   }
 
   static deleteBookmarks(EntityType type, List<int> values) {
-    for(var value in values) {
+    for (var value in values) {
       BookmarkStorage.deleteBookmark(type, value);
     }
   }

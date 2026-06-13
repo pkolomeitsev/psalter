@@ -64,9 +64,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
   }
 
   IconData getBookmarkIcon() {
-    return (this.isBookmarkedState)
-        ? Icons.bookmark
-        : Icons.bookmark_outline;
+    return (this.isBookmarkedState) ? Icons.bookmark : Icons.bookmark_outline;
   }
 
   ShapeBorder? getBorderStyle(context) {
@@ -107,22 +105,22 @@ class _BookmarkCardState extends State<BookmarkCard> {
               IconButton(
                 icon: Icon(this.getBookmarkIcon()),
                 onPressed: () {
-                  debouncer.run(() => setState(() {
-                    isBookmarkedState = !isBookmarkedState;
-                    if(isBookmarkedState) {
-                      BookmarkStorage.addBookmark(
-                          widget.type,
-                          widget.id
-                      );
+                  debouncer.run(() async {
+                    setState(() {
+                      isBookmarkedState = !isBookmarkedState;
+                    });
+
+                    if (isBookmarkedState) {
+                      await BookmarkStorage.addBookmark(widget.type, widget.id);
 
                       return;
                     }
 
-                    BookmarkStorage.deleteBookmark(
-                        widget.type,
-                        widget.id
+                    await BookmarkStorage.deleteBookmark(
+                      widget.type,
+                      widget.id,
                     );
-                  }));
+                  });
                 },
               ),
             ],

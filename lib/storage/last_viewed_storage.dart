@@ -1,20 +1,20 @@
-import 'package:hive/hive.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LastViewedStorage {
   final String name = 'lastviewed';
 
-  getName() {
-    return name;
+  getName(EntityType type) {
+    return '${this.name}_${type.name}';
   }
 
-  int get(EntityType type) {
-    final box = Hive.box(this.getName());
-    return box.get(type.name) ?? 0;
+  Future<int> get(EntityType type) async {
+    final asyncPrefs = SharedPreferencesAsync();
+    return await asyncPrefs.getInt(this.getName(type)) ?? 0;
   }
 
-  void set(EntityType type, int value) {
-    final box = Hive.box(this.getName());
-    box.put(type.name, value);
+  void set(EntityType type, int value) async {
+    final asyncPrefs = SharedPreferencesAsync();
+    await asyncPrefs.setInt(this.getName(type), value);
   }
 }

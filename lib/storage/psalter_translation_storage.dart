@@ -18,15 +18,15 @@ class PsalterTranslationStorage {
   static List<String> translationCodes = ['kjv', 'jungerov', 'rucu', 'uk'];
 
   static Future<String> getTranslationCode() async {
-    final preferences = await SharedPreferences.getInstance();
+    final asyncPrefs = SharedPreferencesAsync();
 
-    return preferences.getString('psalterTranslation') ??
+    return await asyncPrefs.getString('psalterTranslation') ??
         await PsalterTranslationStorage.getDefaultTranslationCode();
   }
 
   static void setTranslationCode(String translationCode) async {
-    final preferences = await SharedPreferences.getInstance();
-    preferences.setString('psalterTranslation', translationCode);
+    final asyncPrefs = SharedPreferencesAsync();
+    await asyncPrefs.setString('psalterTranslation', translationCode);
   }
 
   static getTranslationKeyByCode(String translationCode) {

@@ -21,59 +21,78 @@ class _AsNeededState extends State<AsNeeded> {
   int lastViewedId = 0;
   List<int> bookmarks = [];
 
-  @override
-  void initState() {
-    super.initState();
-    this.lastViewedId = LastViewedStorage().get(EntityType.asNeeded);
-    this.bookmarks = BookmarkStorage.getBookmarks(EntityType.asNeeded);
+  Future fetchBookmarks() async {
+    this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.asNeeded);
+    this.lastViewedId = await LastViewedStorage().get(EntityType.asNeeded);
+
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: asNeededNotifier,
-      builder: (BuildContext context, Widget? child) {
-        if (asNeededNotifier.getId() > 0) {
-          this.lastViewedId = asNeededNotifier.getId();
+    return FutureBuilder(
+      future: this.fetchBookmarks(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          return ListenableBuilder(
+            listenable: asNeededNotifier,
+            builder: (BuildContext context, Widget? child) {
+              if (asNeededNotifier.getId() > 0) {
+                this.lastViewedId = asNeededNotifier.getId();
+              }
+
+              return Semantics(
+                identifier: 'as_needed_view',
+                child: ListView(
+                  padding: const EdgeInsets.all(10),
+                  children: [
+                    DefaultTextStyle.merge(
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      child: Text(
+                        context.tr('psalterReadingAsNeeded'),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    DefaultTextStyle.merge(
+                      style: const TextStyle(fontSize: 16),
+                      child: Text(
+                        context.tr(
+                          'psalterReadingRuleByStArseniosTheCappadocian',
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ...this.renderPsalms(context),
+                    SizedBox(height: 10),
+                    const Image(
+                      image: AssetImage(
+                        'assets/imgs/Saint_Arsenios_the_Cappadocian_and_Father_Paisios.jpg',
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    DefaultTextStyle.merge(
+                      style: const TextStyle(fontSize: 16),
+                      child: Text(
+                        context.tr('iconImageTitle'),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
         }
 
-        return Semantics(
-          identifier: 'as_needed_view',
-          child: ListView(
-            padding: const EdgeInsets.all(10),
-            children: [
-              DefaultTextStyle.merge(
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                child: Text(
-                  context.tr('psalterReadingAsNeeded'),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(height: 10),
-              DefaultTextStyle.merge(
-                style: const TextStyle(fontSize: 16),
-                child: Text(
-                  context.tr('psalterReadingRuleByStArseniosTheCappadocian'),
-                ),
-              ),
-              SizedBox(height: 10),
-              ...this.renderPsalms(context),
-              SizedBox(height: 10),
-              const Image(image: AssetImage('assets/imgs/Saint_Arsenios_the_Cappadocian_and_Father_Paisios.jpg')),
-              SizedBox(height: 10),
-              DefaultTextStyle.merge(
-                style: const TextStyle(fontSize: 16),
-                child: Text(
-                  context.tr('iconImageTitle'),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        );
+        return const Center(child: Text('No data found'));
       },
     );
   }

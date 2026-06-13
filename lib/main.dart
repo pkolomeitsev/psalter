@@ -1,31 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
-import 'package:orth_psalter/storage/bookmark_storage.dart';
-import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
-import 'package:orth_psalter/storage/last_viewed_storage.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
-import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
-  final dir = await getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
-
-  await Hive.openBox(BookmarkStorage.getName(EntityType.kathisma.name));
-  await Hive.openBox(BookmarkStorage.getName(EntityType.psalm.name));
-  await Hive.openBox(BookmarkStorage.getName(EntityType.asNeeded.name));
-
-  await Hive.openBox(LastViewedStorage().getName());
-  await Hive.openBox(LastViewedBookmarksStorage().getName());
 
   runApp(EasyLocalization(
     supportedLocales: [

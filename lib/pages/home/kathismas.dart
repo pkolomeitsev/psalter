@@ -27,24 +27,42 @@ class _KathismasState extends State<Kathismas> {
   void initState() {
     super.initState();
     this.kathismasAmount = KathismaStorage.kathismasAmount;
-    this.lastViewedId = LastViewedStorage().get(EntityType.kathisma);
     this.psalmsMap = KathismaStorage.psalmsMap;
-    this.bookmarks = BookmarkStorage.getBookmarks(EntityType.kathisma);
+  }
+
+  Future fetchBookmarks() async {
+    this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.kathisma);
+    this.lastViewedId = await LastViewedStorage().get(EntityType.kathisma);
+
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: kathismasNotifier,
-      builder: (BuildContext context, Widget? child) {
-        if (kathismasNotifier.getId() > 0) {
-          this.lastViewedId = kathismasNotifier.getId();
+    return FutureBuilder(
+      future: this.fetchBookmarks(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          return ListenableBuilder(
+            listenable: kathismasNotifier,
+            builder: (BuildContext context, Widget? child) {
+              if (kathismasNotifier.getId() > 0) {
+                this.lastViewedId = kathismasNotifier.getId();
+              }
+
+              return Semantics(
+                identifier: 'kathismas_list',
+                child: ListViewWrapper(data: this.renderKathismas(context)),
+              );
+            },
+          );
         }
 
-        return Semantics(
-          identifier: 'kathismas_list',
-          child: ListViewWrapper(data: this.renderKathismas(context))
-        );
+        return const Center(child: Text('No data found'));
       },
     );
   }
