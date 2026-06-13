@@ -22,9 +22,9 @@ class _PsalmsState extends State<Psalms> {
   final LastViewedPsalmsNotifier lastViewedNotifier =
       LastViewedPsalmsNotifier();
 
-  Future fetchBookmarks() async {
-    this.lastViewedId = await LastViewedStorage().get(EntityType.psalm);
+  Future fetchActivityData() async {
     this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.psalm);
+    this.lastViewedId = await LastViewedStorage().get(EntityType.psalm);
 
     return true;
   }
@@ -32,7 +32,7 @@ class _PsalmsState extends State<Psalms> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: this.fetchBookmarks(),
+      future: this.fetchActivityData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

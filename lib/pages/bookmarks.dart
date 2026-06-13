@@ -25,7 +25,7 @@ class _BookmarksState extends State<Bookmarks> {
   Map<EntityType, int> lastViewed = {};
   LastViewedBookmarksNotifier bookmarksNotifier = LastViewedBookmarksNotifier();
 
-  Future fetchBookmarks() async {
+  Future fetchActivityData() async {
     this.psalmIds = await BookmarkStorage.getBookmarks(EntityType.psalm);
     this.kathismaIds = await BookmarkStorage.getBookmarks(EntityType.kathisma);
     this.asNeededIds = await BookmarkStorage.getBookmarks(EntityType.asNeeded);
@@ -44,7 +44,7 @@ class _BookmarksState extends State<Bookmarks> {
     return Scaffold(
       appBar: AppBar(title: AppTitle()),
       body: FutureBuilder(
-        future: this.fetchBookmarks(),
+        future: this.fetchActivityData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

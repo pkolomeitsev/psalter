@@ -30,7 +30,7 @@ class _KathismasState extends State<Kathismas> {
     this.psalmsMap = KathismaStorage.psalmsMap;
   }
 
-  Future fetchBookmarks() async {
+  Future fetchActivityData() async {
     this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.kathisma);
     this.lastViewedId = await LastViewedStorage().get(EntityType.kathisma);
 
@@ -40,7 +40,7 @@ class _KathismasState extends State<Kathismas> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: this.fetchBookmarks(),
+      future: this.fetchActivityData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

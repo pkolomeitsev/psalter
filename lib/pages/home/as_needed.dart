@@ -21,7 +21,7 @@ class _AsNeededState extends State<AsNeeded> {
   int lastViewedId = 0;
   List<int> bookmarks = [];
 
-  Future fetchBookmarks() async {
+  Future fetchActivityData() async {
     this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.asNeeded);
     this.lastViewedId = await LastViewedStorage().get(EntityType.asNeeded);
 
@@ -31,7 +31,7 @@ class _AsNeededState extends State<AsNeeded> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: this.fetchBookmarks(),
+      future: this.fetchActivityData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
