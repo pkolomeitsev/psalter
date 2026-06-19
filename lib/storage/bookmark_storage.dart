@@ -3,14 +3,14 @@ import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BookmarkStorage {
-  static getName(String name) {
-    return 'bookmarks_$name';
+  static getName(EntityType type) {
+    return 'bookmarks_{$type.name}';
   }
 
   static getBookmarks(EntityType type) async {
     final asyncPrefs = SharedPreferencesAsync();
     return UtilsHelper.stringListToInt(
-      await asyncPrefs.getStringList(BookmarkStorage.getName(type.name)) ?? []
+      await asyncPrefs.getStringList(BookmarkStorage.getName(type)) ?? []
     );
   }
 
@@ -20,7 +20,7 @@ class BookmarkStorage {
     if (!bookmarks.contains(value)) {
       bookmarks.add(value);
       await asyncPrefs.setStringList(
-        BookmarkStorage.getName(type.name),
+        BookmarkStorage.getName(type),
         UtilsHelper.intListToString(bookmarks),
       );
     }
@@ -31,7 +31,7 @@ class BookmarkStorage {
     List<int> bookmarks = await BookmarkStorage.getBookmarks(type);
     bookmarks.remove(value);
     await asyncPrefs.setStringList(
-      BookmarkStorage.getName(type.name),
+      BookmarkStorage.getName(type),
       UtilsHelper.intListToString(bookmarks),
     );
   }
