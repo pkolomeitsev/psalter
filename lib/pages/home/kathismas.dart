@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_kathismas_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
@@ -15,7 +16,7 @@ class Kathismas extends StatefulWidget {
   State<Kathismas> createState() => _KathismasState();
 }
 
-class _KathismasState extends State<Kathismas> {
+class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
   int kathismasAmount = 0;
   int lastViewedId = 0;
   List<String> psalmsMap = [];
@@ -26,6 +27,7 @@ class _KathismasState extends State<Kathismas> {
   @override
   void initState() {
     super.initState();
+    this.initScrollPositionStorageMixin(EntityType.kathisma);
     this.kathismasAmount = KathismaStorage.kathismasAmount;
     this.psalmsMap = KathismaStorage.psalmsMap;
   }
@@ -56,7 +58,10 @@ class _KathismasState extends State<Kathismas> {
 
               return Semantics(
                 identifier: 'kathismas_list',
-                child: ListViewWrapper(data: this.renderKathismas(context)),
+                child: ListViewWrapper(
+                  data: this.renderKathismas(context),
+                  scrollController: this.getScrollController(),
+                ),
               );
             },
           );

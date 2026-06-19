@@ -6,8 +6,10 @@ import 'package:orth_psalter/storage/scroll_position_storage.dart';
 mixin ScrollPositionStorageMixin {
   final ScrollController scrollController = ScrollController();
   final debouncer = DebouncerHelper(milliseconds: 1000);
+  late EntityType type = EntityType.none;
 
-  void initScrollPositionStorageMixin() {
+  void initScrollPositionStorageMixin(EntityType type) {
+    this.type = type;
     this.scrollController.addListener(this.saveScrollPosition);
     this.restoreScrollPosition();
   }
@@ -17,7 +19,7 @@ mixin ScrollPositionStorageMixin {
   void saveScrollPosition() async {
     debouncer.run(() async {
       await ScrollPositionStorage.setOffset(
-        EntityType.psalm,
+        this.type,
         this.scrollController.position.pixels,
         listView: true,
       );
@@ -26,7 +28,7 @@ mixin ScrollPositionStorageMixin {
 
   void restoreScrollPosition() async {
     final scrollValue = await ScrollPositionStorage.getOffset(
-      EntityType.psalm,
+      this.type,
       listView: true,
     );
     final double? offset = double.tryParse(scrollValue.toString());

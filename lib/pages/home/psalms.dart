@@ -26,7 +26,7 @@ class _PsalmsState extends State<Psalms> with ScrollPositionStorageMixin {
   @override
   void initState() {
     super.initState();
-    this.initScrollPositionStorageMixin();
+    this.initScrollPositionStorageMixin(EntityType.psalm);
   }
 
   Future fetchActivityData() async {
