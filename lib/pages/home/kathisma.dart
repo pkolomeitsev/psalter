@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
+import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/kathisma.dart' as kathisma_model;
 import 'package:orth_psalter/models/psalm.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
@@ -20,7 +22,14 @@ class Kathisma extends StatefulWidget {
   State<Kathisma> createState() => _KathismaState();
 }
 
-class _KathismaState extends State<Kathisma> {
+class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
+
+  @override
+  void initState() {
+    super.initState();
+    this.initScrollPositionStorageMixin(EntityType.kathisma);
+  }
+
   Future<kathisma_model.Kathisma> fetchData() async {
     return await KathismaStorage.getKathismaById(widget.kathismaId);
   }
@@ -56,6 +65,7 @@ class _KathismaState extends State<Kathisma> {
                 this.renderPrayer(snapshot.data),
                 SizedBox(height: 10),
               ],
+              scrollController: this.getScrollController(),
             );
           }
 

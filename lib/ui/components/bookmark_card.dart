@@ -4,6 +4,7 @@ import 'package:orth_psalter/helpers/debouncer_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/scroll_position_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class BookmarkCard extends StatefulWidget {
@@ -85,9 +86,14 @@ class _BookmarkCardState extends State<BookmarkCard> {
       clipBehavior: Clip.hardEdge,
       shape: this.getBorderStyle(context),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           if (widget.notifier != null) {
             widget.notifier!.notify(widget.id, widget.type);
+          }
+
+          // reset scroll position when new Kathisma opened
+          if (!this.isActiveState) {
+            await ScrollPositionStorage.deleteOffset(EntityType.kathisma);
           }
 
           context.go('/${widget.type.name}/${widget.id}');

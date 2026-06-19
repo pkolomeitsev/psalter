@@ -27,7 +27,7 @@ mixin ScrollPositionStorageMixin {
         await ScrollPositionStorage.setOffset(
           this.type,
           this.scrollController.position.pixels,
-          listView: true,
+          listView: this.listView,
         );
       }
     });
@@ -36,7 +36,7 @@ mixin ScrollPositionStorageMixin {
   void restoreScrollPosition() async {
     final scrollValue = await ScrollPositionStorage.getOffset(
       this.type,
-      listView: true,
+      listView: this.listView,
     );
     final double? offset = double.tryParse(scrollValue.toString());
     if (offset != null && offset > 0) {
