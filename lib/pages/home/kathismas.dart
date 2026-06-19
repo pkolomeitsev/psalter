@@ -27,7 +27,7 @@ class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
   @override
   void initState() {
     super.initState();
-    this.initScrollPositionStorageMixin(EntityType.kathisma);
+    this.initScrollPositionStorageMixin(EntityType.kathisma, listView: true);
     this.kathismasAmount = KathismaStorage.kathismasAmount;
     this.psalmsMap = KathismaStorage.psalmsMap;
   }
