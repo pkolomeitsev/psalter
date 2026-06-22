@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_kathismas_notifier.dart';
+import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_storage.dart';
@@ -15,7 +17,7 @@ class Kathismas extends StatefulWidget {
   State<Kathismas> createState() => _KathismasState();
 }
 
-class _KathismasState extends State<Kathismas> {
+class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
   int kathismasAmount = 0;
   int lastViewedId = 0;
   List<String> psalmsMap = [];
@@ -47,6 +49,12 @@ class _KathismasState extends State<Kathismas> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
+          // initialize scroll position after async data loaded
+          this.initScrollPositionStorageMixin(
+            EntityType.kathisma,
+            listView: true,
+          );
+
           return ListenableBuilder(
             listenable: kathismasNotifier,
             builder: (BuildContext context, Widget? child) {
@@ -56,7 +64,10 @@ class _KathismasState extends State<Kathismas> {
 
               return Semantics(
                 identifier: 'kathismas_list',
-                child: ListViewWrapper(data: this.renderKathismas(context)),
+                child: ListViewWrapper(
+                  data: this.renderKathismas(context),
+                  scrollController: this.getScrollController(),
+                ),
               );
             },
           );
@@ -70,6 +81,11 @@ class _KathismasState extends State<Kathismas> {
   List<Widget> renderKathismas(BuildContext context) {
     List<Widget> kathismas = [];
     for (int i = 1; i <= this.kathismasAmount; i++) {
+      var isActive = (i == this.lastViewedId);
+      RouterExtraParameters extra = RouterExtraParameters();
+      extra.setEnableScrollStorage(true);
+      extra.setResetScrollPosition(!isActive);
+
       kathismas.add(
         BookmarkCard(
           id: i,
@@ -77,8 +93,9 @@ class _KathismasState extends State<Kathismas> {
           description: '${context.tr('psalms')} ${this.psalmsMap[i - 1]}',
           type: EntityType.kathisma,
           isBookmarked: bookmarks.contains(i),
-          isActive: (i == this.lastViewedId),
+          isActive: isActive,
           notifier: this.kathismasNotifier,
+          redirectParameters: extra,
         ),
       );
     }
