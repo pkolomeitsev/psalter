@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/kathisma.dart' as kathisma_model;
 import 'package:orth_psalter/models/psalm.dart';
+import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
+import 'package:orth_psalter/storage/scroll_position_storage.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
@@ -23,14 +26,16 @@ class Kathisma extends StatefulWidget {
 }
 
 class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
+  late RouterExtraParameters routerExtra;
 
-  @override
-  void initState() {
-    super.initState();
-    this.initScrollPositionStorageMixin(EntityType.kathisma);
-  }
+  Future<kathisma_model.Kathisma> fetchData(BuildContext context) async {
+    this.routerExtra = (GoRouterState.of(context).extra != null)
+        ? GoRouterState.of(context).extra as RouterExtraParameters
+        : RouterExtraParameters();
+    if (this.routerExtra.isResetScrollPosition()) {
+      await ScrollPositionStorage.deleteOffset(EntityType.kathisma);
+    }
 
-  Future<kathisma_model.Kathisma> fetchData() async {
     return await KathismaStorage.getKathismaById(widget.kathismaId);
   }
 
@@ -45,13 +50,16 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
         centerTitle: true,
       ),
       body:  FutureBuilder<kathisma_model.Kathisma>(
-        future: this.fetchData(),
+        future: this.fetchData(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'));
           } else if (snapshot.hasData) {
+            // initialize scroll position after async data loaded
+            this.initScrollPositionStorageMixin(EntityType.kathisma);
+
             return TextPageViewWrapper(
               data: [
                 this.renderPsalms(context, snapshot.data),
@@ -65,7 +73,9 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
                 this.renderPrayer(snapshot.data),
                 SizedBox(height: 10),
               ],
-              scrollController: this.getScrollController(),
+              scrollController: this.routerExtra.isEnableScrollStorage()
+                  ? this.getScrollController()
+                  : null,
             );
           }
 

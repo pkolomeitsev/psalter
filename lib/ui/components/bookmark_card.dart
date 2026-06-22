@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/helpers/debouncer_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
+import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
-import 'package:orth_psalter/storage/scroll_position_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class BookmarkCard extends StatefulWidget {
@@ -15,6 +15,7 @@ class BookmarkCard extends StatefulWidget {
   final bool isBookmarked;
   final bool isActive;
   final LastViewedNotifier? notifier;
+  final RouterExtraParameters? redirectParameters;
 
   const BookmarkCard({
     super.key,
@@ -24,7 +25,8 @@ class BookmarkCard extends StatefulWidget {
     this.type = EntityType.none,
     this.isBookmarked = false,
     this.isActive = false,
-    this.notifier = null,
+    this.notifier,
+    this.redirectParameters,
   });
 
   @override
@@ -90,13 +92,11 @@ class _BookmarkCardState extends State<BookmarkCard> {
           if (widget.notifier != null) {
             widget.notifier!.notify(widget.id, widget.type);
           }
-
-          // reset scroll position when new Kathisma opened
-          if (!this.isActiveState) {
-            await ScrollPositionStorage.deleteOffset(EntityType.kathisma);
-          }
-
-          context.go('/${widget.type.name}/${widget.id}');
+          print(widget.redirectParameters?.isResetScrollPosition());
+          context.go(
+            '/${widget.type.name}/${widget.id}',
+            extra: widget.redirectParameters,
+          );
         },
         child: Padding(
           padding: EdgeInsetsGeometry.all(20),

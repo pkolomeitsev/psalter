@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_psalms_notifier.dart';
+import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
@@ -23,12 +24,6 @@ class _PsalmsState extends State<Psalms> with ScrollPositionStorageMixin {
   final LastViewedPsalmsNotifier lastViewedNotifier =
       LastViewedPsalmsNotifier();
 
-  @override
-  void initState() {
-    super.initState();
-    this.initScrollPositionStorageMixin(EntityType.psalm, listView: true);
-  }
-
   Future fetchActivityData() async {
     this.bookmarks = await BookmarkStorage.getBookmarks(EntityType.psalm);
     this.lastViewedId = await LastViewedStorage().get(EntityType.psalm);
@@ -46,6 +41,9 @@ class _PsalmsState extends State<Psalms> with ScrollPositionStorageMixin {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
+          // initialize scroll position after async data loaded
+          this.initScrollPositionStorageMixin(EntityType.psalm, listView: true);
+
           return ListenableBuilder(
             listenable: lastViewedNotifier,
             builder: (BuildContext context, Widget? child) {
@@ -69,14 +67,20 @@ class _PsalmsState extends State<Psalms> with ScrollPositionStorageMixin {
   List<Widget> renderPsalms(BuildContext context) {
     List<Widget> psalms = [];
     for (int i = 1; i <= this.psalmsAmount; i++) {
+      var isActive = (i == this.lastViewedId);
+      RouterExtraParameters extra = RouterExtraParameters();
+      extra.setEnableScrollStorage(true);
+      extra.setResetScrollPosition(!isActive);
+
       psalms.add(
         BookmarkCard(
           id: i,
           title: '${context.tr('psalm')} $i',
           type: EntityType.psalm,
           isBookmarked: this.bookmarks.contains(i),
-          isActive: (i == this.lastViewedId),
+          isActive: isActive,
           notifier: this.lastViewedNotifier,
+          redirectParameters: extra,
         ),
       );
     }

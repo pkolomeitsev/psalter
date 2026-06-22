@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_kathismas_notifier.dart';
+import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
 import 'package:orth_psalter/storage/last_viewed_storage.dart';
@@ -27,7 +28,6 @@ class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
   @override
   void initState() {
     super.initState();
-    this.initScrollPositionStorageMixin(EntityType.kathisma, listView: true);
     this.kathismasAmount = KathismaStorage.kathismasAmount;
     this.psalmsMap = KathismaStorage.psalmsMap;
   }
@@ -49,6 +49,12 @@ class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
+          // initialize scroll position after async data loaded
+          this.initScrollPositionStorageMixin(
+            EntityType.kathisma,
+            listView: true,
+          );
+
           return ListenableBuilder(
             listenable: kathismasNotifier,
             builder: (BuildContext context, Widget? child) {
@@ -75,6 +81,11 @@ class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
   List<Widget> renderKathismas(BuildContext context) {
     List<Widget> kathismas = [];
     for (int i = 1; i <= this.kathismasAmount; i++) {
+      var isActive = (i == this.lastViewedId);
+      RouterExtraParameters extra = RouterExtraParameters();
+      extra.setEnableScrollStorage(true);
+      extra.setResetScrollPosition(!isActive);
+
       kathismas.add(
         BookmarkCard(
           id: i,
@@ -82,8 +93,9 @@ class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
           description: '${context.tr('psalms')} ${this.psalmsMap[i - 1]}',
           type: EntityType.kathisma,
           isBookmarked: bookmarks.contains(i),
-          isActive: (i == this.lastViewedId),
+          isActive: isActive,
           notifier: this.kathismasNotifier,
+          redirectParameters: extra,
         ),
       );
     }
