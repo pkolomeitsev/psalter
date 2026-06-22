@@ -4,8 +4,8 @@ import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/storage/scroll_position_storage.dart';
 
 mixin ScrollPositionStorageMixin {
-  final ScrollController scrollController = ScrollController();
-  final debouncer = DebouncerHelper(milliseconds: 1000);
+  late ScrollController scrollController;
+  late DebouncerHelper debouncer;
   late EntityType type;
   late bool listView;
 
@@ -15,6 +15,8 @@ mixin ScrollPositionStorageMixin {
   }) {
     this.type = type;
     this.listView = listView;
+    this.debouncer = DebouncerHelper();
+    this.scrollController = ScrollController();
     this.scrollController.addListener(this.saveScrollPosition);
     this.restoreScrollPosition();
   }
