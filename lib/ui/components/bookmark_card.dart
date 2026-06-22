@@ -92,7 +92,6 @@ class _BookmarkCardState extends State<BookmarkCard> {
           if (widget.notifier != null) {
             widget.notifier!.notify(widget.id, widget.type);
           }
-          print(widget.redirectParameters?.isResetScrollPosition());
           context.go(
             '/${widget.type.name}/${widget.id}',
             extra: widget.redirectParameters,

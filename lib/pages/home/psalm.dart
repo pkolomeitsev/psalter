@@ -28,8 +28,6 @@ class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
         ? GoRouterState.of(context).extra as RouterExtraParameters
         : RouterExtraParameters();
     if (this.routerExtra.isResetScrollPosition()) {
-      print('Psalm page =>');
-      print(this.routerExtra.isResetScrollPosition());
       await ScrollPositionStorage.deleteOffset(EntityType.psalm);
     }
 
