@@ -33,10 +33,6 @@ class PsalterTranslationStorage {
     return 'transName${UtilsHelper.capitalize(translationCode)}';
   }
 
-  static String getCodeByTranslationKey(String translationKey) {
-    return '';
-  }
-
   static Future<String> getDefaultTranslationCode() async {
     String languageCode = await LocaleStorage.getLocale();
     String defaultTranslationCode =
