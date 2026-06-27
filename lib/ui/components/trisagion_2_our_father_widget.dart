@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:orth_psalter/models/trisagion_2_our_father.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 
 class Trisagion2OurFatherWidget extends StatelessWidget {
-  const Trisagion2OurFatherWidget({super.key});
+  final Trisagion2OurFather trisagion2OurFather;
+  const Trisagion2OurFatherWidget({
+    super.key,
+    required this.trisagion2OurFather,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,39 +21,39 @@ class Trisagion2OurFatherWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            context.tr('trisagion2OurFather'),
+            trisagion2OurFather.getTrisagion2OurFatherLabel(),
             textAlign: TextAlign.center,
           ),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('trisagion')),
+          child: Text(trisagion2OurFather.getTrisagion()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('gloryForever')),
+          child: Text(trisagion2OurFather.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('mostHolyTrinity')),
+          child: Text(trisagion2OurFather.getMostHolyTrinity()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('lordHaveMercy3T')),
+          child: Text(trisagion2OurFather.getLordHaveMercy3T()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('gloryForever')),
+          child: Text(trisagion2OurFather.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('ourFather')),
+          child: Text(trisagion2OurFather.getOurFather()),
         ),
         SizedBox(height: 10),
       ],

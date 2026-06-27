@@ -1,10 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/models/trisagion_2_our_father.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 
 class GloryForeverShortWidget extends StatelessWidget {
-  const GloryForeverShortWidget({super.key});
+  final Trisagion2OurFather trisagion2ourFather;
+  const GloryForeverShortWidget({super.key, required this.trisagion2ourFather});
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +18,19 @@ class GloryForeverShortWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            context.tr('gloryForeverShort'),
+            this.trisagion2ourFather.getGloryForeverShort(),
             textAlign: TextAlign.center,
           ),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('gloryForever')),
+          child: Text(this.trisagion2ourFather.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-          child: Text(context.tr('hallelujah3T')),
+          child: Text(this.trisagion2ourFather.getHallelujah3T()),
         ),
         SizedBox(height: 10),
       ],

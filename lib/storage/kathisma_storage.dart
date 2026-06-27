@@ -1,5 +1,6 @@
 import 'package:orth_psalter/helpers/json_helper.dart';
 import 'package:orth_psalter/models/kathisma.dart';
+import 'package:orth_psalter/models/trisagion_2_our_father.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 
@@ -30,9 +31,14 @@ class KathismaStorage {
 
   static Future<Kathisma> getKathismaById(int kathismaId) async {
     String languageCode = await PsalterTranslationStorage.getTranslationCode();
+
     String filePath = 'assets/data/kathismas/prayer_$languageCode.json';
     dynamic prayerData = await JsonHelper.getJsonData(filePath);
     prayerData = JsonHelper.filterJsonByKey(prayerData, 'num', kathismaId);
+
+    filePath = 'assets/data/kathismas/trisagion_2_our_father_$languageCode.json';
+    dynamic trisagion2OurFatherData = await JsonHelper.getJsonData(filePath);
+    Trisagion2OurFather trisagion2OurFather = Trisagion2OurFather(trisagion2OurFatherData);
 
     filePath = 'assets/data/kathismas/statistics.json';
     dynamic jsonData = await JsonHelper.getJsonData(filePath);
@@ -50,6 +56,7 @@ class KathismaStorage {
       gloryAfter: statData[0]['gloryAfter'].cast<int>(),
       troparion: prayerData[0]['troparion'],
       prayer: prayerData[0]['prayer'],
+      trisagion2OurFather: trisagion2OurFather,
       psalms: psalms
     );
   }

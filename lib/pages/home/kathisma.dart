@@ -43,19 +43,22 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-            color: Colors.white
+        leading: BackButton(color: Colors.white),
+        title: Text(
+          '${context.tr('kathisma')} ${widget.kathismaId}',
+          style: TextStyle(color: Colors.white),
         ),
-        title: Text('${context.tr('kathisma')} ${widget.kathismaId}', style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
-      body:  FutureBuilder<kathisma_model.Kathisma>(
+      body: FutureBuilder<kathisma_model.Kathisma>(
         future: this.fetchData(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'));
+            return Center(
+              child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'),
+            );
           } else if (snapshot.hasData) {
             // initialize scroll position after async data loaded
             this.initScrollPositionStorageMixin(EntityType.kathisma);
@@ -63,11 +66,15 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
             return TextPageViewWrapper(
               data: [
                 this.renderPsalms(context, snapshot.data),
-                this.renderTrisagion2OurFather(),
+                this.renderTrisagion2OurFather(snapshot.data),
                 this.renderTroparion(snapshot.data),
                 DefaultTextStyle.merge(
                   style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-                  child: SelectableText(context.tr('lordHaveMercy40T')),
+                  child: SelectableText(
+                    snapshot.data!
+                        .getTrisagion2OurFather()
+                        .getLordHaveMercy40T(),
+                  ),
                 ),
                 SizedBox(height: 10),
                 this.renderPrayer(snapshot.data),
@@ -90,47 +97,53 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
     List<Psalm> psalms = kathisma!.getPsalms() ?? [];
     List<int> gloryAfter = kathisma.getGloryAfter() ?? [];
 
-    for(final psalm in psalms) {
-      psalm.setTitle("${context.tr('psalm')} ${psalm.getNumber()}");
+    for (final psalm in psalms) {
+      psalm.setTitle(
+        "${kathisma.getTrisagion2OurFather().getPsalmLabel()} ${psalm.getNumber()}",
+      );
       psalmWidgets.add(PsalmView(psalm: psalm));
       // add 1, 2 glory
       if (gloryAfter.contains(psalm.getNumber())) {
-        psalmWidgets.add(GloryForeverWidget());
+        psalmWidgets.add(
+          GloryForeverWidget(
+            trisagion2ourFather: kathisma.getTrisagion2OurFather(),
+          ),
+        );
       }
       // short glory forever after 150 psalm
-      if(psalm.getNumber() == 150) {
-        psalmWidgets.add(GloryForeverShortWidget());
+      if (psalm.getNumber() == 150) {
+        psalmWidgets.add(
+          GloryForeverShortWidget(
+            trisagion2ourFather: kathisma.getTrisagion2OurFather(),
+          ),
+        );
       }
     }
     // add 3rd glory
-    psalmWidgets.add(GloryForeverShortWidget());
-
-    return Column(
-      children: psalmWidgets,
+    psalmWidgets.add(
+      GloryForeverShortWidget(
+        trisagion2ourFather: kathisma.getTrisagion2OurFather(),
+      ),
     );
+
+    return Column(children: psalmWidgets);
   }
 
-  Widget renderTrisagion2OurFather() {
+  Widget renderTrisagion2OurFather(kathisma_model.Kathisma? kathisma) {
     return Column(
       children: [
-        Trisagion2OurFatherWidget(),
+        Trisagion2OurFatherWidget(
+          trisagion2OurFather: kathisma!.getTrisagion2OurFather(),
+        ),
       ],
     );
   }
 
   Widget renderTroparion(kathisma_model.Kathisma? kathisma) {
-    return Column(
-      children: [
-        TroparionWidget(kathisma: kathisma),
-      ],
-    );
+    return Column(children: [TroparionWidget(kathisma: kathisma)]);
   }
 
   Widget renderPrayer(kathisma_model.Kathisma? kathisma) {
-    return Column(
-      children: [
-        PrayerWidget(kathisma: kathisma),
-      ],
-    );
+    return Column(children: [PrayerWidget(kathisma: kathisma)]);
   }
 }
