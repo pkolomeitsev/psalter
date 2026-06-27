@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/kathisma.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
@@ -18,7 +17,10 @@ class PrayerWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppColors.textHeadingColor,
           ),
-          child: Text(context.tr('prayer'), textAlign: TextAlign.center),
+          child: Text(
+            this.kathisma!.getTrisagion2OurFather().getPrayerLabel(),
+            textAlign: TextAlign.center,
+          ),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(

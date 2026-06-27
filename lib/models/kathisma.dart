@@ -1,4 +1,5 @@
 import 'package:orth_psalter/models/psalm.dart';
+import 'package:orth_psalter/models/trisagion_2_our_father.dart';
 
 class Kathisma {
   int? num;
@@ -8,6 +9,7 @@ class Kathisma {
   List<int>? gloryAfter = [];
   String? troparion;
   String? prayer;
+  Trisagion2OurFather trisagion2OurFather;
   List<Psalm> psalms;
 
   Kathisma({
@@ -18,6 +20,7 @@ class Kathisma {
     this.gloryAfter,
     this.troparion,
     this.prayer,
+    required this.trisagion2OurFather,
     required this.psalms,
   });
 
@@ -36,4 +39,6 @@ class Kathisma {
   getPrayer() {
     return this.prayer;
   }
+
+  Trisagion2OurFather getTrisagion2OurFather() => this.trisagion2OurFather;
 }
