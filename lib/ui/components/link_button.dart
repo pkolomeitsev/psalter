@@ -1,0 +1,30 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class LinkButton extends StatelessWidget {
+  final String link;
+  final String label;
+  const LinkButton({super.key, required this.link, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      iconAlignment: IconAlignment.end,
+      onPressed: () async {
+        final Uri toLaunch = Uri.parse(context.tr(this.link));
+        if (!await launchUrl(
+          toLaunch,
+          mode: LaunchMode.inAppBrowserView,
+        )) {
+          throw Exception('Could not launch $toLaunch');
+        }
+      },
+      label: Text(
+        context.tr(this.label),
+        style: const TextStyle(color: Colors.blue),
+      ),
+      icon: const Icon(Icons.launch, color: Colors.blue, size: 16),
+    );
+  }
+}
