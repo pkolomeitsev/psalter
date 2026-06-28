@@ -11,5 +11,6 @@
   "sourceCodeInfo": "Исходный код приложения можно найти по ссылке ниже:",
   "sourceCodeLink": "https://github.com/pkolomeitsev/psalter",
   "sourceCodeLinkLabel": "Исходный код",
-  "lastUpdated": "Последнее обновление"
+  "lastUpdated": "Последнее обновление",
+  "references": "Ссылки"
 }
