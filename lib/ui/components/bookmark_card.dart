@@ -33,10 +33,11 @@ class BookmarkCard extends StatefulWidget {
   State<BookmarkCard> createState() => _BookmarkCardState();
 }
 
-class _BookmarkCardState extends State<BookmarkCard> {
+class _BookmarkCardState extends State<BookmarkCard>
+    with AutomaticKeepAliveClientMixin<BookmarkCard> {
   final debouncer = DebouncerHelper();
-  bool isBookmarkedState = false;
-  bool isActiveState = false;
+  late bool isBookmarkedState;
+  late bool isActiveState;
 
   @override
   void initState() {
@@ -84,6 +85,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Card(
       clipBehavior: Clip.hardEdge,
       shape: this.getBorderStyle(context),
@@ -110,22 +112,18 @@ class _BookmarkCardState extends State<BookmarkCard> {
               IconButton(
                 icon: Icon(this.getBookmarkIcon()),
                 onPressed: () {
-                  debouncer.run(() async {
-                    setState(() {
-                      isBookmarkedState = !isBookmarkedState;
-                    });
+                  debouncer.run(
+                    () => setState(() {
+                      this.isBookmarkedState = !this.isBookmarkedState;
+                      if (this.isBookmarkedState) {
+                        BookmarkStorage.addBookmark(widget.type, widget.id);
 
-                    if (isBookmarkedState) {
-                      await BookmarkStorage.addBookmark(widget.type, widget.id);
+                        return;
+                      }
 
-                      return;
-                    }
-
-                    await BookmarkStorage.deleteBookmark(
-                      widget.type,
-                      widget.id,
-                    );
-                  });
+                      BookmarkStorage.deleteBookmark(widget.type, widget.id);
+                    }),
+                  );
                 },
               ),
             ],
@@ -134,4 +132,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
