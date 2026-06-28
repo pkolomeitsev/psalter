@@ -2,13 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
+import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
+import 'package:orth_psalter/ui/components/link_button.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -52,7 +53,23 @@ class _SettingsState extends State<Settings> {
           ),
           SizedBox(height: 10),
           SettingsCardTitle(text: context.tr('info')),
-          SettingsCard(children: [this.getAboutButton(context)]),
+          SettingsCard(
+            children: [
+              ListTile(
+                title: Text(context.tr('references')),
+                onTap: () async {
+                  this.onReferencesClick(context);
+                },
+              ),
+              Divider(height: 0),
+              ListTile(
+                title: Text(context.tr('about')),
+                onTap: () async {
+                  await this.onAboutClick(context);
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -116,7 +133,9 @@ class _SettingsState extends State<Settings> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'));
+          return Center(
+            child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'),
+          );
         } else if (snapshot.hasData) {
           this.currentTranslation = snapshot.data!;
           return DropdownMenu<String>(
@@ -147,66 +166,62 @@ class _SettingsState extends State<Settings> {
     PsalterTranslationStorage.setTranslationCode(translationCode);
   }
 
-  Widget getAboutButton(BuildContext context) {
-    return TextButton(
-      onPressed: () async {
-        final appInfo = await PackageInfo.fromPlatform();
-        final DateFormat formatter = DateFormat('yyyy-MM-dd');
-        final lastUpdate = formatter.format(appInfo.updateTime ?? DateTime.now());
-        final ThemeData theme = Theme.of(context);
-        final TextStyle textStyle = theme.textTheme.bodyMedium!;
-        showAboutDialog(
-          context: context,
-          applicationName: context.tr('appTitle'),
-          applicationIcon: AppIcon(),
-          applicationVersion: appInfo.version,
-          children: [
-            Text(context.tr('aboutText'), style: textStyle),
-            const SizedBox(height: 18),
-            Text(context.tr('sourceCodeInfo'), style: textStyle),
-            Center(
-              child: TextButton.icon(
-                iconAlignment: IconAlignment.end,
-                onPressed: () async {
-                  final Uri toLaunch = Uri.parse(context.tr('sourceCodeLink'));
-                  if (!await launchUrl(
-                    toLaunch,
-                    mode: LaunchMode.inAppBrowserView,
-                  )) {
-                    throw Exception('Could not launch $toLaunch');
-                  }
-                },
-                label: Text(
-                  context.tr('sourceCodeLinkLabel'),
-                  style: const TextStyle(color: Colors.blue),
-                ),
-                icon: const Icon(
-                  Icons.launch,
-                  color: Colors.blue,
-                  size: 16,
-                ),
-              ),
-            ),
-            Text('${context.tr('lastUpdated')}: $lastUpdate', style: textStyle),
-          ],
+  Future onAboutClick(BuildContext context) async {
+    final appInfo = await PackageInfo.fromPlatform();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final lastUpdate = formatter.format(appInfo.updateTime ?? DateTime.now());
+    final ThemeData theme = Theme.of(context);
+    final TextStyle textStyle = theme.textTheme.bodyMedium!;
+    showAboutDialog(
+      context: context,
+      applicationName: context.tr('appTitle'),
+      applicationIcon: AppIcon(),
+      applicationVersion: appInfo.version,
+      children: [
+        Text(context.tr('aboutText'), style: textStyle),
+        const SizedBox(height: 18),
+        Text(context.tr('sourceCodeInfo'), style: textStyle),
+        Center(
+          child: LinkButton(
+            link: 'sourceCodeLink',
+            label: 'sourceCodeLinkLabel',
+          ),
+        ),
+        Text('${context.tr('lastUpdated')}: $lastUpdate', style: textStyle),
+      ],
+    );
+  }
+
+  void onReferencesClick(BuildContext context) async {
+    final List<dynamic> references = await ThanksStorage.getReferences();
+    final List<Widget> refWidgets = [];
+
+    for (int i = 0; i < references.length; i++) {
+      refWidgets.add(
+        ListTile(
+          title: Text(references[i]['title']),
+          subtitle: Text(references[i]['linkLabel']),
+          trailing: LinkButton(link: references[i]['link'], label: ''),
+          contentPadding: EdgeInsetsGeometry.all(0),
+        ),
+      );
+      if (i < references.length - 1) {
+        refWidgets.add(Divider(height: 0));
+      }
+    }
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          scrollable: true,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [Text(context.tr('references')), const CloseButton()],
+          ),
+          content: Column(children: [...refWidgets]),
         );
       },
-      style: ButtonStyle(
-        elevation: WidgetStateProperty.all(1.0),
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        ),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              context.tr('about'),
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
