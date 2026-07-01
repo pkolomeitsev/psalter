@@ -110,7 +110,10 @@ class _BookmarkCardState extends State<BookmarkCard>
                 ),
               ),
               IconButton(
-                icon: Icon(this.getBookmarkIcon()),
+                icon: Semantics(
+                  identifier: 'bookmark_pressed_${widget.type.name}_${widget.id}',
+                  child: Icon(this.getBookmarkIcon())
+                ),
                 onPressed: () {
                   debouncer.run(
                     () => setState(() {
@@ -118,8 +121,8 @@ class _BookmarkCardState extends State<BookmarkCard>
                       if (this.isBookmarkedState) {
                         BookmarkStorage.addBookmark(widget.type, widget.id);
 
-                        return;
-                      }
+                          return;
+                        }
 
                       BookmarkStorage.deleteBookmark(widget.type, widget.id);
                     }),

@@ -28,20 +28,29 @@ class _MainApplicationState extends State<MainApplication> {
         indicatorColor: AppColors.brandBgColor,
         selectedIndex: currentPageIndex,
         destinations: <Widget>[
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            selectedIcon: Icon(Icons.home, color: Colors.white),
-            label: context.tr('home'),
+          Semantics(
+            identifier: 'home',
+            child: NavigationDestination(
+              icon: Icon(Icons.home),
+              selectedIcon: Icon(Icons.home, color: Colors.white),
+              label: context.tr('home'),
+            ),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.bookmark),
-            selectedIcon: Icon(Icons.bookmark, color: Colors.white),
-            label: context.tr('bookmarks'),
+          Semantics(
+            identifier: 'bookmarks',
+            child: NavigationDestination(
+              icon: Icon(Icons.bookmark),
+              selectedIcon: Icon(Icons.bookmark, color: Colors.white),
+              label: context.tr('bookmarks'),
+            ),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.settings),
-            selectedIcon: Icon(Icons.settings, color: Colors.white),
-            label: context.tr('settings'),
+          Semantics(
+            identifier: 'settings',
+            child: NavigationDestination(
+              icon: Icon(Icons.settings),
+              selectedIcon: Icon(Icons.settings, color: Colors.white),
+              label: context.tr('settings'),
+            ),
           ),
         ],
       ),
