@@ -38,7 +38,10 @@ class _ChipListState extends State<ChipList> {
     for (var object in this.chipListState) {
       chips.add(
         InputChip(
-          label: Text(object.getTitle()),
+          label: Semantics(
+            identifier: 'chip_${object.getType().name}_${object.getId()}',
+            child: Text(object.getTitle()),
+          ),
           showCheckmark: false,
           selected: (widget.selectedId == object.getId()),
           selectedColor: AppColors.brandColorLight,

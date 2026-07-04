@@ -14,9 +14,6 @@
   "psalm": "Псалом",
   "kathisma": "Кафизма",
 
-  "addToBookmarks": "Добавить в Избранное",
-  "bookmarkeAddedMessage": "Добавлено в Избранное!",
-  "bookmarkeAlreadyAddedMessage": "Уже было добавлено в Избранное!",
   "noBookmarks": "На данный момент нет закладок",
   "deleteBookmarkConfirm": "Вы уверены, что ходите удалить \"{chipName}\"?",
   "cancel": "Отмена",

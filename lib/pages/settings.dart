@@ -42,35 +42,38 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: AppTitle()),
-      body: ListViewWrapper(
-        data: [
-          SettingsCardTitle(text: context.tr('languageSetup')),
-          SettingsCard(
-            children: [
-              this.getSystemLanguageSelector(context),
-              this.getPsalterLanguageSelector(context),
-            ],
-          ),
-          SizedBox(height: 10),
-          SettingsCardTitle(text: context.tr('info')),
-          SettingsCard(
-            children: [
-              ListTile(
-                title: Text(context.tr('references')),
-                onTap: () async {
-                  this.onReferencesClick(context);
-                },
-              ),
-              Divider(height: 0),
-              ListTile(
-                title: Text(context.tr('about')),
-                onTap: () async {
-                  await this.onAboutClick(context);
-                },
-              ),
-            ],
-          ),
-        ],
+      body: Semantics(
+        identifier: 'settings_view',
+        child: ListViewWrapper(
+          data: [
+            SettingsCardTitle(text: context.tr('languageSetup')),
+            SettingsCard(
+              children: [
+                this.getSystemLanguageSelector(context),
+                this.getPsalterLanguageSelector(context),
+              ],
+            ),
+            SizedBox(height: 10),
+            SettingsCardTitle(text: context.tr('info')),
+            SettingsCard(
+              children: [
+                ListTile(
+                  title: Text(context.tr('references')),
+                  onTap: () async {
+                    this.onReferencesClick(context);
+                  },
+                ),
+                Divider(height: 0),
+                ListTile(
+                  title: Text(context.tr('about')),
+                  onTap: () async {
+                    await this.onAboutClick(context);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

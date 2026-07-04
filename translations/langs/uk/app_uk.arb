@@ -3,7 +3,7 @@
 
   "home": "Головна",
   "bookmarks": "Закладки",
-  "settings": "Настройки",
+  "settings": "Налаштування",
 
   "appTitle": "Псалтир",
 
@@ -14,9 +14,6 @@
   "psalm": "Псалом",
   "kathisma": "Кафізма",
 
-  "addToBookmarks": "Додати до Вибраного",
-  "bookmarkeAddedMessage": "Додано в Вибране!",
-  "bookmarkeAlreadyAddedMessage": "Вже було додано до Обраного!",
   "noBookmarks": "На даний момент немає закладок",
   "deleteBookmarkConfirm": "Ви впевнені, що ви бажаєте видалити \"{chipName}\"?",
   "cancel": "Відміна",

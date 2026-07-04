@@ -60,26 +60,29 @@ class _BookmarksState extends State<Bookmarks> {
                   }
                 }
 
-                return TextPageViewWrapper(
-                  data: [
-                    if (psalmIds.isEmpty &&
-                        kathismaIds.isEmpty &&
-                        asNeededIds.isEmpty) ...[
-                      Text(context.tr('noBookmarks')),
-                    ] else ...[
-                      this.renderBookmarks(context, EntityType.psalm, psalmIds),
-                      this.renderBookmarks(
-                        context,
-                        EntityType.kathisma,
-                        kathismaIds,
-                      ),
-                      this.renderBookmarks(
-                        context,
-                        EntityType.asNeeded,
-                        asNeededIds,
-                      ),
+                return Semantics(
+                  identifier: 'bookmarks_view',
+                  child: TextPageViewWrapper(
+                    data: [
+                      if (psalmIds.isEmpty &&
+                          kathismaIds.isEmpty &&
+                          asNeededIds.isEmpty) ...[
+                        Text(context.tr('noBookmarks')),
+                      ] else ...[
+                        this.renderBookmarks(context, EntityType.psalm, psalmIds),
+                        this.renderBookmarks(
+                          context,
+                          EntityType.kathisma,
+                          kathismaIds,
+                        ),
+                        this.renderBookmarks(
+                          context,
+                          EntityType.asNeeded,
+                          asNeededIds,
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 );
               },
             );

@@ -5,6 +5,7 @@ appId: com.github.pkolomeitsev.psalter
 - waitForAnimationToEnd:
     timeout: 5000
 
+# Take screenshots for Psalms, Kathismas, As Needed
 - assertVisible:
     id: psalms
 - takeScreenshot:
@@ -23,3 +24,52 @@ appId: com.github.pkolomeitsev.psalter
     id: as_needed_view
 - takeScreenshot:
     path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/as_needed
+
+# Prepare bookmarks
+- tapOn:
+    id: psalms
+- assertVisible:
+    id: psalms_list
+- tapOn:
+    id: bookmark_pressed_psalm_1
+- tapOn:
+    id: bookmark_pressed_psalm_2
+
+- tapOn:
+    id: kathismas
+- tapOn:
+    id: bookmark_pressed_kathisma_1
+- tapOn:
+    id: bookmark_pressed_kathisma_2
+
+- tapOn:
+    id: as_needed
+- assertVisible:
+    id: as_needed_view
+- tapOn:
+    id: bookmark_pressed_asNeeded_3
+
+# Take screenshots for Bookmarks and Settings pages
+- tapOn:
+    id: bookmarks
+- assertVisible:
+    id: bookmarks_view
+- assertVisible:
+    id: chip_psalm_1
+- assertVisible:
+    id: chip_psalm_2
+- assertVisible:
+    id: chip_kathisma_1
+- assertVisible:
+    id: chip_kathisma_2
+- assertVisible:
+    id: bookmark_pressed_asNeeded_3
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/bookmarks
+
+- tapOn:
+    id: settings
+- assertVisible:
+    id: settings_view
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/settings
