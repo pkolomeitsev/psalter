@@ -11,6 +11,18 @@ flutter build appbundle --release
 flutter build ipa
 ```
 
+# QA autotests
+
+Run autotests:
+```bash
+./generate_screenshots.sh
+```
+
+Maestro Test suites configuration file:
+```bash
+./maestro/screenshots.yaml
+```
+
 # Screenshots
 
 <img src="maestro/.maestro/screenshots/en/ios/psalms.png" alt="Psalms" width="250"/>
