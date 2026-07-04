@@ -51,9 +51,12 @@ class _PsalmsState extends State<Psalms> with ScrollPositionStorageMixin {
                 this.lastViewedId = lastViewedNotifier.getId();
               }
 
-              return ListViewWrapper(
-                data: this.renderPsalms(context),
-                scrollController: this.getScrollController(),
+              return Semantics(
+                identifier: 'psalms_list',
+                child: ListViewWrapper(
+                  data: this.renderPsalms(context),
+                  scrollController: this.getScrollController(),
+                ),
               );
             },
           );
