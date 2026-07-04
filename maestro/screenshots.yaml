@@ -29,7 +29,7 @@ appId: com.github.pkolomeitsev.psalter
 - tapOn:
     id: psalms
 - assertVisible:
-    id: psalms
+    id: psalms_list
 - tapOn:
     id: bookmark_pressed_psalm_1
 - tapOn:
@@ -54,6 +54,16 @@ appId: com.github.pkolomeitsev.psalter
     id: bookmarks
 - assertVisible:
     id: bookmarks_view
+- assertVisible:
+    id: chip_psalm_1
+- assertVisible:
+    id: chip_psalm_2
+- assertVisible:
+    id: chip_kathisma_1
+- assertVisible:
+    id: chip_kathisma_2
+- assertVisible:
+    id: bookmark_pressed_asNeeded_3
 - takeScreenshot:
     path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/bookmarks
 
