@@ -121,8 +121,8 @@ class _BookmarkCardState extends State<BookmarkCard>
                       if (this.isBookmarkedState) {
                         BookmarkStorage.addBookmark(widget.type, widget.id);
 
-                          return;
-                        }
+                        return;
+                      }
 
                       BookmarkStorage.deleteBookmark(widget.type, widget.id);
                     }),
