@@ -1,35 +1,39 @@
 #!/bin/bash
 
+IOS_VERSION="26-5"
+IOS_MODEL="iPhone-14-Plus"
+IOS_MAESTRO_MODEL="Maestro_IOS_${IOS_MODEL}_26"
+
 maestro list-devices
 
 # Run emulator instance [should be preinstalled]
-maestro start-device --platform="ios" --os-version="26-5" --device-model="iPhone-17" --device-locale="en_US" --force-create \
+maestro start-device --platform="ios" --os-version=$IOS_VERSION --device-model=$IOS_MODEL --device-locale="en_US" --force-create \
   && echo "Wait until device loaded (30 sec)..." \
   && sleep 30 \
   && echo "Build App..." \
-  && flutter install -d "Maestro_IOS_iPhone-17_26" \
+  && flutter install -d $IOS_MAESTRO_MODEL \
   && echo "Run tests..." \
   && maestro --platform=ios test -e LANG=en -e DEVICE=ios maestro/screenshots.yaml \
   && echo "Emulator shutdown..." \
   && xcrun simctl shutdown booted
 
 # RU locale
-maestro start-device --platform="ios" --os-version="26-5" --device-model="iPhone-17" --device-locale="ru_RU" --force-create \
+maestro start-device --platform="ios" --os-version=$IOS_VERSION --device-model=$IOS_MODEL --device-locale="ru_RU" --force-create \
   && echo "Wait until device loaded (30 sec)..." \
   && sleep 30 \
   && echo "Build App..." \
-  && flutter install -d "Maestro_IOS_iPhone-17_26" \
+  && flutter install -d $IOS_MAESTRO_MODEL \
   && echo "Run tests..." \
   && maestro --platform=ios test -e LANG=ru -e DEVICE=ios maestro/screenshots.yaml \
   && echo "Emulator shutdown..." \
   && xcrun simctl shutdown booted
 
 # UK locale
-maestro start-device --platform="ios" --os-version="26-5" --device-model="iPhone-17" --device-locale="uk_UA" --force-create \
+maestro start-device --platform="ios" --os-version=$IOS_VERSION --device-model=$IOS_MODEL --device-locale="uk_UA" --force-create \
   && echo "Wait until device loaded (30 sec)..." \
   && sleep 30 \
   && echo "Build App..." \
-  && flutter install -d "Maestro_IOS_iPhone-17_26" \
+  && flutter install -d $IOS_MAESTRO_MODEL \
   && echo "Run tests..." \
   && maestro --platform=ios test -e LANG=uk -e DEVICE=ios maestro/screenshots.yaml \
   && echo "Emulator shutdown..." \
