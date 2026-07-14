@@ -1,5 +1,5 @@
 # App Info
-Orthodox Psalter mobile application for reading experience
+Orthodox Psalter mobile application for easy reading experience
 
 # Build Android
 ```bash
