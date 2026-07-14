@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/models/dto/simple_dto.dart';
+import 'package:orth_psalter/models/enums/font_size.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
+import 'package:orth_psalter/ui/components/segmented_button_widget.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
@@ -19,8 +22,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  List<String> languages = [];
-  List<String> translations = [];
+  List<String> appLanguages = [];
+  List<String> psalterTranslations = [];
   List<String> tmpDisabled = [];
   String currentTranslation = '';
   String currentLocale = ''; //required context
@@ -32,8 +35,8 @@ class _SettingsState extends State<Settings> {
   @override
   void initState() {
     super.initState();
-    this.languages = LocaleStorage.languageCodes;
-    this.translations = PsalterTranslationStorage.translationCodes;
+    this.appLanguages = LocaleStorage.languageCodes;
+    this.psalterTranslations = PsalterTranslationStorage.translationCodes;
     // TODO: temporary solution
     this.tmpDisabled = [];
   }
@@ -51,6 +54,14 @@ class _SettingsState extends State<Settings> {
               children: [
                 this.getSystemLanguageSelector(context),
                 this.getPsalterLanguageSelector(context),
+              ],
+            ),
+            SizedBox(height: 10),
+            SettingsCardTitle(text: context.tr('appearence')),
+            SettingsCard(
+              children: [
+                Text('Psalter font size'),
+                this.getPsalterFontSize(context),
               ],
             ),
             SizedBox(height: 10),
@@ -81,7 +92,7 @@ class _SettingsState extends State<Settings> {
   Widget getSystemLanguageSelector(BuildContext pageContext) {
     List<DropdownMenuEntry<String>> langItems = [];
     this.currentLocale = Localizations.localeOf(pageContext).languageCode;
-    for (var code in languages) {
+    for (var code in this.appLanguages) {
       String name = pageContext.tr(LocaleStorage.getTranslationKeyByCode(code));
       langItems.add(
         DropdownMenuEntry(
@@ -117,7 +128,7 @@ class _SettingsState extends State<Settings> {
 
   Widget getPsalterLanguageSelector(BuildContext pageContext) {
     List<DropdownMenuEntry<String>> translationItems = [];
-    for (var code in this.translations) {
+    for (var code in this.psalterTranslations) {
       String name = pageContext.tr(
         PsalterTranslationStorage.getTranslationKeyByCode(code),
       );
@@ -167,6 +178,17 @@ class _SettingsState extends State<Settings> {
 
   void changePsalterTranslation(String translationCode) async {
     PsalterTranslationStorage.setTranslationCode(translationCode);
+  }
+
+  Widget getPsalterFontSize(BuildContext pageContext) {
+    return SegmentedButtonWidget(
+      segments: [
+        SimpleDto('small', FontSize.small, null),
+        SimpleDto('medium', FontSize.medium, null),
+        SimpleDto('large', FontSize.large, null),
+      ],
+      identifier: 'font_size_selector',
+    );
   }
 
   Future onAboutClick(BuildContext context) async {
