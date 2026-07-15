@@ -12,5 +12,10 @@
   "sourceCodeLink": "https://github.com/pkolomeitsev/psalter",
   "sourceCodeLinkLabel": "Вихідний код",
   "lastUpdated": "Останнє оновлення",
-  "references": "Посилання"
+  "references": "Посилання",
+  "appearance": "Зовнішній вигляд",
+  "psalterFontSize": "Розмір шрифту Псалтирі",
+  "psalterFontSizeSmall": "Малий",
+  "psalterFontSizeMedium": "Средній",
+  "psalterFontSizeLarge": "Великий"
 }

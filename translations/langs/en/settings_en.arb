@@ -12,5 +12,10 @@
   "sourceCodeLink": "https://github.com/pkolomeitsev/psalter",
   "sourceCodeLinkLabel": "Source code",
   "lastUpdated": "Last updated",
-  "references": "References"
+  "references": "References",
+  "appearance": "Appearance",
+  "psalterFontSize": "Psalter font size",
+  "psalterFontSizeSmall": "Small",
+  "psalterFontSizeMedium": "Medium",
+  "psalterFontSizeLarge": "Large"
 }

@@ -57,11 +57,11 @@ class _SettingsState extends State<Settings> {
               ],
             ),
             SizedBox(height: 10),
-            SettingsCardTitle(text: context.tr('appearence')),
+            SettingsCardTitle(text: context.tr('appearance')),
             SettingsCard(
               children: [
-                Text('Psalter font size'),
-                this.getPsalterFontSize(context),
+                Text(context.tr('psalterFontSize')),
+                this.getPsalterFontSizeSelector(context),
               ],
             ),
             SizedBox(height: 10),
@@ -180,13 +180,14 @@ class _SettingsState extends State<Settings> {
     PsalterTranslationStorage.setTranslationCode(translationCode);
   }
 
-  Widget getPsalterFontSize(BuildContext pageContext) {
+  Widget getPsalterFontSizeSelector(BuildContext pageContext) {
     return SegmentedButtonWidget(
       segments: [
-        SimpleDto('small', FontSize.small, null),
-        SimpleDto('medium', FontSize.medium, null),
-        SimpleDto('large', FontSize.large, null),
+        SimpleDto(pageContext.tr('psalterFontSizeSmall'), FontSize.small, null),
+        SimpleDto(pageContext.tr('psalterFontSizeMedium'), FontSize.medium, null),
+        SimpleDto(pageContext.tr('psalterFontSizeLarge'), FontSize.large, null),
       ],
+      defaultItemId: 0,
       identifier: 'font_size_selector',
     );
   }
