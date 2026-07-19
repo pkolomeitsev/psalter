@@ -6,12 +6,14 @@ class SegmentedButtonWidget extends StatefulWidget {
   final List<SimpleDto> segments;
   final int defaultItemId;
   final String identifier;
+  final Function(dynamic)? callback;
 
   const SegmentedButtonWidget({
     super.key,
     required this.segments,
     this.defaultItemId = 0,
-    this.identifier = 'segment_button'
+    this.identifier = 'segment_button',
+    this.callback,
   });
 
   @override
@@ -50,6 +52,7 @@ class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
             // selected at one time, so its value is always the first
             // item in the selected set.
             this.selectedItem = newSelection.first;
+            widget.callback?.call(this.selectedItem?.getValue().index);
           });
         },
       ),

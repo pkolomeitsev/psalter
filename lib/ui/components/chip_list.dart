@@ -15,7 +15,7 @@ class ChipList extends StatefulWidget {
     super.key,
     required this.chipList,
     this.selectedId = 0,
-    this.notifier = null,
+    this.notifier,
   });
 
   @override

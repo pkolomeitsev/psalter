@@ -1,14 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:orth_psalter/models/dto/simple_dto.dart';
-import 'package:orth_psalter/models/enums/font_size.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
-import 'package:orth_psalter/ui/components/segmented_button_widget.dart';
+import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
@@ -61,7 +59,7 @@ class _SettingsState extends State<Settings> {
             SettingsCard(
               children: [
                 Text(context.tr('psalterFontSize')),
-                this.getPsalterFontSizeSelector(context),
+                this.getPsalterFontSizeSelector(),
               ],
             ),
             SizedBox(height: 10),
@@ -180,16 +178,8 @@ class _SettingsState extends State<Settings> {
     PsalterTranslationStorage.setTranslationCode(translationCode);
   }
 
-  Widget getPsalterFontSizeSelector(BuildContext pageContext) {
-    return SegmentedButtonWidget(
-      segments: [
-        SimpleDto(pageContext.tr('psalterFontSizeSmall'), FontSize.small, null),
-        SimpleDto(pageContext.tr('psalterFontSizeMedium'), FontSize.medium, null),
-        SimpleDto(pageContext.tr('psalterFontSizeLarge'), FontSize.large, null),
-      ],
-      defaultItemId: 0,
-      identifier: 'font_size_selector',
-    );
+  Widget getPsalterFontSizeSelector() {
+    return AppearanceFontSizeWidget();
   }
 
   Future onAboutClick(BuildContext context) async {

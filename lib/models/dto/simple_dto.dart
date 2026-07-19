@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SimpleDto {
   String _label;
   dynamic _value;
-  Icons? _icon = null;
+  Icons? _icon;
 
   SimpleDto(this._label, this._value, this._icon);
 
