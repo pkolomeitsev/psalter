@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
+import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/psalm.dart' as psalm_model;
 import 'package:orth_psalter/models/router_extra_parameters.dart';
+import 'package:orth_psalter/storage/appearance_config_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/storage/scroll_position_storage.dart';
@@ -22,8 +24,10 @@ class Psalm extends StatefulWidget {
 
 class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
   late RouterExtraParameters routerExtra;
+  double bodyFontSize = AppFont.comfortReadingSize;
 
   Future<psalm_model.Psalm> fetchData(BuildContext context) async {
+    this.bodyFontSize = await AppFont.getPsalterReadingFontSize();
     this.routerExtra = (GoRouterState.of(context).extra != null)
         ? GoRouterState.of(context).extra as RouterExtraParameters
         : RouterExtraParameters();
@@ -71,7 +75,7 @@ class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
                 ),
                 SizedBox(height: 10),
                 DefaultTextStyle.merge(
-                  style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+                  style: TextStyle(fontSize: this.bodyFontSize),
                   child: SelectableText(snapshot.data!.getText()),
                 ),
                 SizedBox(height: 20),

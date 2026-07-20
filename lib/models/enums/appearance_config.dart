@@ -1,1 +1,1 @@
-enum AppearanceConfig { fontSize }
+enum AppearanceConfig { psalterFontSize }

@@ -18,7 +18,7 @@ class _AppearanceFontSizeWidgetState extends State<AppearanceFontSizeWidget> {
   int selectedValue = 0;
 
   Future<int> fetchData() async {
-    return await AppearanceConfigStorage().get(AppearanceConfig.fontSize);
+    return await AppearanceConfigStorage().get(AppearanceConfig.psalterFontSize);
   }
 
   @override
@@ -65,6 +65,6 @@ class _AppearanceFontSizeWidgetState extends State<AppearanceFontSizeWidget> {
   }
 
   void onSelect(dynamic value) {
-    AppearanceConfigStorage().set(AppearanceConfig.fontSize, value);
+    AppearanceConfigStorage().set(AppearanceConfig.psalterFontSize, value);
   }
 }
