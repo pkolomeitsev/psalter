@@ -14,6 +14,8 @@ class AppFont {
     FontSize.large: AppFont.largeReadingSize,
   };
 
+  static double psalterTitleFontSizeOffset = 2;
+
   static Future<double> getPsalterReadingFontSize() async {
     int psalterFontSizeConfig = await AppearanceConfigStorage().get(
       AppearanceConfig.psalterFontSize,
