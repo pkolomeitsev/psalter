@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orth_psalter/mixins/appearance_settings_mixin.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/psalm.dart' as psalm_model;
@@ -8,7 +9,6 @@ import 'package:orth_psalter/storage/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/storage/scroll_position_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
-import 'package:orth_psalter/theme/app_font.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Psalm extends StatefulWidget {
@@ -20,15 +20,12 @@ class Psalm extends StatefulWidget {
   State<Psalm> createState() => _PsalmState();
 }
 
-class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
+class _PsalmState extends State<Psalm>
+    with ScrollPositionStorageMixin, AppearanceSettingsMixin {
   late RouterExtraParameters routerExtra;
-  late double bodyFontSize;
-  late double titleFontSize;
 
   Future<psalm_model.Psalm> fetchData(BuildContext context) async {
-    this.bodyFontSize = await AppFont.getPsalterReadingFontSize();
-    this.titleFontSize =
-        (this.bodyFontSize + AppFont.psalterTitleFontSizeOffset);
+    this.initAppearanceSettings();
     this.routerExtra = (GoRouterState.of(context).extra != null)
         ? GoRouterState.of(context).extra as RouterExtraParameters
         : RouterExtraParameters();
