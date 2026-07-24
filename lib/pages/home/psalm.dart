@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:orth_psalter/mixins/appearance_settings_mixin.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/psalm.dart' as psalm_model;
 import 'package:orth_psalter/models/router_extra_parameters.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/storage/scroll_position_storage.dart';
@@ -20,12 +20,10 @@ class Psalm extends StatefulWidget {
   State<Psalm> createState() => _PsalmState();
 }
 
-class _PsalmState extends State<Psalm>
-    with ScrollPositionStorageMixin, AppearanceSettingsMixin {
+class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
   late RouterExtraParameters routerExtra;
 
   Future<psalm_model.Psalm> fetchData(BuildContext context) async {
-    this.initAppearanceSettings();
     this.routerExtra = (GoRouterState.of(context).extra != null)
         ? GoRouterState.of(context).extra as RouterExtraParameters
         : RouterExtraParameters();
@@ -62,7 +60,7 @@ class _PsalmState extends State<Psalm>
               data: [
                 DefaultTextStyle.merge(
                   style: TextStyle(
-                    fontSize: this.titleFontSize,
+                    fontSize: AppearanceConfigSingleton().getTitleFontSize(),
                     fontWeight: FontWeight.bold,
                     color: AppColors.textHeadingColor,
                   ),
@@ -73,7 +71,7 @@ class _PsalmState extends State<Psalm>
                 ),
                 SizedBox(height: 10),
                 DefaultTextStyle.merge(
-                  style: TextStyle(fontSize: this.bodyFontSize),
+                  style: TextStyle(fontSize: AppearanceConfigSingleton().getBodyFontSize()),
                   child: SelectableText(snapshot.data!.getText()),
                 ),
                 SizedBox(height: 20),

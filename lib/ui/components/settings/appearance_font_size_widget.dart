@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/models/dto/simple_dto.dart';
 import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/font_size.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/appearance_config_storage.dart';
 import 'package:orth_psalter/ui/components/segmented_button_widget.dart';
 
@@ -66,5 +67,7 @@ class _AppearanceFontSizeWidgetState extends State<AppearanceFontSizeWidget> {
 
   void onSelect(dynamic value) {
     AppearanceConfigStorage().set(AppearanceConfig.psalterFontSize, value);
+    // re-init singleton
+    AppearanceConfigSingleton().initAppearanceSettings();
   }
 }
