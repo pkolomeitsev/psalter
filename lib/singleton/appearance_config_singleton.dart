@@ -12,7 +12,7 @@ class AppearanceConfigSingleton {
     return _instance;
   }
 
-  void initAppearanceSettings() async {
+  Future<void> initAppearanceSettings() async {
     this._bodyFontSize = await AppFont.getPsalterReadingFontSize();
     this._titleFontSize =
         (this._bodyFontSize + AppFont.psalterTitleFontSizeOffset);

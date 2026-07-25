@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  AppearanceConfigSingleton().initAppearanceSettings();
+  await AppearanceConfigSingleton().initAppearanceSettings();
 
   runApp(EasyLocalization(
     supportedLocales: [
