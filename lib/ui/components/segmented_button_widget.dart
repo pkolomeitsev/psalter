@@ -30,7 +30,7 @@ class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
       segments.add(
         ButtonSegment<SimpleDto>(
           value: segmentData,
-          label: Text(segmentData.getLabel()),
+          label: Text(segmentData.getLabel(), overflow: TextOverflow.ellipsis),
           icon: (segmentData.getIcon() != null)
             ? Icon(segmentData.getIcon() as IconData?)
             : null,
