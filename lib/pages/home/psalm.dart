@@ -59,7 +59,12 @@ class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
 
             return GestureDetector(
               onScaleUpdate: (ScaleUpdateDetails scaleUpdateDetails) {
-                ZoomGesture().onScaleUpdate(scaleUpdateDetails);
+                if (ZoomGesture().isZoomOut(scaleUpdateDetails.scale) ||
+                    ZoomGesture().isZoomIn(scaleUpdateDetails.scale)) {
+                  setState(() {
+                    ZoomGesture().onScaleUpdate(scaleUpdateDetails);
+                  });
+                }
               },
               child: TextPageViewWrapper(
                 data: [
