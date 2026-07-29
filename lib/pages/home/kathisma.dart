@@ -80,7 +80,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
                   this.renderTroparion(snapshot.data),
                   DefaultTextStyle.merge(
                     style: TextStyle(
-                      fontSize: AppearanceConfigSingleton().getTitleFontSize(),
+                      fontSize: AppearanceConfigSingleton().getBodyFontSize(),
                     ),
                     child: SelectableText(
                       snapshot.data!
