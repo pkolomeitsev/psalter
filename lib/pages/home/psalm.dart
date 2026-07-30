@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orth_psalter/models/gesture/zoom_gesture.dart';
 import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/psalm.dart' as psalm_model;
 import 'package:orth_psalter/models/router_extra_parameters.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/storage/scroll_position_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
-import 'package:orth_psalter/theme/app_font.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Psalm extends StatefulWidget {
@@ -25,8 +26,8 @@ class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
 
   Future<psalm_model.Psalm> fetchData(BuildContext context) async {
     this.routerExtra = (GoRouterState.of(context).extra != null)
-        ? GoRouterState.of(context).extra as RouterExtraParameters
-        : RouterExtraParameters();
+      ? GoRouterState.of(context).extra as RouterExtraParameters
+      : RouterExtraParameters();
     if (this.routerExtra.isResetScrollPosition()) {
       await ScrollPositionStorage.deleteOffset(EntityType.psalm);
     }
@@ -56,29 +57,41 @@ class _PsalmState extends State<Psalm> with ScrollPositionStorageMixin {
             // initialize scroll position after async data loaded
             this.initScrollPositionStorageMixin(EntityType.psalm);
 
-            return TextPageViewWrapper(
-              data: [
-                DefaultTextStyle.merge(
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textHeadingColor,
+            return GestureDetector(
+              onScaleUpdate: (ScaleUpdateDetails scaleUpdateDetails) {
+                if (ZoomGesture().isZoomOut(scaleUpdateDetails.scale) ||
+                    ZoomGesture().isZoomIn(scaleUpdateDetails.scale)) {
+                  setState(() {
+                    ZoomGesture().onScaleUpdate(scaleUpdateDetails);
+                  });
+                }
+              },
+              child: TextPageViewWrapper(
+                data: [
+                  DefaultTextStyle.merge(
+                    style: TextStyle(
+                      fontSize: AppearanceConfigSingleton().getTitleFontSize(),
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textHeadingColor,
+                    ),
+                    child: SelectableText(
+                      snapshot.data!.getDescription(),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  child: SelectableText(
-                    snapshot.data!.getDescription(),
-                    textAlign: TextAlign.center,
+                  SizedBox(height: 10),
+                  DefaultTextStyle.merge(
+                    style: TextStyle(
+                      fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+                    ),
+                    child: SelectableText(snapshot.data!.getText()),
                   ),
-                ),
-                SizedBox(height: 10),
-                DefaultTextStyle.merge(
-                  style: const TextStyle(fontSize: AppFont.comfortReadingSize),
-                  child: SelectableText(snapshot.data!.getText()),
-                ),
-                SizedBox(height: 20),
-              ],
-              scrollController: this.routerExtra.isEnableScrollStorage()
+                  SizedBox(height: 20),
+                ],
+                scrollController: this.routerExtra.isEnableScrollStorage()
                   ? this.getScrollController()
                   : null,
+              ),
             );
           }
 

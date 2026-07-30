@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/trisagion_2_our_father.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
-import 'package:orth_psalter/theme/app_font.dart';
 
 class Trisagion2OurFatherWidget extends StatelessWidget {
   final Trisagion2OurFather trisagion2OurFather;
@@ -16,7 +16,7 @@ class Trisagion2OurFatherWidget extends StatelessWidget {
       children: [
         DefaultTextStyle.merge(
           style: TextStyle(
-            fontSize: 18,
+            fontSize: AppearanceConfigSingleton().getTitleFontSize(),
             fontWeight: FontWeight.bold,
             color: AppColors.textHeadingColor,
           ),
@@ -27,32 +27,44 @@ class Trisagion2OurFatherWidget extends StatelessWidget {
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(trisagion2OurFather.getTrisagion()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(trisagion2OurFather.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(trisagion2OurFather.getMostHolyTrinity()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(trisagion2OurFather.getLordHaveMercy3T()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(trisagion2OurFather.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(trisagion2OurFather.getOurFather()),
         ),
         SizedBox(height: 10),

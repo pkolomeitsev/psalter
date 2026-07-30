@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/trisagion_2_our_father.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
-import 'package:orth_psalter/theme/app_font.dart';
 
 class GloryForeverShortWidget extends StatelessWidget {
   final Trisagion2OurFather trisagion2ourFather;
@@ -13,23 +13,30 @@ class GloryForeverShortWidget extends StatelessWidget {
       children: [
         DefaultTextStyle.merge(
           style: TextStyle(
-            fontSize: 18,
+            fontSize: AppearanceConfigSingleton().getTitleFontSize(),
             fontWeight: FontWeight.bold,
             color: AppColors.textHeadingColor,
           ),
           child: Text(
             this.trisagion2ourFather.getGloryForeverShort(),
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+            ),
           ),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(this.trisagion2ourFather.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: Text(this.trisagion2ourFather.getHallelujah3T()),
         ),
         SizedBox(height: 10),

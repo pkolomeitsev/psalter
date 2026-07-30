@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/kathisma.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
-import 'package:orth_psalter/theme/app_font.dart';
 
 class TroparionWidget extends StatelessWidget {
   final Kathisma? kathisma;
@@ -13,18 +13,23 @@ class TroparionWidget extends StatelessWidget {
       children: [
         DefaultTextStyle.merge(
           style: TextStyle(
-            fontSize: 18,
+            fontSize: AppearanceConfigSingleton().getTitleFontSize(),
             fontWeight: FontWeight.bold,
             color: AppColors.textHeadingColor,
           ),
           child: Text(
             this.kathisma!.getTrisagion2OurFather().getTropariaLabel(),
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+            ),
           ),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
-          style: const TextStyle(fontSize: AppFont.comfortReadingSize),
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
           child: SelectableText(this.kathisma!.getTroparion()),
         ),
         SizedBox(height: 10),

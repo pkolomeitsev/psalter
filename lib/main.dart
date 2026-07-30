@@ -5,12 +5,15 @@ import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
+import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  await AppearanceConfigSingleton().initAppearanceSettings();
 
   runApp(EasyLocalization(
     supportedLocales: [
