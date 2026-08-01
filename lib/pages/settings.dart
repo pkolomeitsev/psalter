@@ -7,6 +7,7 @@ import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
+import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
@@ -55,14 +56,18 @@ class _SettingsState extends State<Settings> {
               ],
             ),
             SizedBox(height: 10),
+            // Appearance
             SettingsCardTitle(text: context.tr('appearance')),
             SettingsCard(
               children: [
                 Text(context.tr('psalterFontSize')),
                 this.getPsalterFontSizeSelector(),
+                Text(context.tr('theme')),
+                this.getTheme(),
               ],
             ),
             SizedBox(height: 10),
+            // Info
             SettingsCardTitle(text: context.tr('info')),
             SettingsCard(
               children: [
@@ -180,6 +185,10 @@ class _SettingsState extends State<Settings> {
 
   Widget getPsalterFontSizeSelector() {
     return AppearanceFontSizeWidget();
+  }
+
+  Widget getTheme() {
+    return AppearanceThemeWidget();
   }
 
   Future onAboutClick(BuildContext context) async {
