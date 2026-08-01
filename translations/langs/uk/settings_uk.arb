@@ -17,5 +17,8 @@
   "psalterFontSize": "Розмір шрифту Псалтирі",
   "psalterFontSizeSmall": "Дрібний",
   "psalterFontSizeMedium": "Сeредній",
-  "psalterFontSizeLarge": "Великий"
+  "psalterFontSizeLarge": "Великий",
+  "lightTheme": "Світла",
+  "darkTheme": "Темна",
+  "beigeTheme": "Бежева"
 }

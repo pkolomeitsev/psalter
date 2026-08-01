@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
@@ -12,6 +11,7 @@ import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -60,9 +60,13 @@ class _SettingsState extends State<Settings> {
             SettingsCardTitle(text: context.tr('appearance')),
             SettingsCard(
               children: [
-                Text(context.tr('psalterFontSize')),
+                Text(
+                  context.tr('psalterFontSize'),
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
                 this.getPsalterFontSizeSelector(),
-                Text(context.tr('theme')),
                 this.getTheme(),
               ],
             ),

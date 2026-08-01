@@ -17,5 +17,9 @@
   "psalterFontSize": "Psalter font size",
   "psalterFontSizeSmall": "Small",
   "psalterFontSizeMedium": "Medium",
-  "psalterFontSizeLarge": "Large"
+  "psalterFontSizeLarge": "Large",
+  "lightTheme": "Light",
+  "darkTheme": "Dark",
+  "beigeTheme": "Beige",
+  "theme": "Theme"
 }
