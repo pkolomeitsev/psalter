@@ -67,7 +67,7 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 this.getPsalterFontSizeSelector(),
-                this.getTheme(),
+                this.getThemeSelector(),
               ],
             ),
             SizedBox(height: 10),
@@ -191,7 +191,7 @@ class _SettingsState extends State<Settings> {
     return AppearanceFontSizeWidget();
   }
 
-  Widget getTheme() {
+  Widget getThemeSelector() {
     return AppearanceThemeWidget();
   }
 

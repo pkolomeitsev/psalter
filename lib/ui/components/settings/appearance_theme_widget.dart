@@ -12,33 +12,14 @@ class AppearanceThemeWidget extends StatefulWidget {
 }
 
 class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
-  late ThemeOptions defaultTheme = ThemeOptions.light;
+  late ThemeOptions currentTheme = ThemeOptions.light;
 
   Future<String> fetchData() async {
-    return await PsalterTranslationStorage.getTranslationCode();
+    return await "0"; //PsalterTranslationStorage.getTranslationCode();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuEntry<String>> menuItems = [];
-    for (var themes in ThemeOptions.values) {
-      Icon icon = Icon(Icons.light_mode);
-      switch (themes.index){
-        case 1:
-          icon = Icon(Icons.dark_mode);
-        case 2:
-          icon = Icon(Icons.contrast);
-      }
-
-      menuItems.add(
-        DropdownMenuEntry(
-          value: themes.index.toString(),
-          label: context.tr("${themes.name}Theme"),
-          leadingIcon: icon,
-        ),
-      );
-    }
-
     return FutureBuilder<String>(
       future: this.fetchData(),
       builder: (context, snapshot) {
@@ -49,21 +30,34 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
             child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'),
           );
         } else if (snapshot.hasData) {
-          // this.defaultTheme = UtilsHelper.intToThemeOptionEnum(
+          // this.currentTheme = UtilsHelper.intToThemeOptionEnum(
           //   // int.parse(snapshot.data!),
           //   0
           // );
+
           return DropdownMenu<String>(
             label: Text(context.tr('theme')),
-            initialSelection: this.defaultTheme.index.toString(),
+            initialSelection: this.currentTheme.index.toString(),
+            leadingIcon: this.getIconByThemeOptionIndex(this.currentTheme.index),
             onSelected: (String? value) {
               setState(() {
-                this.defaultTheme = UtilsHelper.intToThemeOptionEnum(
+                this.currentTheme = UtilsHelper.intToThemeOptionEnum(
                   int.parse(value!),
                 );
               });
             },
-            dropdownMenuEntries: menuItems,
+            dropdownMenuEntries: ThemeOptions.values.map((ThemeOptions option) {
+              Icon icon = this.getIconByThemeOptionIndex(option.index);
+
+              return DropdownMenuEntry(
+                value: option.index.toString(),
+                label: context.tr("${option.name}Theme"),
+                leadingIcon: icon,
+                trailingIcon: (option.index == this.currentTheme.index)
+                    ? const Icon(Icons.check)
+                    : null,
+              );
+            }).toList(),
             expandedInsets: EdgeInsets.zero,
             inputDecorationTheme: const InputDecorationTheme(
               border: InputBorder.none,
@@ -76,5 +70,16 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
         return const Center(child: Text('No data found'));
       },
     );
+  }
+
+  Icon getIconByThemeOptionIndex(int index) {
+    switch (index) {
+      case 1:
+        return Icon(Icons.dark_mode);
+      case 2:
+        return Icon(Icons.contrast);
+      default:
+        return Icon(Icons.light_mode);
+    }
   }
 }
