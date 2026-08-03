@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:orth_psalter/helpers/utils_helper.dart';
+import 'package:orth_psalter/models/enums/theme_options.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 
 class AppearanceThemeWidget extends StatefulWidget {
@@ -9,6 +12,7 @@ class AppearanceThemeWidget extends StatefulWidget {
 }
 
 class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
+  late ThemeOptions defaultTheme = ThemeOptions.light;
 
   Future<String> fetchData() async {
     return await PsalterTranslationStorage.getTranslationCode();
@@ -16,16 +20,21 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuEntry<String>> translationItems = [];
-    for (var code in this.psalterTranslations) {
-      String name = pageContext.tr(
-        PsalterTranslationStorage.getTranslationKeyByCode(code),
-      );
-      translationItems.add(
+    List<DropdownMenuEntry<String>> menuItems = [];
+    for (var themes in ThemeOptions.values) {
+      Icon icon = Icon(Icons.light_mode);
+      switch (themes.index){
+        case 1:
+          icon = Icon(Icons.dark_mode);
+        case 2:
+          icon = Icon(Icons.contrast);
+      }
+
+      menuItems.add(
         DropdownMenuEntry(
-          value: code,
-          label: name,
-          enabled: !tmpDisabled.contains(code),
+          value: themes.index.toString(),
+          label: context.tr("${themes.name}Theme"),
+          leadingIcon: icon,
         ),
       );
     }
@@ -40,17 +49,21 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
             child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'),
           );
         } else if (snapshot.hasData) {
-          this.currentTranslation = snapshot.data!;
+          // this.defaultTheme = UtilsHelper.intToThemeOptionEnum(
+          //   // int.parse(snapshot.data!),
+          //   0
+          // );
           return DropdownMenu<String>(
-            label: Text(context.tr('psalterLanguage')),
-            initialSelection: this.currentTranslation,
+            label: Text(context.tr('theme')),
+            initialSelection: this.defaultTheme.index.toString(),
             onSelected: (String? value) {
               setState(() {
-                this.currentTranslation = value!;
-                this.changePsalterTranslation(value);
+                this.defaultTheme = UtilsHelper.intToThemeOptionEnum(
+                  int.parse(value!),
+                );
               });
             },
-            dropdownMenuEntries: translationItems,
+            dropdownMenuEntries: menuItems,
             expandedInsets: EdgeInsets.zero,
             inputDecorationTheme: const InputDecorationTheme(
               border: InputBorder.none,

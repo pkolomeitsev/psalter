@@ -20,5 +20,6 @@
   "psalterFontSizeLarge": "Великий",
   "lightTheme": "Світла",
   "darkTheme": "Темна",
-  "beigeTheme": "Бежева"
+  "beigeTheme": "Бежева",
+  "theme": "Тема оформлення"
 }
