@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/helpers/utils_helper.dart';
+import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/theme_options.dart';
-import 'package:orth_psalter/storage/psalter_translation_storage.dart';
+import 'package:orth_psalter/storage/appearance_config_storage.dart';
 
 class AppearanceThemeWidget extends StatefulWidget {
   const AppearanceThemeWidget({super.key});
@@ -14,13 +15,13 @@ class AppearanceThemeWidget extends StatefulWidget {
 class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
   late ThemeOptions currentTheme = ThemeOptions.light;
 
-  Future<String> fetchData() async {
-    return await "0"; //PsalterTranslationStorage.getTranslationCode();
+  Future<int> fetchData() async {
+    return await AppearanceConfigStorage().get(AppearanceConfig.themeOptions);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
+    return FutureBuilder<int>(
       future: this.fetchData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -30,19 +31,22 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
             child: Text('Error: ${snapshot.error} ${snapshot.stackTrace}'),
           );
         } else if (snapshot.hasData) {
-          // this.currentTheme = UtilsHelper.intToThemeOptionEnum(
-          //   // int.parse(snapshot.data!),
-          //   0
-          // );
+          this.currentTheme = UtilsHelper.intToThemeOptionEnum(snapshot.data!);
 
           return DropdownMenu<String>(
             label: Text(context.tr('theme')),
             initialSelection: this.currentTheme.index.toString(),
-            leadingIcon: this.getIconByThemeOptionIndex(this.currentTheme.index),
+            leadingIcon: this.getIconByThemeOptionIndex(
+              this.currentTheme.index,
+            ),
             onSelected: (String? value) {
               setState(() {
                 this.currentTheme = UtilsHelper.intToThemeOptionEnum(
                   int.parse(value!),
+                );
+                AppearanceConfigStorage().set(
+                  AppearanceConfig.themeOptions,
+                  this.currentTheme.index,
                 );
               });
             },
