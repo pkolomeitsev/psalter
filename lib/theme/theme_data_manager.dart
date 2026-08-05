@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/models/enums/theme_options.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class ThemeDataManager {
@@ -47,7 +48,18 @@ class ThemeDataManager {
         ),
       ),
       chipTheme: ChipThemeData(selectedColor: AppColors.brandBgColor),
-      // colorSchemeSeed: Colors.blue,
     );
+  }
+
+  static themeOptionToThemeMode(ThemeOptions option) {
+    switch(option) {
+      case ThemeOptions.light:
+        return ThemeMode.light;
+      case ThemeOptions.dark:
+        return ThemeMode.dark;
+      case ThemeOptions.beige:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+    }
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orth_psalter/helpers/global_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/models/notifiers/application_notifier.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
@@ -14,6 +16,8 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   await AppearanceConfigSingleton().initAppearanceSettings();
+
+  GlobalHelper.applicationNotifier = ApplicationNotifier();
 
   runApp(
     EasyLocalization(
@@ -36,7 +40,7 @@ void main() async {
       // assetLoader: XmlAssetLoader() //multiple files
       // assetLoader: XmlSingleAssetLoader() //single file
       // assetLoader: CodegenLoader()
-      child: PsalterApp(),
+      child: PsalterApp(applicationNotifier: GlobalHelper.applicationNotifier),
     ),
   );
 }
@@ -69,22 +73,30 @@ final GoRouter _router = GoRouter(
 );
 
 class PsalterApp extends StatelessWidget {
-  const PsalterApp({super.key});
+  final ApplicationNotifier applicationNotifier;
+
+  const PsalterApp({super.key, required this.applicationNotifier});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      // Define standard light theme
-      theme: ThemeDataManager.getLightThemeData(),
-      // Define dark theme configuration
-      darkTheme: ThemeDataManager.getDarkThemeData(),
-      // Switches automatically based on OS settings
-      themeMode: ThemeMode.dark,
-      routerConfig: _router,
+
+    return ListenableBuilder(
+      listenable: applicationNotifier,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          // Define standard light theme
+          theme: ThemeDataManager.getLightThemeData(),
+          // Define dark theme configuration
+          darkTheme: ThemeDataManager.getDarkThemeData(),
+          // Switches automatically based on OS settings
+          themeMode: applicationNotifier.getThemeMode(),
+          routerConfig: _router,
+        );
+      },
     );
   }
 }
