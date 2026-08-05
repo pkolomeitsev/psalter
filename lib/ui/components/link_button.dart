@@ -20,11 +20,8 @@ class LinkButton extends StatelessWidget {
           throw Exception('Could not launch $toLaunch');
         }
       },
-      label: Text(
-        context.tr(this.label),
-        style: const TextStyle(color: Colors.blue),
-      ),
-      icon: const Icon(Icons.launch, color: Colors.blue, size: 16),
+      label: Text(context.tr(this.label)),
+      icon: const Icon(Icons.launch, size: 16),
     );
   }
 }

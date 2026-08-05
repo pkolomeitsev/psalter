@@ -4,7 +4,6 @@ import 'package:orth_psalter/helpers/global_helper.dart';
 import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/theme_options.dart';
-import 'package:orth_psalter/models/notifiers/application_notifier.dart';
 import 'package:orth_psalter/storage/appearance_config_storage.dart';
 import 'package:orth_psalter/theme/theme_data_manager.dart';
 
@@ -51,13 +50,9 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
                   AppearanceConfig.themeOptions,
                   this.currentTheme.index,
                 );
-
-
                 GlobalHelper.applicationNotifier.switchTheme(
                   ThemeDataManager.themeOptionToThemeMode(this.currentTheme),
                 );
-
-                print('Notify!');
               });
             },
             dropdownMenuEntries: ThemeOptions.values.map((ThemeOptions option) {

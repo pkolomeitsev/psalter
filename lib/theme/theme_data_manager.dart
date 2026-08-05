@@ -18,6 +18,14 @@ class ThemeDataManager {
       navigationBarTheme: NavigationBarThemeData(
         indicatorColor: AppColors.brandBgColor,
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(AppColors.buttonBgColor),
+          foregroundColor: WidgetStatePropertyAll(
+            AppColors.buttonForegroundColor,
+          ),
+        ),
+      ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
           selectedBackgroundColor: AppColors.brandColorLight,
@@ -42,6 +50,14 @@ class ThemeDataManager {
       navigationBarTheme: NavigationBarThemeData(
         indicatorColor: AppColors.brandBgColor,
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(AppColors.buttonBgColorDark),
+          foregroundColor: WidgetStatePropertyAll(
+            AppColors.buttonForegroundColorDark,
+          ),
+        ),
+      ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
           selectedBackgroundColor: AppColors.brandBgColor,
@@ -52,7 +68,7 @@ class ThemeDataManager {
   }
 
   static themeOptionToThemeMode(ThemeOptions option) {
-    switch(option) {
+    switch (option) {
       case ThemeOptions.light:
         return ThemeMode.light;
       case ThemeOptions.dark:
