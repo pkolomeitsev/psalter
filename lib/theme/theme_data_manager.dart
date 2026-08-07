@@ -1,81 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/models/enums/theme_options.dart';
-import 'package:orth_psalter/theme/app_colors.dart';
+import 'package:orth_psalter/theme/beige_theme.dart';
+import 'package:orth_psalter/theme/dark_theme.dart';
+import 'package:orth_psalter/theme/light_theme.dart';
 
 class ThemeDataManager {
-  static ThemeData getLightThemeData() {
-    return ThemeData(
-      brightness: Brightness.light,
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.brandBgColor,
-        foregroundColor: AppColors.titleTextColor,
-      ),
-      tabBarTheme: TabBarThemeData(
-        unselectedLabelColor: Colors.white70,
-        labelStyle: TextStyle(color: Colors.white),
-        indicatorColor: Colors.white,
-      ),
-      navigationBarTheme: NavigationBarThemeData(
-        indicatorColor: AppColors.brandBgColor,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(AppColors.buttonBgColor),
-          foregroundColor: WidgetStatePropertyAll(
-            AppColors.buttonForegroundColor,
-          ),
-        ),
-      ),
-      segmentedButtonTheme: SegmentedButtonThemeData(
-        style: SegmentedButton.styleFrom(
-          selectedBackgroundColor: AppColors.brandColorLight,
-        ),
-      ),
-      chipTheme: ChipThemeData(selectedColor: AppColors.brandColorLight),
-    );
+  late ThemeOptions _themeOption;
+  late ThemeMode _themeMode;
+
+  ThemeDataManager(ThemeOptions themeOption) {
+    this._themeOption = themeOption;
+    this._themeMode = UtilsHelper.themeOptionToThemeMode(this._themeOption);
   }
 
-  static ThemeData getDarkThemeData() {
-    return ThemeData(
-      brightness: Brightness.dark, // Essential for dark mode
-      appBarTheme: AppBarTheme(
-        backgroundColor: AppColors.brandBgColor,
-        foregroundColor: AppColors.titleTextColor,
-      ),
-      tabBarTheme: TabBarThemeData(
-        unselectedLabelColor: Colors.white70,
-        labelStyle: TextStyle(color: Colors.white),
-        indicatorColor: Colors.white,
-      ),
-      navigationBarTheme: NavigationBarThemeData(
-        indicatorColor: AppColors.brandBgColor,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(AppColors.buttonBgColorDark),
-          foregroundColor: WidgetStatePropertyAll(
-            AppColors.buttonForegroundColorDark,
-          ),
-        ),
-      ),
-      segmentedButtonTheme: SegmentedButtonThemeData(
-        style: SegmentedButton.styleFrom(
-          selectedBackgroundColor: AppColors.brandBgColor,
-        ),
-      ),
-      chipTheme: ChipThemeData(selectedColor: AppColors.brandBgColor),
-    );
-  }
-
-  static themeOptionToThemeMode(ThemeOptions option) {
-    switch (option) {
-      case ThemeOptions.light:
-        return ThemeMode.light;
-      case ThemeOptions.dark:
-        return ThemeMode.dark;
+  ThemeData getLightThemeData() {
+    switch(this._themeOption) {
       case ThemeOptions.beige:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return BeigeTheme().getThemeData();
+      default:
+        return LightTheme().getThemeData();
     }
   }
+
+  ThemeData getDarkThemeData() {
+    return DarkTheme().getThemeData();
+  }
+
+  ThemeOptions getThemeOption() => _themeOption;
+  ThemeMode getThemeMode() => _themeMode;
 }

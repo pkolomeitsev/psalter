@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/helpers/global_helper.dart';
+import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
+import 'package:orth_psalter/models/enums/theme_options.dart';
 import 'package:orth_psalter/models/notifiers/application_notifier.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
@@ -79,21 +81,30 @@ class PsalterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeOptions themeOption = UtilsHelper.intToThemeOptionEnum(
+      AppearanceConfigSingleton().getTheme(),
+    );
 
     return ListenableBuilder(
       listenable: applicationNotifier,
       builder: (BuildContext context, Widget? child) {
+        if (applicationNotifier.getThemeOption() != null) {
+          themeOption = applicationNotifier.getThemeOption()!;
+        }
+
+        ThemeDataManager themeDataManager = ThemeDataManager(themeOption);
+
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           // Define standard light theme
-          theme: ThemeDataManager.getLightThemeData(),
+          theme: themeDataManager.getLightThemeData(),
           // Define dark theme configuration
-          darkTheme: ThemeDataManager.getDarkThemeData(),
+          darkTheme: themeDataManager.getDarkThemeData(),
           // Switches automatically based on OS settings
-          themeMode: applicationNotifier.getThemeMode(),
+          themeMode: themeDataManager.getThemeMode(),
           routerConfig: _router,
         );
       },

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/models/enums/theme_options.dart';
 
 class ApplicationNotifier with ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeOptions? _themeOption;
 
-  void switchTheme(ThemeMode themeMode) {
-    this._themeMode = themeMode;
+  void switchTheme(ThemeOptions option) {
+    this._themeOption = option;
     notifyListeners();
   }
 
-  ThemeMode getThemeMode() {
-    return this._themeMode;
+  ThemeOptions? getThemeOption() {
+    return this._themeOption;
   }
 }
