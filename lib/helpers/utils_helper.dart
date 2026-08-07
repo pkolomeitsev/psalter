@@ -23,11 +23,14 @@ class UtilsHelper {
   static themeOptionToThemeMode(ThemeOptions option) {
     switch (option) {
       case ThemeOptions.light:
-        return ThemeMode.light;
-      case ThemeOptions.dark:
-        return ThemeMode.dark;
       case ThemeOptions.beige:
         return ThemeMode.light;
+
+      case ThemeOptions.dark:
+        return ThemeMode.dark;
+
+      case ThemeOptions.auto:
+        return ThemeMode.system;
     }
   }
 }

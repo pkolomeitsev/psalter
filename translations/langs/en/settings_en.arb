@@ -21,5 +21,6 @@
   "lightTheme": "Light",
   "darkTheme": "Dark",
   "beigeTheme": "Beige",
+  "autoTheme": "Auto",
   "theme": "Theme"
 }

@@ -14,10 +14,13 @@ class AppearanceThemeWidget extends StatefulWidget {
 }
 
 class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
-  late ThemeOptions currentTheme = ThemeOptions.light;
+  late ThemeOptions currentTheme = ThemeOptions.auto;
 
   Future<int> fetchData() async {
-    return await AppearanceConfigStorage().get(AppearanceConfig.themeOptions);
+    return await AppearanceConfigStorage().get(
+      AppearanceConfig.themeOptions,
+      defaultValue: this.currentTheme.index,
+    );
   }
 
   @override
@@ -84,6 +87,8 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
         return Icon(Icons.dark_mode);
       case 2:
         return Icon(Icons.contrast);
+      case 3:
+        return Icon(Icons.auto_awesome);
       default:
         return Icon(Icons.light_mode);
     }
