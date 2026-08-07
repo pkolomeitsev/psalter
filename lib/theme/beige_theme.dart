@@ -7,6 +7,9 @@ class BeigeTheme implements ThemeInterface {
   ThemeData getThemeData() {
     return ThemeData(
       brightness: Brightness.light,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.amber,
+      ),
       appBarTheme: AppBarTheme(
         backgroundColor: AppColors.brandBgColor,
         foregroundColor: AppColors.titleTextColor,
