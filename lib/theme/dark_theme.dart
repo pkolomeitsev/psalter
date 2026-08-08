@@ -33,6 +33,13 @@ class DarkTheme implements ThemeInterface {
         ),
       ),
       chipTheme: ChipThemeData(selectedColor: AppColors.brandBgColor),
+      dropdownMenuTheme: DropdownMenuThemeData(
+        inputDecorationTheme: const InputDecorationTheme(
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+        ),
+      ),
     );
   }
 }

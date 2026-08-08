@@ -33,6 +33,13 @@ class LightTheme implements ThemeInterface {
         ),
       ),
       chipTheme: ChipThemeData(selectedColor: AppColors.brandColorLight),
+      dropdownMenuTheme: DropdownMenuThemeData(
+        inputDecorationTheme: const InputDecorationTheme(
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+        ),
+      )
     );
   }
 }

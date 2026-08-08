@@ -121,11 +121,6 @@ class _SettingsState extends State<Settings> {
       },
       dropdownMenuEntries: langItems,
       expandedInsets: EdgeInsets.zero,
-      inputDecorationTheme: const InputDecorationTheme(
-        border: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-      ),
     );
   }
 
@@ -170,11 +165,6 @@ class _SettingsState extends State<Settings> {
             },
             dropdownMenuEntries: translationItems,
             expandedInsets: EdgeInsets.zero,
-            inputDecorationTheme: const InputDecorationTheme(
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-            ),
           );
         }
 
