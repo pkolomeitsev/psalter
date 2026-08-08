@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
@@ -7,10 +6,12 @@ import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
+import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -55,14 +56,22 @@ class _SettingsState extends State<Settings> {
               ],
             ),
             SizedBox(height: 10),
+            // Appearance
             SettingsCardTitle(text: context.tr('appearance')),
             SettingsCard(
               children: [
-                Text(context.tr('psalterFontSize')),
+                Text(
+                  context.tr('psalterFontSize'),
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
                 this.getPsalterFontSizeSelector(),
+                this.getThemeSelector(),
               ],
             ),
             SizedBox(height: 10),
+            // Info
             SettingsCardTitle(text: context.tr('info')),
             SettingsCard(
               children: [
@@ -112,11 +121,6 @@ class _SettingsState extends State<Settings> {
       },
       dropdownMenuEntries: langItems,
       expandedInsets: EdgeInsets.zero,
-      inputDecorationTheme: const InputDecorationTheme(
-        border: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-      ),
     );
   }
 
@@ -161,11 +165,6 @@ class _SettingsState extends State<Settings> {
             },
             dropdownMenuEntries: translationItems,
             expandedInsets: EdgeInsets.zero,
-            inputDecorationTheme: const InputDecorationTheme(
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-            ),
           );
         }
 
@@ -180,6 +179,10 @@ class _SettingsState extends State<Settings> {
 
   Widget getPsalterFontSizeSelector() {
     return AppearanceFontSizeWidget();
+  }
+
+  Widget getThemeSelector() {
+    return AppearanceThemeWidget();
   }
 
   Future onAboutClick(BuildContext context) async {

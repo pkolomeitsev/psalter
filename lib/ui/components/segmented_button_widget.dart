@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/dto/simple_dto.dart';
-import 'package:orth_psalter/theme/app_colors.dart';
 
 class SegmentedButtonWidget extends StatefulWidget {
   final List<SimpleDto> segments;
@@ -41,9 +40,6 @@ class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
     return Semantics(
       identifier: widget.identifier,
       child: SegmentedButton(
-        style: SegmentedButton.styleFrom(
-          selectedBackgroundColor: AppColors.brandColorLight,
-        ),
         segments: segments,
         selected: <SimpleDto>{this.selectedItem ?? widget.segments[widget.defaultItemId]},
         onSelectionChanged: (Set<dynamic> newSelection) {

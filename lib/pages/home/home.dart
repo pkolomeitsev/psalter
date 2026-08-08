@@ -35,9 +35,6 @@ class _HomeState extends State<Home> {
                 child: Tab(text: context.tr('asNeeded'))
             ),
           ],
-          unselectedLabelColor: Colors.white70,
-          labelStyle: TextStyle(color: Colors.white),
-          indicatorColor: Colors.white,
         ),
       ),
       body: TabBarView(children: [Psalms(), Kathismas(), AsNeeded()]),

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class BookmarkStorage {
   static getName(EntityType type) {
-    return 'bookmarks_{$type.name}';
+    return 'bookmarks_${type.name}';
   }
 
   static getBookmarks(EntityType type) async {

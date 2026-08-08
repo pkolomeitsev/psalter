@@ -1,0 +1,1 @@
+enum ThemeOptions { light, dark, beige, auto }

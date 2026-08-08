@@ -1,1 +1,2 @@
-enum AppearanceConfig { psalterFontSize }
+/// Appearance config storage keys
+enum AppearanceConfig { psalterFontSize, themeOptions }
