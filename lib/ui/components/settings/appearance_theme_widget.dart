@@ -25,27 +25,11 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuEntry<String>> menuEntries = [];
-
-    for (var option in ThemeOptions.values) {
-      Icon icon = this.getIconByThemeOptionIndex(option.index);
-
-      menuEntries.add(
-        DropdownMenuEntry(
-          value: option.index.toString(),
-          label: context.tr("${option.name}Theme"),
-          leadingIcon: icon,
-          // trailingIcon: (option.index == this.currentTheme.index)
-          //     ? const Icon(Icons.check)
-          //     : null,
-        ),
-      );
-    }
-
     return DropdownMenu<String>(
+      key: UniqueKey(),
       label: Text(context.tr('theme')),
       initialSelection: this.currentTheme.index.toString(),
-      // leadingIcon: this.getIconByThemeOptionIndex(this.currentTheme.index),
+      leadingIcon: this.getIconByThemeOptionIndex(this.currentTheme.index),
       onSelected: (String? value) {
         setState(() {
           this.currentTheme = UtilsHelper.intToThemeOptionEnum(
@@ -54,19 +38,18 @@ class _AppearanceThemeWidgetState extends State<AppearanceThemeWidget> {
           GlobalHelper.applicationNotifier.switchTheme(this.currentTheme);
         });
       },
-      dropdownMenuEntries: menuEntries,
-      // dropdownMenuEntries: ThemeOptions.values.map((ThemeOptions option) {
-      //   Icon icon = this.getIconByThemeOptionIndex(option.index);
-      //
-      //   return DropdownMenuEntry(
-      //     value: option.index.toString(),
-      //     label: context.tr("${option.name}Theme"),
-      //     leadingIcon: icon,
-      //     trailingIcon: (option.index == this.currentTheme.index)
-      //         ? const Icon(Icons.check)
-      //         : null,
-      //   );
-      // }).toList(),
+      dropdownMenuEntries: ThemeOptions.values.map((ThemeOptions option) {
+        Icon icon = this.getIconByThemeOptionIndex(option.index);
+
+        return DropdownMenuEntry(
+          value: option.index.toString(),
+          label: context.tr("${option.name}Theme"),
+          leadingIcon: icon,
+          trailingIcon: (option.index == this.currentTheme.index)
+              ? const Icon(Icons.check)
+              : null,
+        );
+      }).toList(),
       expandedInsets: EdgeInsets.zero,
     );
   }
