@@ -18,10 +18,7 @@ Run autotests:
 ./generate_screenshots.sh
 ```
 
-Maestro Test suites configuration file:
-```bash
-./maestro/screenshots.yaml
-```
+Maestro Test suites configuration file:`./maestro/screenshots.yaml`
 
 # Screenshots
 
