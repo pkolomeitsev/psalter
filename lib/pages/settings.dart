@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/storage/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
@@ -26,6 +27,7 @@ class _SettingsState extends State<Settings> {
   List<String> tmpDisabled = [];
   String currentTranslation = '';
   String currentLocale = ''; //required context
+  String adminContact = 'p.kolomeitsev@gmail.com';
 
   Future<String> fetchData() async {
     return await PsalterTranslationStorage.getTranslationCode();
@@ -62,9 +64,7 @@ class _SettingsState extends State<Settings> {
               children: [
                 Text(
                   context.tr('psalterFontSize'),
-                  style: TextStyle(
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(fontSize: 12),
                 ),
                 this.getPsalterFontSizeSelector(),
                 this.getThemeSelector(),
@@ -75,6 +75,19 @@ class _SettingsState extends State<Settings> {
             SettingsCardTitle(text: context.tr('info')),
             SettingsCard(
               children: [
+                ListTile(
+                  title: Text(context.tr('contact')),
+                  subtitle: Text(context.tr('contactSubTitle')),
+                  trailing: Icon(Icons.mail),
+                  onTap: () async {
+                    await UtilsHelper.sendEmail(
+                      this.adminContact,
+                      context.tr('contactSubject'),
+                      context.tr('contactBody'),
+                    );
+                  },
+                ),
+                Divider(height: 0),
                 ListTile(
                   title: Text(context.tr('references')),
                   onTap: () async {

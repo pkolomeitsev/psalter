@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/enums/font_size.dart';
 import 'package:orth_psalter/models/enums/theme_options.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UtilsHelper {
   static String capitalize(String str) =>
@@ -31,6 +33,34 @@ class UtilsHelper {
 
       case ThemeOptions.auto:
         return ThemeMode.system;
+    }
+  }
+
+  static String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map(
+          (MapEntry<String, String> e) =>
+              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
+        )
+        .join('&');
+  }
+
+  static Future sendEmail(String mail, String subject, String body) async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: mail,
+      query: UtilsHelper.encodeQueryParameters(<String, String>{
+        'subject': subject,
+        'body': body,
+      }),
+    );
+
+    if (await canLaunchUrl(emailLaunchUri)) {
+      return await launchUrl(emailLaunchUri);
+    }
+
+    if (kDebugMode) {
+      print('Error: to launch email -> $emailLaunchUri');
     }
   }
 }
