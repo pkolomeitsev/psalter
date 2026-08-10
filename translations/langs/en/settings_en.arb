@@ -22,5 +22,9 @@
   "darkTheme": "Dark",
   "beigeTheme": "Beige",
   "autoTheme": "Auto",
-  "theme": "Theme"
+  "theme": "Theme",
+  "contact": "Contact",
+  "contactSubTitle": "Send an email message to author",
+  "contactSubject": "Psalter App contact message",
+  "contactBody": "Please describe your proposal or any issue in details. Screenshots are welcome."
 }
