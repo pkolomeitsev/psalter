@@ -26,5 +26,7 @@
   "contact": "Contact",
   "contactSubTitle": "Send an email message to author",
   "contactSubject": "Psalter App contact message",
-  "contactBody": "Please describe your proposal or any issue in details. Screenshots are welcome."
+  "contactBody": "Please describe your proposal or any issue in details. Screenshots are welcome.",
+  "donations": "Donations",
+  "donationMessage": "Here you can support Psalter application following the link:"
 }

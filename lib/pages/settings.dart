@@ -5,6 +5,7 @@ import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
+import 'package:orth_psalter/ui/components/information/donation_widget.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
@@ -75,6 +76,8 @@ class _SettingsState extends State<Settings> {
             SettingsCardTitle(text: context.tr('info')),
             SettingsCard(
               children: [
+                DonationWidget(),
+                Divider(height: 0),
                 ListTile(
                   title: Text(context.tr('contact')),
                   subtitle: Text(context.tr('contactSubTitle')),
@@ -215,8 +218,8 @@ class _SettingsState extends State<Settings> {
         Text(context.tr('sourceCodeInfo'), style: textStyle),
         Center(
           child: LinkButton(
-            link: 'sourceCodeLink',
-            label: 'sourceCodeLinkLabel',
+            link: context.tr('sourceCodeLink'),
+            label: context.tr('sourceCodeLinkLabel'),
           ),
         ),
         Text('${context.tr('lastUpdated')}: $lastUpdate', style: textStyle),

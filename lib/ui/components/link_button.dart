@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,7 +11,7 @@ class LinkButton extends StatelessWidget {
     return TextButton.icon(
       iconAlignment: IconAlignment.end,
       onPressed: () async {
-        final Uri toLaunch = Uri.parse(context.tr(this.link));
+        final Uri toLaunch = Uri.parse(this.link);
         if (!await launchUrl(
           toLaunch,
           mode: LaunchMode.inAppBrowserView,
@@ -20,7 +19,7 @@ class LinkButton extends StatelessWidget {
           throw Exception('Could not launch $toLaunch');
         }
       },
-      label: Text((!this.label.isEmpty) ? context.tr(this.label) : ''),
+      label: Text(this.label),
       icon: const Icon(Icons.launch, size: 16),
     );
   }
