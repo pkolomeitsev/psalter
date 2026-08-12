@@ -20,7 +20,7 @@ class LinkButton extends StatelessWidget {
           throw Exception('Could not launch $toLaunch');
         }
       },
-      label: Text(context.tr(this.label)),
+      label: Text((!this.label.isEmpty) ? context.tr(this.label) : ''),
       icon: const Icon(Icons.launch, size: 16),
     );
   }
