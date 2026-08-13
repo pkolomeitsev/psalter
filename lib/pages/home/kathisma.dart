@@ -5,11 +5,13 @@ import 'package:orth_psalter/mixins/scroll_position_storage_mixin.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/gesture/zoom_gesture.dart';
 import 'package:orth_psalter/models/kathisma.dart' as kathisma_model;
+import 'package:orth_psalter/models/notifiers/page_notifier.dart';
 import 'package:orth_psalter/models/psalm.dart';
 import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
 import 'package:orth_psalter/storage/scroll_position_storage.dart';
+import 'package:orth_psalter/ui/components/buttons/font_size_button.dart';
 import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
 import 'package:orth_psalter/ui/components/prayer_widget.dart';
@@ -28,6 +30,7 @@ class Kathisma extends StatefulWidget {
 
 class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
   late RouterExtraParameters routerExtra;
+  final PageNotifier pageNotifier = PageNotifier();
 
   Future<kathisma_model.Kathisma> fetchData(BuildContext context) async {
     this.routerExtra = (GoRouterState.of(context).extra != null)
@@ -50,6 +53,9 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        actions: [
+          FontSizeButton(notifier: pageNotifier)
+        ],
       ),
       body: FutureBuilder<kathisma_model.Kathisma>(
         future: this.fetchData(context),
@@ -73,28 +79,34 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
                   });
                 }
               },
-              child: TextPageViewWrapper(
-                data: [
-                  this.renderPsalms(context, snapshot.data),
-                  this.renderTrisagion2OurFather(snapshot.data),
-                  this.renderTroparion(snapshot.data),
-                  DefaultTextStyle.merge(
-                    style: TextStyle(
-                      fontSize: AppearanceConfigSingleton().getBodyFontSize(),
-                    ),
-                    child: SelectableText(
-                      snapshot.data!
-                          .getTrisagion2OurFather()
-                          .getLordHaveMercy40T(),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  this.renderPrayer(snapshot.data),
-                  SizedBox(height: 10),
-                ],
-                scrollController: this.routerExtra.isEnableScrollStorage()
-                    ? this.getScrollController()
-                    : null,
+              child: ListenableBuilder(
+                listenable: pageNotifier,
+                builder: (BuildContext context, Widget? child) {
+                  return TextPageViewWrapper(
+                    data: [
+                      this.renderPsalms(context, snapshot.data),
+                      this.renderTrisagion2OurFather(snapshot.data),
+                      this.renderTroparion(snapshot.data),
+                      DefaultTextStyle.merge(
+                        style: TextStyle(
+                          fontSize: AppearanceConfigSingleton()
+                              .getBodyFontSize(),
+                        ),
+                        child: SelectableText(
+                          snapshot.data!
+                              .getTrisagion2OurFather()
+                              .getLordHaveMercy40T(),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      this.renderPrayer(snapshot.data),
+                      SizedBox(height: 10),
+                    ],
+                    scrollController: this.routerExtra.isEnableScrollStorage()
+                      ? this.getScrollController()
+                      : null,
+                  );
+                },
               ),
             );
           }
