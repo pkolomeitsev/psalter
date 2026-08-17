@@ -76,14 +76,17 @@ class _PsalmsState extends State<Psalms> with ScrollPositionStorageMixin {
       extra.setResetScrollPosition(!isActive);
 
       psalms.add(
-        BookmarkCard(
-          id: i,
-          title: '${context.tr('psalm')} $i',
-          type: EntityType.psalm,
-          isBookmarked: this.bookmarks.contains(i),
-          isActive: isActive,
-          notifier: this.lastViewedNotifier,
-          redirectParameters: extra,
+        Semantics(
+          identifier: "${EntityType.psalm.name}_$i",
+          child: BookmarkCard(
+            id: i,
+            title: '${context.tr('psalm')} $i',
+            type: EntityType.psalm,
+            isBookmarked: this.bookmarks.contains(i),
+            isActive: isActive,
+            notifier: this.lastViewedNotifier,
+            redirectParameters: extra,
+          ),
         ),
       );
     }

@@ -87,15 +87,18 @@ class _KathismasState extends State<Kathismas> with ScrollPositionStorageMixin {
       extra.setResetScrollPosition(!isActive);
 
       kathismas.add(
-        BookmarkCard(
-          id: i,
-          title: '${context.tr('kathisma')} $i',
-          description: '${context.tr('psalms')} ${this.psalmsMap[i - 1]}',
-          type: EntityType.kathisma,
-          isBookmarked: bookmarks.contains(i),
-          isActive: isActive,
-          notifier: this.kathismasNotifier,
-          redirectParameters: extra,
+        Semantics(
+          identifier: "${EntityType.kathisma.name}_$i",
+          child: BookmarkCard(
+            id: i,
+            title: '${context.tr('kathisma')} $i',
+            description: '${context.tr('psalms')} ${this.psalmsMap[i - 1]}',
+            type: EntityType.kathisma,
+            isBookmarked: bookmarks.contains(i),
+            isActive: isActive,
+            notifier: this.kathismasNotifier,
+            redirectParameters: extra,
+          ),
         ),
       );
     }

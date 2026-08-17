@@ -73,3 +73,15 @@ appId: com.github.pkolomeitsev.psalter
     id: settings_view
 - takeScreenshot:
     path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/settings
+
+# Take screenshots #1 Kathisma
+- tapOn:
+    id: home
+- tapOn:
+    id: kathismas
+- assertVisible:
+    id: kathismas_list
+- tapOn:
+    id: kathisma_1
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/kathisma
