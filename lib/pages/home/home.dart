@@ -4,6 +4,7 @@ import 'package:orth_psalter/pages/home/as_needed.dart';
 import 'package:orth_psalter/pages/home/kathismas.dart';
 import 'package:orth_psalter/pages/home/psalms.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
+import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -24,20 +25,21 @@ class _HomeState extends State<Home> {
           tabs: [
             Semantics(
               identifier: 'psalms',
-              child: Tab(text: context.tr('psalms'))
+              child: Tab(text: context.tr('psalms')),
             ),
             Semantics(
-                identifier: 'kathismas',
-                child: Tab(text: context.tr('kathismas'))
+              identifier: 'kathismas',
+              child: Tab(text: context.tr('kathismas')),
             ),
             Semantics(
-                identifier: 'as_needed',
-                child: Tab(text: context.tr('asNeeded'))
+              identifier: 'as_needed',
+              child: Tab(text: context.tr('asNeeded')),
             ),
           ],
         ),
       ),
       body: TabBarView(children: [Psalms(), Kathismas(), AsNeeded()]),
+      drawer: LeftSideBar(),
     );
   }
 }
