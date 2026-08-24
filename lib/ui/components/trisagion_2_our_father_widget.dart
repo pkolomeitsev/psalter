@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:orth_psalter/models/trisagion_2_our_father.dart';
+import 'package:orth_psalter/models/common_prayers.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class Trisagion2OurFatherWidget extends StatelessWidget {
-  final Trisagion2OurFather trisagion2OurFather;
+  final CommonPrayers trisagion2OurFather;
   const Trisagion2OurFatherWidget({
     super.key,
     required this.trisagion2OurFather,

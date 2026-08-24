@@ -1,4 +1,4 @@
-class Trisagion2OurFather {
+class CommonPrayers {
   late String _hallelujah3T;
   late String _lordHaveMercy3T;
   late String _lordHaveMercy40T;
@@ -12,7 +12,7 @@ class Trisagion2OurFather {
   late String _prayerLabel;
   late String _psalmLabel;
 
-  Trisagion2OurFather(Map<String,dynamic> data) {
+  CommonPrayers(Map<String,dynamic> data) {
     this._hallelujah3T = data['hallelujah3T'] ?? '';
     this._lordHaveMercy3T = data['lordHaveMercy3T'] ?? '';
     this._lordHaveMercy40T = data['lordHaveMercy40T'] ?? '';
