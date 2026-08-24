@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 
 class DonationWidget extends StatefulWidget {

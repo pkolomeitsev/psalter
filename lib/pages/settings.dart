@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/helpers/utils_helper.dart';
-import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
