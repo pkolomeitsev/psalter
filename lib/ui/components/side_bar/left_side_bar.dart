@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class LeftSideBar extends StatefulWidget {
@@ -25,6 +26,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
             padding: EdgeInsetsGeometry.all(10),
             decoration: BoxDecoration(color: AppColors.brandBgColor),
             child: Column(
+              spacing: 10,
               children: [
                 Row(
                   spacing: 10,
@@ -75,16 +77,14 @@ class _LeftSideBarState extends State<LeftSideBar> {
             leading: Icon(Icons.add),
             title: Text(context.tr('prayersBeforePsalterReading')),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              context.go('/psalter/prayer/before');
             },
           ),
           ListTile(
             leading: Icon(Icons.add),
             title: Text(context.tr('prayersAfterPsalterReading')),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              context.go('/psalter/prayer/after');
             },
           ),
         ],

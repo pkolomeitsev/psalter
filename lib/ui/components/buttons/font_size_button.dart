@@ -3,7 +3,7 @@ import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/font_size.dart';
 import 'package:orth_psalter/models/notifiers/page_notifier.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
-import 'package:orth_psalter/storage/appearance_config_storage.dart';
+import 'package:orth_psalter/storage/system/appearance_config_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class FontSizeButton extends StatefulWidget {

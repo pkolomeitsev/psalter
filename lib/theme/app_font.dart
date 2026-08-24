@@ -1,7 +1,7 @@
 import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/font_size.dart';
-import 'package:orth_psalter/storage/appearance_config_storage.dart';
+import 'package:orth_psalter/storage/system/appearance_config_storage.dart';
 
 class AppFont {
   static const double comfortReadingSize = 16;
