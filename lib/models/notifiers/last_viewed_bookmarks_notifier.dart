@@ -1,6 +1,6 @@
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
-import 'package:orth_psalter/storage/last_viewed_bookmarks_storage.dart';
+import 'package:orth_psalter/storage/system/last_viewed_bookmarks_storage.dart';
 
 class LastViewedBookmarksNotifier extends LastViewedNotifier {
   Map<EntityType, int> ids = {
