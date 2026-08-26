@@ -41,15 +41,11 @@ class _DonationWidgetState extends State<DonationWidget> {
             children: [
               Text(context.tr('donationMessage')),
               LinkButton(
-                link: (languageCode == 'uk')
-                    ? widget.privateUAH
-                    : widget.privateUSD,
+                link: widget.privateUAH,
                 label: 'Private24',
               ),
               LinkButton(
-                link: (languageCode == 'uk')
-                    ? widget.monoUAH
-                    : widget.monoUSD,
+                link: widget.privateUAH,
                 label: 'Monobank',
               ),
             ],
