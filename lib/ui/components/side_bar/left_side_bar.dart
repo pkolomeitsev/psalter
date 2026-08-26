@@ -77,6 +77,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
             leading: Icon(Icons.add),
             title: Text(context.tr('prayersBeforePsalterReading')),
             onTap: () {
+              Navigator.pop(context);
               context.go('/psalter/prayer/before');
             },
           ),
@@ -84,6 +85,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
             leading: Icon(Icons.add),
             title: Text(context.tr('prayersAfterPsalterReading')),
             onTap: () {
+              Navigator.pop(context);
               context.go('/psalter/prayer/after');
             },
           ),
