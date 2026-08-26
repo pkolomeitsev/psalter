@@ -77,7 +77,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/generated/translations/
-    - assets/data/psalms/
+    - assets/data/psalms/before/
+    - assets/data/psalms/after/
     - assets/data/kathismas/
     - assets/data/prayers/
     - assets/data/credits/
