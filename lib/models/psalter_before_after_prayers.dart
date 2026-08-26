@@ -12,10 +12,7 @@ class PsalterBeforeAfterPrayers {
   late String _psalmBeforeSuggestion;
   late CommonPrayers commonPrayers;
 
-  PsalterBeforeAfterPrayers(
-    Map<String, dynamic> data,
-    this.commonPrayers,
-  ) {
+  PsalterBeforeAfterPrayers(Map<String, dynamic> data, this.commonPrayers) {
     this._psalmBeforeIfPriestTitle = data['psalmBeforeIfPriestTitle'] ?? '';
     this._psalmBeforeIfPriest = data['psalmBeforeIfPriest'] ?? '';
     this._psalmBeforeIfLaymanTitle = data['psalmBeforeIfLaymanTitle'] ?? '';
@@ -80,4 +77,6 @@ class PsalterBeforeAfterPrayers {
   void setPsalmBeforeIfPriestTitle(String value) {
     _psalmBeforeIfPriestTitle = value;
   }
+
+  CommonPrayers getCommonPrayers() => this.commonPrayers;
 }

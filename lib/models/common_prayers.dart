@@ -11,6 +11,11 @@ class CommonPrayers {
   late String _tropariaLabel;
   late String _prayerLabel;
   late String _psalmLabel;
+  late String _oHeavenlyKing;
+  late String _fromPaschaUntilAscension;
+  late String _christIsRisenFromTheDead;
+  late String _fromAscensionUntilPentecost;
+  late String _comeLetUsWorship;
 
   CommonPrayers(Map<String,dynamic> data) {
     this._hallelujah3T = data['hallelujah3T'] ?? '';
@@ -25,6 +30,11 @@ class CommonPrayers {
     this._tropariaLabel = data['troparia'] ?? '';
     this._prayerLabel = data['prayer'] ?? '';
     this._psalmLabel = data['psalmLabel'] ?? '';
+    this._oHeavenlyKing = data['oHeavenlyKing'] ?? '';
+    this._fromPaschaUntilAscension = data['fromPaschaUntilAscension'] ?? '';
+    this._christIsRisenFromTheDead = data['christIsRisenFromTheDead'] ?? '';
+    this._fromAscensionUntilPentecost = data['fromAscensionUntilPentecost'] ?? '';
+    this._comeLetUsWorship = data['comeLetUsWorship'] ?? '';
   }
 
   String getPsalmLabel() => _psalmLabel;
@@ -97,5 +107,35 @@ class CommonPrayers {
 
   void setHallelujah3T(String value) {
     _hallelujah3T = value;
+  }
+
+  String getOHeavenlyKing() => _oHeavenlyKing;
+
+  void setOHeavenlyKing(String value) {
+    _oHeavenlyKing = value;
+  }
+
+  String getFromPaschaUntilAscension() => _fromPaschaUntilAscension;
+
+  void setFromPaschaUntilAscension(String value) {
+    _fromPaschaUntilAscension = value;
+  }
+
+  String getChristIsRisenFromTheDead() => _christIsRisenFromTheDead;
+
+  void setChristIsRisenFromTheDead(String value) {
+    _christIsRisenFromTheDead = value;
+  }
+
+  String getFromAscensionUntilPentecost() => _fromAscensionUntilPentecost;
+
+  void setFromAscensionUntilPentecost(String value) {
+    _fromAscensionUntilPentecost = value;
+  }
+
+  String getComeLetUsWorship() => _comeLetUsWorship;
+
+  void setComeLetUsWorship(String value) {
+    _comeLetUsWorship = value;
   }
 }
