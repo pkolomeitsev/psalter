@@ -32,7 +32,6 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
           context.tr('prayersBeforePsalterReading'),
           style: TextStyle(color: Colors.white),
         ),
-        centerTitle: true,
         actions: [FontSizeButton(notifier: pageNotifier)],
       ),
       body: FutureBuilder<PsalterBeforeAfterPrayers>(

@@ -11,6 +11,7 @@ import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.
 import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
+import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -47,6 +48,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: AppTitle()),
+      drawer: LeftSideBar(),
       body: Semantics(
         identifier: 'settings_view',
         child: ListViewWrapper(

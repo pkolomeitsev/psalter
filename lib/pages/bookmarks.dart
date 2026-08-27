@@ -11,6 +11,7 @@ import 'package:orth_psalter/ui/components/bookmark_card.dart';
 import 'package:orth_psalter/ui/components/chip_list.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
+import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Bookmarks extends StatefulWidget {
@@ -43,6 +44,7 @@ class _BookmarksState extends State<Bookmarks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: AppTitle()),
+      drawer: LeftSideBar(),
       body: FutureBuilder(
         future: this.fetchActivityData(),
         builder: (context, snapshot) {
