@@ -12,12 +12,10 @@ class CommonPrayers {
   late String _prayerLabel;
   late String _psalmLabel;
   late String _oHeavenlyKing;
-  late String _fromPaschaUntilAscension;
-  late String _christIsRisenFromTheDead;
-  late String _fromAscensionUntilPentecost;
   late String _comeLetUsWorship;
+  late String _easterSuggestion;
 
-  CommonPrayers(Map<String,dynamic> data) {
+  CommonPrayers(Map<String, dynamic> data) {
     this._hallelujah3T = data['hallelujah3T'] ?? '';
     this._lordHaveMercy3T = data['lordHaveMercy3T'] ?? '';
     this._lordHaveMercy40T = data['lordHaveMercy40T'] ?? '';
@@ -31,10 +29,8 @@ class CommonPrayers {
     this._prayerLabel = data['prayer'] ?? '';
     this._psalmLabel = data['psalmLabel'] ?? '';
     this._oHeavenlyKing = data['oHeavenlyKing'] ?? '';
-    this._fromPaschaUntilAscension = data['fromPaschaUntilAscension'] ?? '';
-    this._christIsRisenFromTheDead = data['christIsRisenFromTheDead'] ?? '';
-    this._fromAscensionUntilPentecost = data['fromAscensionUntilPentecost'] ?? '';
     this._comeLetUsWorship = data['comeLetUsWorship'] ?? '';
+    this._easterSuggestion = data['easterSuggestion'] ?? '';
   }
 
   String getPsalmLabel() => _psalmLabel;
@@ -115,27 +111,15 @@ class CommonPrayers {
     _oHeavenlyKing = value;
   }
 
-  String getFromPaschaUntilAscension() => _fromPaschaUntilAscension;
-
-  void setFromPaschaUntilAscension(String value) {
-    _fromPaschaUntilAscension = value;
-  }
-
-  String getChristIsRisenFromTheDead() => _christIsRisenFromTheDead;
-
-  void setChristIsRisenFromTheDead(String value) {
-    _christIsRisenFromTheDead = value;
-  }
-
-  String getFromAscensionUntilPentecost() => _fromAscensionUntilPentecost;
-
-  void setFromAscensionUntilPentecost(String value) {
-    _fromAscensionUntilPentecost = value;
-  }
-
   String getComeLetUsWorship() => _comeLetUsWorship;
 
   void setComeLetUsWorship(String value) {
     _comeLetUsWorship = value;
+  }
+
+  String getEasterSuggestion() => _easterSuggestion;
+
+  void setEasterSuggestion(String value) {
+    _easterSuggestion = value;
   }
 }

@@ -56,7 +56,6 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
                 listenable: pageNotifier,
                 builder: (BuildContext context, Widget? child) {
                   return getPageContent(
-                    context,
                     snapshot.data as PsalterBeforeAfterPrayers,
                   );
                 },
@@ -70,10 +69,12 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
     );
   }
 
-  Widget getPageContent(
-    BuildContext context,
-    PsalterBeforeAfterPrayers prayers,
-  ) {
+  Widget getPageContent(PsalterBeforeAfterPrayers prayers) {
+    TextStyle highlightSuggestionStyle = TextStyle(
+      color: AppColors.textHeadingColor,
+      fontStyle: FontStyle.italic,
+    );
+
     return TextPageViewWrapper(
       data: [
         PrayerView(
@@ -84,14 +85,22 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
           prayerName: prayers.getPsalmBeforeIfLaymanTitle(),
           prayerText: prayers.getPsalmBeforeIfLayman(),
         ),
+        Text(
+          style: highlightSuggestionStyle,
+          prayers.getCommonPrayers().getEasterSuggestion(),
+        ),
         PrayerView(prayerText: prayers.getPsalmBeforeGloryThee()),
         PrayerView(prayerText: prayers.getCommonPrayers().getOHeavenlyKing()),
-        PrayerView(prayerText: prayers.getCommonPrayers().getTrisagion()),
+        PrayerView(
+          prayerName: prayers.getCommonPrayers().getTrisagion2OurFatherLabel(),
+          prayerText: prayers.getCommonPrayers().getTrisagion(),
+        ),
         PrayerView(prayerText: prayers.getCommonPrayers().getGloryForever()),
         PrayerView(prayerText: prayers.getCommonPrayers().getMostHolyTrinity()),
         PrayerView(prayerText: prayers.getCommonPrayers().getLordHaveMercy3T()),
         PrayerView(prayerText: prayers.getCommonPrayers().getGloryForever()),
         PrayerView(prayerText: prayers.getCommonPrayers().getOurFather()),
+        SizedBox(height: 30),
         PrayerView(prayerText: prayers.getPsalmBeforeIfLayman()),
         PrayerView(
           prayerName: prayers.getCommonPrayers().getTropariaLabel(),
@@ -108,10 +117,7 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
           prayerText: prayers.getCommonPrayers().getComeLetUsWorship(),
         ),
         Text(
-          style: TextStyle(
-            color: AppColors.textHeadingColor,
-            fontStyle: FontStyle.italic
-          ),
+          style: highlightSuggestionStyle,
           prayers.getPsalmBeforeSuggestion(),
         ),
         SizedBox(height: 20),
