@@ -20,7 +20,7 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
   final PageNotifier pageNotifier = PageNotifier();
 
   Future<PsalterBeforeAfterPrayers> fetchData(BuildContext context) async {
-    return await PsalterPrayerStorage.getBeforeAfterPrayers('before');
+    return await PsalterPrayerStorage.getBeforeAfterPrayers();
   }
 
   @override
