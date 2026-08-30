@@ -10,6 +10,9 @@ class PsalterBeforeAfterPrayers {
   late String _psalmBeforePrayerTitle;
   late String _psalmBeforePrayer;
   late String _psalmBeforeSuggestion;
+  late String _psalmAfterPrayer;
+  late String _psalmAfterPrayerEndingLabel;
+  late String _psalmAfterPrayerEnding;
   late CommonPrayers commonPrayers;
 
   PsalterBeforeAfterPrayers(Map<String, dynamic> data, this.commonPrayers) {
@@ -22,60 +25,69 @@ class PsalterBeforeAfterPrayers {
     this._psalmBeforePrayerTitle = data['psalmBeforePrayerTitle'] ?? '';
     this._psalmBeforePrayer = data['psalmBeforePrayer'] ?? '';
     this._psalmBeforeSuggestion = data['psalmBeforeSuggestion'] ?? '';
+    this._psalmAfterPrayer = data['psalmAfterPrayer'] ?? '';
+    this._psalmAfterPrayerEndingLabel = data['psalmAfterPrayerEndingLabel'] ?? '';
+    this._psalmAfterPrayerEnding = data['psalmAfterPrayerEnding'] ?? '';
   }
 
   String getPsalmBeforeSuggestion() => _psalmBeforeSuggestion;
-
   void setPsalmBeforeSuggestion(String value) {
     _psalmBeforeSuggestion = value;
   }
 
   String getPsalmBeforePrayer() => _psalmBeforePrayer;
-
   void setPsalmBeforePrayer(String value) {
     _psalmBeforePrayer = value;
   }
 
   String getPsalmBeforePrayerTitle() => _psalmBeforePrayerTitle;
-
   void setPsalmBeforePrayerTitle(String value) {
     _psalmBeforePrayerTitle = value;
   }
 
   String getPsalmBeforeTroparion() => _psalmBeforeTroparion;
-
   void setPsalmBeforeTroparion(String value) {
     _psalmBeforeTroparion = value;
   }
 
   String getPsalmBeforeGloryThee() => _psalmBeforeGloryThee;
-
   void setPsalmBeforeGloryThee(String value) {
     _psalmBeforeGloryThee = value;
   }
 
   String getPsalmBeforeIfLayman() => _psalmBeforeIfLayman;
-
   void setPsalmBeforeIfLayman(String value) {
     _psalmBeforeIfLayman = value;
   }
 
   String getPsalmBeforeIfPriest() => _psalmBeforeIfPriest;
-
   void setPsalmBeforeIfPriest(String value) {
     _psalmBeforeIfPriest = value;
   }
 
   String getPsalmBeforeIfLaymanTitle() => _psalmBeforeIfLaymanTitle;
-
   void setPsalmBeforeIfLaymanTitle(String value) {
     _psalmBeforeIfLaymanTitle = value;
   }
 
   String getPsalmBeforeIfPriestTitle() => _psalmBeforeIfPriestTitle;
-
   void setPsalmBeforeIfPriestTitle(String value) {
     _psalmBeforeIfPriestTitle = value;
+  }
+
+  String getPsalmAfterPrayer() => _psalmAfterPrayer;
+  void setPsalmAfterPrayer(String value) {
+    _psalmAfterPrayer = value;
+  }
+
+  String getPsalmAfterPrayerEndingLabel() => _psalmAfterPrayerEndingLabel;
+  void setPsalmAfterPrayerEndingLabel(String value) {
+    _psalmAfterPrayerEndingLabel = value;
+  }
+
+  String getPsalmAfterPrayerEnding() => _psalmAfterPrayerEnding;
+  void setPsalmAfterPrayerEnding(String value) {
+    _psalmAfterPrayerEnding = value;
   }
 
   CommonPrayers getCommonPrayers() => this.commonPrayers;
