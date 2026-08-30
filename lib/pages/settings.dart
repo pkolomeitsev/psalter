@@ -212,7 +212,7 @@ class _SettingsState extends State<Settings> {
     showAboutDialog(
       context: context,
       applicationName: context.tr('appTitle'),
-      applicationIcon: AppIcon(),
+      applicationIcon: AppIcon(width: 50, height: 50),
       applicationVersion: appInfo.version,
       children: [
         Text(context.tr('aboutText'), style: textStyle),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
+import 'package:orth_psalter/ui/components/app_icon.dart';
 
 class LeftSideBar extends StatefulWidget {
   const LeftSideBar({super.key});
@@ -74,7 +75,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.add),
+            leading: AppIcon(),
             title: Text(context.tr('prayersBeforePsalterReading')),
             onTap: () {
               Navigator.pop(context);
@@ -82,7 +83,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.add),
+            leading: AppIcon(),
             title: Text(context.tr('prayersAfterPsalterReading')),
             onTap: () {
               Navigator.pop(context);

@@ -11,6 +11,11 @@ flutter build appbundle --release
 flutter build ipa
 ```
 
+# Precompiling and Optimizing SVGs 
+```bash
+dart run vector_graphics_compiler -i assets/svg/icons/cros.svg -o assets/vector/icons/cros.svg.vec
+```
+
 # QA autotests
 
 Run autotests:
