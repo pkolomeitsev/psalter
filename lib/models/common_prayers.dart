@@ -17,6 +17,7 @@ class CommonPrayers {
   late String _hymnToTheTheotokos;
   late String _hymnToTheTheotokosShort;
   late String _stEphremPrayer;
+  late String _hymnToTheTheotokosSuggestion;
 
   CommonPrayers(Map<String, dynamic> data) {
     this._hallelujah3T = data['hallelujah3T'] ?? '';
@@ -37,6 +38,7 @@ class CommonPrayers {
     this._hymnToTheTheotokos = data['hymnToTheTheotokos'] ?? '';
     this._hymnToTheTheotokosShort = data['hymnToTheTheotokosShort'] ?? '';
     this._stEphremPrayer = data['stEphremPrayer'] ?? '';
+    this._hymnToTheTheotokosSuggestion = data['hymnToTheTheotokosSuggestion'] ?? '';
   }
 
   String getPsalmLabel() => _psalmLabel;
@@ -127,5 +129,10 @@ class CommonPrayers {
   String getStEphremPrayer() => _stEphremPrayer;
   void setStEphremPrayer(String value) {
     _stEphremPrayer = value;
+  }
+
+  String getHymnToTheTheotokosSuggestion() => _hymnToTheTheotokosSuggestion;
+  void setHymnToTheTheotokosSuggestion(String value) {
+    _hymnToTheTheotokosSuggestion = value;
   }
 }

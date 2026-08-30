@@ -99,7 +99,6 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
         PrayerView(prayerText: prayers.getCommonPrayers().getLordHaveMercy3T()),
         PrayerView(prayerText: prayers.getCommonPrayers().getGloryForever()),
         PrayerView(prayerText: prayers.getCommonPrayers().getOurFather()),
-        SizedBox(height: 30),
         PrayerView(prayerText: prayers.getPsalmBeforeIfLayman()),
         PrayerView(
           prayerName: prayers.getCommonPrayers().getTropariaLabel(),
