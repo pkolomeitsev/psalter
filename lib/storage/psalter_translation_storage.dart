@@ -2,7 +2,7 @@ import 'package:intl/intl_standalone.dart'
     if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:orth_psalter/helpers/json_helper.dart';
 import 'package:orth_psalter/helpers/utils_helper.dart';
-import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PsalterTranslationStorage {

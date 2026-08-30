@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/helpers/debouncer_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
-import 'package:orth_psalter/storage/scroll_position_storage.dart';
+import 'package:orth_psalter/storage/system/scroll_position_storage.dart';
 
 mixin ScrollPositionStorageMixin {
   late ScrollController scrollController;

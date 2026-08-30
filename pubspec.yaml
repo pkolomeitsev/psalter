@@ -78,7 +78,10 @@ flutter:
   assets:
     - assets/generated/translations/
     - assets/data/psalms/
+    - assets/data/psalms/before/
+    - assets/data/psalms/after/
     - assets/data/kathismas/
+    - assets/data/prayers/
     - assets/data/credits/
     - assets/icons/
     - assets/imgs/

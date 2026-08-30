@@ -18,7 +18,7 @@ class TroparionWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            this.kathisma!.getTrisagion2OurFather().getTropariaLabel(),
+            this.kathisma!.getCommonPrayers().getTropariaLabel(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: AppearanceConfigSingleton().getBodyFontSize(),

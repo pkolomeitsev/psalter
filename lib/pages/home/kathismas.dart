@@ -6,7 +6,7 @@ import 'package:orth_psalter/models/notifiers/last_viewed_kathismas_notifier.dar
 import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/kathisma_storage.dart';
-import 'package:orth_psalter/storage/last_viewed_storage.dart';
+import 'package:orth_psalter/storage/system/last_viewed_storage.dart';
 import 'package:orth_psalter/ui/components/bookmark_card.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 

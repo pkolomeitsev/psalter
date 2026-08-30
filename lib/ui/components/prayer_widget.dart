@@ -18,7 +18,7 @@ class PrayerWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            this.kathisma!.getTrisagion2OurFather().getPrayerLabel(),
+            this.kathisma!.getCommonPrayers().getPrayerLabel(),
             textAlign: TextAlign.center,
           ),
         ),

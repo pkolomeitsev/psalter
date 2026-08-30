@@ -1,6 +1,6 @@
 import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/theme_options.dart';
-import 'package:orth_psalter/storage/appearance_config_storage.dart';
+import 'package:orth_psalter/storage/system/appearance_config_storage.dart';
 import 'package:orth_psalter/theme/app_font.dart';
 
 class AppearanceConfigSingleton {

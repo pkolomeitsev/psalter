@@ -9,8 +9,10 @@ import 'package:orth_psalter/models/notifiers/application_notifier.dart';
 import 'package:orth_psalter/pages/home/kathisma.dart';
 import 'package:orth_psalter/pages/home/psalm.dart';
 import 'package:orth_psalter/pages/main_application.dart';
+import 'package:orth_psalter/pages/sections/psalter_after_prayer.dart';
+import 'package:orth_psalter/pages/sections/psalter_before_prayer.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
-import 'package:orth_psalter/storage/locale_storage.dart';
+import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:orth_psalter/theme/theme_data_manager.dart';
 
 void main() async {
@@ -68,6 +70,16 @@ final GoRouter _router = GoRouter(
           path: '/${EntityType.asNeeded.name}/:psalmId',
           builder: (context, state) =>
               Psalm(psalmId: int.parse(state.pathParameters['psalmId']!)),
+        ),
+        GoRoute(
+          path: '/psalter/prayer/before',
+          builder: (context, state) =>
+              PsalterBeforePrayer(),
+        ),
+        GoRoute(
+          path: '/psalter/prayer/after',
+          builder: (context, state) =>
+              PsalterAfterPrayer(),
         ),
       ],
     ),

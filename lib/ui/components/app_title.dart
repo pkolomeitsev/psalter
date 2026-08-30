@@ -7,12 +7,9 @@ class AppTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset(
-          'assets/icons/orthodox-cross-white-50.png',
-          height: 24,
-        ),
+        Image.asset('assets/icons/orthodox-cross-white-50.png', height: 24),
         const SizedBox(width: 10),
         Text(context.tr('appTitle')),
       ],
