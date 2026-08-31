@@ -45,7 +45,7 @@ class UtilsHelper {
         .join('&');
   }
 
-  static Future sendEmail(String mail, String subject, String body) async {
+  static Future<bool> sendEmail(String mail, String subject, String body) async {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: mail,
@@ -54,13 +54,18 @@ class UtilsHelper {
         'body': body,
       }),
     );
+    LaunchMode mode = await supportsLaunchMode(LaunchMode.externalApplication)
+      ? LaunchMode.externalApplication
+      : LaunchMode.platformDefault;
 
-    if (await canLaunchUrl(emailLaunchUri)) {
-      return await launchUrl(emailLaunchUri);
+    if (await launchUrl(emailLaunchUri, mode: mode)) {
+      return true;
     }
 
     if (kDebugMode) {
-      print('Error: to launch email -> $emailLaunchUri');
+      print('Error: to launch email -> $emailLaunchUri ; mode: $mode');
     }
+
+    return false;
   }
 }
