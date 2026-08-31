@@ -5,9 +5,7 @@ import 'package:orth_psalter/ui/components/link_button.dart';
 
 class DonationListTile extends StatefulWidget {
   final String privateUAH = 'https://www.privat24.ua/send/46782';
-  final String privateUSD = 'https://www.privat24.ua/send/46rgn';
   final String monoUAH = 'https://send.monobank.ua/jar/7vPsP8gcL1';
-  final String monoUSD = 'https://send.monobank.ua/jar/7vPsP8gcL1';
 
   const DonationListTile({super.key});
 
