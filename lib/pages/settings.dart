@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
-import 'package:orth_psalter/ui/components/buttons/copy_email_button.dart';
 import 'package:orth_psalter/ui/components/information/donation_list_tile.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
