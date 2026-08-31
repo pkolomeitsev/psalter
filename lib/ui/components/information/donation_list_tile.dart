@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 
-class DonationWidget extends StatefulWidget {
+class DonationListTile extends StatefulWidget {
   final String privateUAH = 'https://www.privat24.ua/send/46782';
   final String privateUSD = 'https://www.privat24.ua/send/46rgn';
   final String monoUAH = 'https://send.monobank.ua/jar/7vPsP8gcL1';
   final String monoUSD = 'https://send.monobank.ua/jar/7vPsP8gcL1';
 
-  const DonationWidget({super.key});
+  const DonationListTile({super.key});
 
   @override
-  State<DonationWidget> createState() => _DonationWidgetState();
+  State<DonationListTile> createState() => _DonationListTileState();
 }
 
-class _DonationWidgetState extends State<DonationWidget> {
+class _DonationListTileState extends State<DonationListTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
