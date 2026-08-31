@@ -47,7 +47,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: AppTitle()),
+      appBar: AppBar(title: AppTitle(), centerTitle: true),
       drawer: LeftSideBar(),
       body: Semantics(
         identifier: 'settings_view',
