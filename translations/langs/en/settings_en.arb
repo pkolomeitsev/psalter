@@ -28,5 +28,7 @@
   "contactSubject": "Psalter App contact message",
   "contactBody": "Please describe your proposal or any issue in details. Screenshots are welcome.",
   "donations": "Donations",
-  "donationMessage": "Here you can support Psalter application following the link:"
+  "donationMessage": "Here you can support Psalter application following the link:",
+  "sendEmailNoticeMessageTitle": "Notice",
+  "sendEmailNoticeMessage": "Email App was not found or cannot be opened on your device automatically, you can copy email address bellow and send email manually:"
 }

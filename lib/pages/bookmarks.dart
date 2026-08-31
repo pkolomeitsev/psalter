@@ -43,7 +43,7 @@ class _BookmarksState extends State<Bookmarks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: AppTitle()),
+      appBar: AppBar(title: AppTitle(), centerTitle: true),
       drawer: LeftSideBar(),
       body: FutureBuilder(
         future: this.fetchActivityData(),

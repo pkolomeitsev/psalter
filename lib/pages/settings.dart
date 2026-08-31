@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:orth_psalter/helpers/utils_helper.dart';
 import 'package:orth_psalter/storage/system/locale_storage.dart';
 import 'package:orth_psalter/storage/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
-import 'package:orth_psalter/ui/components/information/donation_widget.dart';
+import 'package:orth_psalter/ui/components/information/donation_list_tile.dart';
 import 'package:orth_psalter/ui/components/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
+import 'package:orth_psalter/ui/components/information/send_email_list_tile.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
@@ -47,7 +47,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: AppTitle()),
+      appBar: AppBar(title: AppTitle(), centerTitle: true),
       drawer: LeftSideBar(),
       body: Semantics(
         identifier: 'settings_view',
@@ -78,19 +78,12 @@ class _SettingsState extends State<Settings> {
             SettingsCardTitle(text: context.tr('info')),
             SettingsCard(
               children: [
-                DonationWidget(),
+                DonationListTile(),
                 Divider(height: 0),
-                ListTile(
-                  title: Text(context.tr('contact')),
-                  subtitle: Text(context.tr('contactSubTitle')),
-                  trailing: Icon(Icons.mail),
-                  onTap: () async {
-                    await UtilsHelper.sendEmail(
-                      this.adminContact,
-                      context.tr('contactSubject'),
-                      context.tr('contactBody'),
-                    );
-                  },
+                SendEmailListTile(
+                  email: this.adminContact,
+                  subject: context.tr('contactSubject'),
+                  body: context.tr('contactBody'),
                 ),
                 Divider(height: 0),
                 ListTile(
