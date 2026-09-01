@@ -14,8 +14,6 @@
   "psalm": "Псалом",
   "kathisma": "Кафізма",
 
-  "noBookmarks": "На даний момент немає закладок",
-  "deleteBookmarkConfirm": "Ви впевнені, що ви бажаєте видалити \"{chipName}\"?",
   "cancel": "Відміна",
   "delete": "Видалити"
 }
