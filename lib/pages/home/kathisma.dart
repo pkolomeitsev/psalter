@@ -14,7 +14,7 @@ import 'package:orth_psalter/storage/system/scroll_position_storage.dart';
 import 'package:orth_psalter/ui/components/buttons/font_size_button.dart';
 import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
 import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
-import 'package:orth_psalter/ui/components/trisagion_2_our_father_widget.dart';
+import 'package:orth_psalter/ui/components/text/prayers/trisagion_2_our_father_widget.dart';
 import 'package:orth_psalter/ui/components/troparion_widget.dart';
 import 'package:orth_psalter/ui/views/prayer_view.dart';
 import 'package:orth_psalter/ui/views/psalm_view.dart';
@@ -156,7 +156,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
     return Column(
       children: [
         Trisagion2OurFatherWidget(
-          trisagion2OurFather: kathisma!.getCommonPrayers(),
+          commonPrayers: kathisma!.getCommonPrayers(),
         ),
       ],
     );

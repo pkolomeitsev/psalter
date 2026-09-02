@@ -13,7 +13,6 @@ class PrayerView extends StatelessWidget {
     return Column(
       children: [
         if (this.prayerName.isNotEmpty) ...[
-          SizedBox(height: 10),
           DefaultTextStyle.merge(
             style: TextStyle(
               fontSize: AppearanceConfigSingleton().getTitleFontSize(),
@@ -25,8 +24,8 @@ class PrayerView extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
+          SizedBox(height: 10),
         ],
-        SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),

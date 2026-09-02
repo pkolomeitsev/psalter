@@ -4,10 +4,10 @@ import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class Trisagion2OurFatherWidget extends StatelessWidget {
-  final CommonPrayers trisagion2OurFather;
+  final CommonPrayers commonPrayers;
   const Trisagion2OurFatherWidget({
     super.key,
-    required this.trisagion2OurFather,
+    required this.commonPrayers,
   });
 
   @override
@@ -21,7 +21,7 @@ class Trisagion2OurFatherWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            trisagion2OurFather.getTrisagion2OurFatherLabel(),
+            commonPrayers.getTrisagion2OurFatherLabel(),
             textAlign: TextAlign.center,
           ),
         ),
@@ -30,42 +30,42 @@ class Trisagion2OurFatherWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(trisagion2OurFather.getTrisagion()),
+          child: Text(commonPrayers.getTrisagion()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(trisagion2OurFather.getGloryForever()),
+          child: Text(commonPrayers.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(trisagion2OurFather.getMostHolyTrinity()),
+          child: Text(commonPrayers.getMostHolyTrinity()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(trisagion2OurFather.getLordHaveMercy3T()),
+          child: Text(commonPrayers.getLordHaveMercy3T()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(trisagion2OurFather.getGloryForever()),
+          child: Text(commonPrayers.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(trisagion2OurFather.getOurFather()),
+          child: Text(commonPrayers.getOurFather()),
         ),
         SizedBox(height: 10),
       ],
