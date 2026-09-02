@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/models/gesture/zoom_gesture.dart';
 import 'package:orth_psalter/models/notifiers/page_notifier.dart';
 import 'package:orth_psalter/models/psalter_before_after_prayers.dart';
-import 'package:orth_psalter/storage/psalter_prayer_storage.dart';
+import 'package:orth_psalter/storage/prayer/psalter_prayer_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:orth_psalter/ui/components/buttons/font_size_button.dart';
 import 'package:orth_psalter/ui/views/prayer_view.dart';

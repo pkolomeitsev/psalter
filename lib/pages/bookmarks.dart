@@ -4,7 +4,7 @@ import 'package:orth_psalter/models/interfaces/entity_object_interface.dart';
 import 'package:orth_psalter/models/bookmark.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_bookmarks_notifier.dart';
-import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/prayer/bookmark_storage.dart';
 import 'package:orth_psalter/storage/system/last_viewed_bookmarks_storage.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/cards/bookmark_card.dart';

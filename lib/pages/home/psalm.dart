@@ -7,7 +7,7 @@ import 'package:orth_psalter/models/notifiers/page_notifier.dart';
 import 'package:orth_psalter/models/psalm.dart' as psalm_model;
 import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
-import 'package:orth_psalter/storage/psalm_storage.dart';
+import 'package:orth_psalter/storage/prayer/psalm_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:orth_psalter/storage/system/scroll_position_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
