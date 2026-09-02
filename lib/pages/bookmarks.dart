@@ -7,10 +7,10 @@ import 'package:orth_psalter/models/notifiers/last_viewed_bookmarks_notifier.dar
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/system/last_viewed_bookmarks_storage.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
-import 'package:orth_psalter/ui/components/bookmark_card.dart';
+import 'package:orth_psalter/ui/components/cards/bookmark_card.dart';
 import 'package:orth_psalter/ui/components/chip_list.dart';
-import 'package:orth_psalter/ui/components/settings_card.dart';
-import 'package:orth_psalter/ui/components/settings_card_title.dart';
+import 'package:orth_psalter/ui/components/cards/settings_card.dart';
+import 'package:orth_psalter/ui/components/cards/settings_card_title.dart';
 import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
 import 'package:orth_psalter/ui/components/text/wisdom_widget.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';

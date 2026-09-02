@@ -7,7 +7,7 @@ import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/system/last_viewed_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
-import 'package:orth_psalter/ui/components/bookmark_card.dart';
+import 'package:orth_psalter/ui/components/cards/bookmark_card.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 
 class Psalms extends StatefulWidget {

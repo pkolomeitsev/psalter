@@ -5,7 +5,7 @@ import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
 import 'package:orth_psalter/storage/bookmark_storage.dart';
 import 'package:orth_psalter/storage/system/last_viewed_storage.dart';
 import 'package:orth_psalter/storage/psalm_storage.dart';
-import 'package:orth_psalter/ui/components/bookmark_card.dart';
+import 'package:orth_psalter/ui/components/cards/bookmark_card.dart';
 
 class AsNeeded extends StatefulWidget {
   final int psalmAmount = (PsalmStorage.psalmsAmount - 1);
