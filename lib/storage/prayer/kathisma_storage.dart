@@ -1,8 +1,8 @@
 import 'package:orth_psalter/helpers/json_helper.dart';
 import 'package:orth_psalter/models/kathisma.dart';
 import 'package:orth_psalter/models/common_prayers.dart';
-import 'package:orth_psalter/storage/psalm_storage.dart';
-import 'package:orth_psalter/storage/psalter_translation_storage.dart';
+import 'package:orth_psalter/storage/prayer/psalm_storage.dart';
+import 'package:orth_psalter/storage/system/psalter_translation_storage.dart';
 
 class KathismaStorage {
   static const int kathismasAmount = 20;

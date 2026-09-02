@@ -1,6 +1,6 @@
 import 'package:orth_psalter/helpers/json_helper.dart';
 import 'package:orth_psalter/models/psalm.dart';
-import 'package:orth_psalter/storage/psalter_translation_storage.dart';
+import 'package:orth_psalter/storage/system/psalter_translation_storage.dart';
 
 class PsalmStorage {
   static const int psalmsAmount = 151;

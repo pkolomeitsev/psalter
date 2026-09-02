@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/models/interfaces/entity_object_interface.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
-import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/prayer/bookmark_storage.dart';
 
 class ChipList extends StatefulWidget {
   final List<EntityObjectInterface> chipList;

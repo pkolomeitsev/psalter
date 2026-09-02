@@ -4,7 +4,7 @@ import 'package:orth_psalter/helpers/debouncer_helper.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
 import 'package:orth_psalter/models/router_extra_parameters.dart';
-import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/prayer/bookmark_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class BookmarkCard extends StatefulWidget {

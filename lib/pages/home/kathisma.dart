@@ -9,14 +9,14 @@ import 'package:orth_psalter/models/notifiers/page_notifier.dart';
 import 'package:orth_psalter/models/psalm.dart';
 import 'package:orth_psalter/models/router_extra_parameters.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
-import 'package:orth_psalter/storage/kathisma_storage.dart';
+import 'package:orth_psalter/storage/prayer/kathisma_storage.dart';
 import 'package:orth_psalter/storage/system/scroll_position_storage.dart';
 import 'package:orth_psalter/ui/components/buttons/font_size_button.dart';
-import 'package:orth_psalter/ui/components/glory_forever_short_widget.dart';
-import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
-import 'package:orth_psalter/ui/components/prayer_widget.dart';
-import 'package:orth_psalter/ui/components/trisagion_2_our_father_widget.dart';
-import 'package:orth_psalter/ui/components/troparion_widget.dart';
+import 'package:orth_psalter/ui/components/text/prayers/glory_forever_short_widget.dart';
+import 'package:orth_psalter/ui/components/text/prayers/glory_forever_widget.dart';
+import 'package:orth_psalter/ui/components/text/prayers/trisagion_2_our_father_widget.dart';
+import 'package:orth_psalter/ui/components/text/prayers/kathisma/troparion_widget.dart';
+import 'package:orth_psalter/ui/views/prayer_view.dart';
 import 'package:orth_psalter/ui/views/psalm_view.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
@@ -130,16 +130,14 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
       // add 1, 2 glory
       if (gloryAfter.contains(psalm.getNumber())) {
         psalmWidgets.add(
-          GloryForeverWidget(
-            trisagion2ourFather: kathisma.getCommonPrayers(),
-          ),
+          GloryForeverWidget(commonPrayers: kathisma.getCommonPrayers()),
         );
       }
       // short glory forever after 150 psalm
       if (psalm.getNumber() == 150) {
         psalmWidgets.add(
           GloryForeverShortWidget(
-            trisagion2ourFather: kathisma.getCommonPrayers(),
+            commonPrayers: kathisma.getCommonPrayers(),
           ),
         );
       }
@@ -147,7 +145,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
     // add 3rd glory
     psalmWidgets.add(
       GloryForeverShortWidget(
-        trisagion2ourFather: kathisma.getCommonPrayers(),
+        commonPrayers: kathisma.getCommonPrayers(),
       ),
     );
 
@@ -158,7 +156,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
     return Column(
       children: [
         Trisagion2OurFatherWidget(
-          trisagion2OurFather: kathisma!.getCommonPrayers(),
+          commonPrayers: kathisma!.getCommonPrayers(),
         ),
       ],
     );
@@ -169,6 +167,13 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
   }
 
   Widget renderPrayer(kathisma_model.Kathisma? kathisma) {
-    return Column(children: [PrayerWidget(kathisma: kathisma)]);
+    return Column(
+      children: [
+        PrayerView(
+          prayerName: kathisma!.getCommonPrayers().getPrayerLabel(),
+          prayerText: kathisma.getPrayer(),
+        ),
+      ],
+    );
   }
 }

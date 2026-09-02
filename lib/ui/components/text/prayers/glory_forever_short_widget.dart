@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:orth_psalter/models/kathisma.dart';
+import 'package:orth_psalter/models/common_prayers.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
-class PrayerWidget extends StatelessWidget {
-  final Kathisma? kathisma;
-  const PrayerWidget({super.key, this.kathisma});
+class GloryForeverShortWidget extends StatelessWidget {
+  final CommonPrayers commonPrayers;
+  const GloryForeverShortWidget({super.key, required this.commonPrayers});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,11 @@ class PrayerWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            this.kathisma!.getCommonPrayers().getPrayerLabel(),
+            this.commonPrayers.getGloryForeverShort(),
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+            ),
           ),
         ),
         SizedBox(height: 10),
@@ -27,7 +30,14 @@ class PrayerWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: SelectableText(this.kathisma!.getPrayer()),
+          child: Text(this.commonPrayers.getGloryForever()),
+        ),
+        SizedBox(height: 10),
+        DefaultTextStyle.merge(
+          style: TextStyle(
+            fontSize: AppearanceConfigSingleton().getBodyFontSize(),
+          ),
+          child: Text(this.commonPrayers.getHallelujah3T()),
         ),
         SizedBox(height: 10),
       ],

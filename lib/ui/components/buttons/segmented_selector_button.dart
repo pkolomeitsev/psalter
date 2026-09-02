@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/dto/simple_dto.dart';
 
-class SegmentedButtonWidget extends StatefulWidget {
+class SegmentedSelectorButton extends StatefulWidget {
   final List<SimpleDto> segments;
   final int defaultItemId;
   final String identifier;
   final Function(dynamic)? callback;
 
-  const SegmentedButtonWidget({
+  const SegmentedSelectorButton({
     super.key,
     required this.segments,
     this.defaultItemId = 0,
@@ -16,10 +16,10 @@ class SegmentedButtonWidget extends StatefulWidget {
   });
 
   @override
-  State<SegmentedButtonWidget> createState() => _SegmentedButtonWidgetState();
+  State<SegmentedSelectorButton> createState() => _SegmentedSelectorButtonState();
 }
 
-class _SegmentedButtonWidgetState extends State<SegmentedButtonWidget> {
+class _SegmentedSelectorButtonState extends State<SegmentedSelectorButton> {
   SimpleDto? selectedItem;
 
   @override

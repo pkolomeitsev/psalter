@@ -1,7 +1,7 @@
 import 'package:orth_psalter/helpers/json_helper.dart';
 import 'package:orth_psalter/models/common_prayers.dart';
 import 'package:orth_psalter/models/psalter_before_after_prayers.dart';
-import 'package:orth_psalter/storage/psalter_translation_storage.dart';
+import 'package:orth_psalter/storage/system/psalter_translation_storage.dart';
 
 class PsalterPrayerStorage {
   static Future<PsalterBeforeAfterPrayers> getBeforeAfterPrayers() async {

@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/enums/entity_type.dart';
 import 'package:orth_psalter/models/notifiers/last_viewed_notifier.dart';
-import 'package:orth_psalter/storage/bookmark_storage.dart';
+import 'package:orth_psalter/storage/prayer/bookmark_storage.dart';
 import 'package:orth_psalter/storage/system/last_viewed_storage.dart';
-import 'package:orth_psalter/storage/psalm_storage.dart';
-import 'package:orth_psalter/ui/components/bookmark_card.dart';
+import 'package:orth_psalter/storage/prayer/psalm_storage.dart';
+import 'package:orth_psalter/ui/components/cards/bookmark_card.dart';
 
 class AsNeeded extends StatefulWidget {
   final int psalmAmount = (PsalmStorage.psalmsAmount - 1);
