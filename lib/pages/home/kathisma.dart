@@ -13,7 +13,7 @@ import 'package:orth_psalter/storage/kathisma_storage.dart';
 import 'package:orth_psalter/storage/system/scroll_position_storage.dart';
 import 'package:orth_psalter/ui/components/buttons/font_size_button.dart';
 import 'package:orth_psalter/ui/components/text/prayers/glory_forever_short_widget.dart';
-import 'package:orth_psalter/ui/components/glory_forever_widget.dart';
+import 'package:orth_psalter/ui/components/text/prayers/glory_forever_widget.dart';
 import 'package:orth_psalter/ui/components/text/prayers/trisagion_2_our_father_widget.dart';
 import 'package:orth_psalter/ui/components/text/prayers/kathisma/troparion_widget.dart';
 import 'package:orth_psalter/ui/views/prayer_view.dart';
@@ -130,7 +130,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
       // add 1, 2 glory
       if (gloryAfter.contains(psalm.getNumber())) {
         psalmWidgets.add(
-          GloryForeverWidget(trisagion2ourFather: kathisma.getCommonPrayers()),
+          GloryForeverWidget(commonPrayers: kathisma.getCommonPrayers()),
         );
       }
       // short glory forever after 150 psalm
