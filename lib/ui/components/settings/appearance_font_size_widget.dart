@@ -5,7 +5,7 @@ import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/font_size.dart';
 import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/system/appearance_config_storage.dart';
-import 'package:orth_psalter/ui/components/segmented_button_widget.dart';
+import 'package:orth_psalter/ui/components/buttons/segmented_selector_button.dart';
 
 class AppearanceFontSizeWidget extends StatefulWidget {
   const AppearanceFontSizeWidget({super.key});
@@ -36,7 +36,7 @@ class _AppearanceFontSizeWidgetState extends State<AppearanceFontSizeWidget> {
         } else if (snapshot.hasData) {
           this.selectedValue = snapshot.data!;
 
-          return SegmentedButtonWidget(
+          return SegmentedSelectorButton(
             segments: [
               SimpleDto(
                 context.tr('psalterFontSizeSmall'),
