@@ -12,6 +12,7 @@ import 'package:orth_psalter/ui/components/chip_list.dart';
 import 'package:orth_psalter/ui/components/settings_card.dart';
 import 'package:orth_psalter/ui/components/settings_card_title.dart';
 import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
+import 'package:orth_psalter/ui/components/text/wisdom_widget.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
 class Bookmarks extends StatefulWidget {
@@ -71,7 +72,11 @@ class _BookmarksState extends State<Bookmarks> {
                           asNeededIds.isEmpty) ...[
                         Text(context.tr('noBookmarks')),
                       ] else ...[
-                        this.renderBookmarks(context, EntityType.psalm, psalmIds),
+                        this.renderBookmarks(
+                          context,
+                          EntityType.psalm,
+                          psalmIds,
+                        ),
                         this.renderBookmarks(
                           context,
                           EntityType.kathisma,
@@ -83,6 +88,20 @@ class _BookmarksState extends State<Bookmarks> {
                           asNeededIds,
                         ),
                       ],
+                      SizedBox(height: 10),
+                      Card(
+                        child: Padding(
+                          padding: EdgeInsetsGeometry.all(10),
+                          child: WisdomWidget(
+                            wisdom: context.tr('bookmarksWisdom'),
+                            author: context.tr('bookmarksWisdomAuthor'),
+                            assetImage: 'assets/imgs/Saint_John_Chrysostom.jpg',
+                            wisdomTextStyle: TextStyle(
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 );

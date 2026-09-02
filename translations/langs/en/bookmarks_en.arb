@@ -1,0 +1,8 @@
+{
+  "@@locale": "en",
+
+  "noBookmarks": "There are no bookmarks at the moment",
+  "deleteBookmarkConfirm": "Are you sure you want to delete \"{chipName}\"?",
+  "bookmarksWisdom": "\"For nothing so much makes God propitious as the loving enemies, and doing good to those who despitefully use us. When a man insults you, look not to him, but to the devil who moves him, and against him empty all your wrath, but pity the man who is moved by him.\"",
+  "bookmarksWisdomAuthor": "(St. John Chrysostom)"
+}

@@ -1,7 +1,7 @@
 [
   {
     "num": 1,
-    "title": "Slavic, English (KJV) and other languages Psalms texts",
+    "title": "Slavic, English (KJV) translations",
     "linkLabel": "https://azbyka.ru",
     "link": "https://azbyka.ru/biblia/?Ps.1&a"
   },
@@ -64,5 +64,11 @@
     "title": "Hymn to the Theotokos",
     "linkLabel": "https://churchmotherofgod.org",
     "link": "https://churchmotherofgod.org/prayers/hymn-to-the-theotokos/"
+  },
+  {
+    "num": 12,
+    "title": "St. John Chrysostom Archbishop of Constantinople Icon source",
+    "linkLabel": "https://armenianprelacy.org",
+    "link": "https://armenianprelacy.org/2025/10/30/st-john-chrysostom/"
   }
 ]
