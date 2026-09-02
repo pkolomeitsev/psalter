@@ -5,7 +5,7 @@ import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
 import 'package:orth_psalter/ui/components/information/donation_list_tile.dart';
-import 'package:orth_psalter/ui/components/link_button.dart';
+import 'package:orth_psalter/ui/components/buttons/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
 import 'package:orth_psalter/ui/components/information/send_email_list_tile.dart';

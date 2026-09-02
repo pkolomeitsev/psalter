@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:orth_psalter/storage/system/locale_storage.dart';
-import 'package:orth_psalter/ui/components/link_button.dart';
+import 'package:orth_psalter/ui/components/buttons/link_button.dart';
 
 class DonationListTile extends StatefulWidget {
   final String privateUAH = 'https://www.privat24.ua/send/46782';
