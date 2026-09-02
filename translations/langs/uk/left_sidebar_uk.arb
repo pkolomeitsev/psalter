@@ -1,8 +1,8 @@
 {
   "@@locale": "uk",
 
-  "leftSideBarTitle": "\"Псалтир є хліб Ангельський, яким живляться душі, Бога пожадливі.\"",
-  "leftSideBarSubTitle": "(Святитель Григорій Богослов)",
+  "leftSideBarWisdom": "\"Псалтир є хліб Ангельський, яким живляться душі, Бога пожадливі.\"",
+  "leftSideBarWisdomAuthor": "(Святитель Григорій Богослов)",
   "prayersBeforePsalterReading": "Молитви перед читанням Псалтирі",
   "prayersAfterPsalterReading": "Молитви після читання Псалтирі"
 }

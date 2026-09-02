@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
+import 'package:orth_psalter/ui/components/text/wisdom_widget.dart';
 
 class LeftSideBar extends StatefulWidget {
   const LeftSideBar({super.key});
@@ -26,52 +27,12 @@ class _LeftSideBarState extends State<LeftSideBar> {
           DrawerHeader(
             padding: EdgeInsetsGeometry.all(10),
             decoration: BoxDecoration(color: AppColors.brandBgColor),
-            child: Column(
-              spacing: 10,
-              children: [
-                Row(
-                  spacing: 10,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: const CircleAvatar(
-                              backgroundImage: AssetImage(
-                                'assets/imgs/Saint_Gregory_the_Theologian.jpg',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            context.tr('leftSideBarTitle'),
-                            style: drawerHeaderTextStyle
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      context.tr('leftSideBarSubTitle'),
-                      style: drawerHeaderTextStyle,
-                      textAlign: TextAlign.right,
-                    ),
-                  ],
-                ),
-              ],
+            child: WisdomWidget(
+              wisdom: context.tr('leftSideBarWisdom'),
+              author: context.tr('leftSideBarWisdomAuthor'),
+              assetImage: 'assets/imgs/Saint_Gregory_the_Theologian.jpg',
+              wisdomTextStyle: drawerHeaderTextStyle,
+              authorTextStyle: drawerHeaderTextStyle,
             ),
           ),
           ListTile(
