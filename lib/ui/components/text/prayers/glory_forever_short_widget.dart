@@ -4,8 +4,8 @@ import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
 class GloryForeverShortWidget extends StatelessWidget {
-  final CommonPrayers trisagion2ourFather;
-  const GloryForeverShortWidget({super.key, required this.trisagion2ourFather});
+  final CommonPrayers commonPrayers;
+  const GloryForeverShortWidget({super.key, required this.commonPrayers});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class GloryForeverShortWidget extends StatelessWidget {
             color: AppColors.textHeadingColor,
           ),
           child: Text(
-            this.trisagion2ourFather.getGloryForeverShort(),
+            this.commonPrayers.getGloryForeverShort(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: AppearanceConfigSingleton().getBodyFontSize(),
@@ -30,14 +30,14 @@ class GloryForeverShortWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(this.trisagion2ourFather.getGloryForever()),
+          child: Text(this.commonPrayers.getGloryForever()),
         ),
         SizedBox(height: 10),
         DefaultTextStyle.merge(
           style: TextStyle(
             fontSize: AppearanceConfigSingleton().getBodyFontSize(),
           ),
-          child: Text(this.trisagion2ourFather.getHallelujah3T()),
+          child: Text(this.commonPrayers.getHallelujah3T()),
         ),
         SizedBox(height: 10),
       ],
