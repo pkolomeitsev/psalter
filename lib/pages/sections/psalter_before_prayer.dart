@@ -88,6 +88,7 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
           style: highlightSuggestionStyle,
           prayers.getCommonPrayers().getEasterSuggestion(),
         ),
+        SizedBox(height: 10),
         PrayerView(prayerText: prayers.getPsalmBeforeGloryThee()),
         PrayerView(prayerText: prayers.getCommonPrayers().getOHeavenlyKing()),
         PrayerView(
@@ -111,6 +112,7 @@ class _PsalterBeforePrayerState extends State<PsalterBeforePrayer> {
           prayerName: prayers.getPsalmBeforePrayerTitle(),
           prayerText: prayers.getPsalmBeforePrayer(),
         ),
+        SizedBox(height: 10),
         PrayerView(
           prayerText: prayers.getCommonPrayers().getComeLetUsWorship(),
         ),
