@@ -82,6 +82,7 @@ class _PsalterAfterPrayerState extends State<PsalterAfterPrayer> {
         style: highlightSuggestionStyle,
         prayers.getCommonPrayers().getHymnToTheTheotokosSuggestion(),
       ),
+      SizedBox(height: 10),
       PrayerView(
         prayerName: prayers.getCommonPrayers().getTrisagion2OurFatherLabel(),
         prayerText: prayers.getCommonPrayers().getTrisagion(),

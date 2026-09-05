@@ -137,6 +137,7 @@ class _BookmarksState extends State<Bookmarks> {
           SettingsCard(
             children: [this.renderBookmarksChips(context, type, ids)],
           ),
+          SizedBox(height: 10),
         ],
       ],
     );
