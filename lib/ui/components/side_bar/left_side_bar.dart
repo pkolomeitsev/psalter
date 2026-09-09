@@ -20,38 +20,41 @@ class _LeftSideBarState extends State<LeftSideBar> {
       color: AppColors.brandColorLight,
     );
 
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            padding: EdgeInsetsGeometry.all(10),
-            decoration: BoxDecoration(color: AppColors.brandBgColor),
-            child: WisdomWidget(
-              wisdom: context.tr('leftSideBarWisdom'),
-              author: context.tr('leftSideBarWisdomAuthor'),
-              assetImage: 'assets/imgs/Saint_Gregory_the_Theologian.jpg',
-              wisdomTextStyle: drawerHeaderTextStyle,
-              authorTextStyle: drawerHeaderTextStyle,
+    return Semantics(
+      identifier: 'left_side_bar',
+      child: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              padding: EdgeInsetsGeometry.all(10),
+              decoration: BoxDecoration(color: AppColors.brandBgColor),
+              child: WisdomWidget(
+                wisdom: context.tr('leftSideBarWisdom'),
+                author: context.tr('leftSideBarWisdomAuthor'),
+                assetImage: 'assets/imgs/Saint_Gregory_the_Theologian.jpg',
+                wisdomTextStyle: drawerHeaderTextStyle,
+                authorTextStyle: drawerHeaderTextStyle,
+              ),
             ),
-          ),
-          ListTile(
-            leading: AppIcon(),
-            title: Text(context.tr('prayersBeforePsalterReading')),
-            onTap: () {
-              Navigator.pop(context);
-              context.go('/psalter/prayer/before');
-            },
-          ),
-          ListTile(
-            leading: AppIcon(),
-            title: Text(context.tr('prayersAfterPsalterReading')),
-            onTap: () {
-              Navigator.pop(context);
-              context.go('/psalter/prayer/after');
-            },
-          ),
-        ],
+            ListTile(
+              leading: AppIcon(),
+              title: Text(context.tr('prayersBeforePsalterReading')),
+              onTap: () {
+                Navigator.pop(context);
+                context.go('/psalter/prayer/before');
+              },
+            ),
+            ListTile(
+              leading: AppIcon(),
+              title: Text(context.tr('prayersAfterPsalterReading')),
+              onTap: () {
+                Navigator.pop(context);
+                context.go('/psalter/prayer/after');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
