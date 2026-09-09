@@ -5,6 +5,22 @@ appId: com.github.pkolomeitsev.psalter
 - waitForAnimationToEnd:
     timeout: 5000
 
+# Right sidebar
+- swipe:
+    start: 0%, 50%
+    end: 50%, 50%
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible:
+    id: left_side_bar
+- takeScreenshot:
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/left_side_bar
+- swipe:
+    start: 50%, 60%
+    end: 0%, 50%
+- waitForAnimationToEnd:
+    timeout: 5000
+
 # Take screenshots for Psalms, Kathismas, As Needed
 - assertVisible:
     id: psalms

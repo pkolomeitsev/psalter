@@ -10,6 +10,7 @@ flutter build appbundle --release
 ```bash
 flutter build ipa
 ```
+> Run this command to fix build issues: `flutter clean && flutter pub get`
 
 # Precompiling and Optimizing SVGs 
 ```bash
