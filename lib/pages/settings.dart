@@ -11,7 +11,7 @@ import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart
 import 'package:orth_psalter/ui/components/information/send_email_list_tile.dart';
 import 'package:orth_psalter/ui/components/cards/settings_card.dart';
 import 'package:orth_psalter/ui/components/cards/settings_card_title.dart';
-import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
+import 'package:orth_psalter/ui/components/sidebar/left_sidebar.dart';
 import 'package:orth_psalter/ui/views/list_view_wrapper.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';

@@ -4,7 +4,7 @@ import 'package:orth_psalter/pages/home/as_needed.dart';
 import 'package:orth_psalter/pages/home/kathismas.dart';
 import 'package:orth_psalter/pages/home/psalms.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
-import 'package:orth_psalter/ui/components/side_bar/left_side_bar.dart';
+import 'package:orth_psalter/ui/components/sidebar/left_sidebar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

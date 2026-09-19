@@ -12,9 +12,9 @@ appId: com.github.pkolomeitsev.psalter
 - waitForAnimationToEnd:
     timeout: 5000
 - assertVisible:
-    id: left_side_bar
+    id: left_sidebar
 - takeScreenshot:
-    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/left_side_bar
+    path: maestro/.maestro/screenshots/${LANG}/${DEVICE}/left_sidebar
 - swipe:
     start: 50%, 60%
     end: 0%, 50%

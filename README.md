@@ -28,7 +28,7 @@ Maestro Test suites configuration file:`./maestro/screenshots.yaml`
 
 # Screenshots
 
-<img src="maestro/.maestro/screenshots/en/ios/left_side_bar.png" alt="SideBar" width="250"/>
+<img src="maestro/.maestro/screenshots/en/ios/left_sidebar.png" alt="SideBar" width="250"/>
 <img src="maestro/.maestro/screenshots/en/ios/psalms.png" alt="Psalms" width="250"/>
 <img src="maestro/.maestro/screenshots/en/ios/kathismas.png" alt="Kathismas" width="250"/>
 <img src="maestro/.maestro/screenshots/en/ios/kathisma.png" alt="Kathisma 1" width="250"/>
