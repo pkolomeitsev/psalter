@@ -17,7 +17,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
   int _current = 0;
   final CarouselSliderController _controller = CarouselSliderController();
   TextStyle drawerHeaderTextStyle = TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     color: AppColors.brandColorLight,
   );
 
