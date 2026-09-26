@@ -13,7 +13,7 @@ class AppearanceConfigStorage {
     return await asyncPrefs.getInt(this.getName(configuration)) ?? defaultValue;
   }
 
-  void set(AppearanceConfig configuration, int value) async {
+  Future<void> set(AppearanceConfig configuration, int value) async {
     final asyncPrefs = SharedPreferencesAsync();
     await asyncPrefs.setInt(this.getName(configuration), value);
   }

@@ -65,9 +65,9 @@ class _AppearanceFontSizeWidgetState extends State<AppearanceFontSizeWidget> {
     );
   }
 
-  void onSelect(dynamic value) {
-    AppearanceConfigStorage().set(AppearanceConfig.psalterFontSize, value);
+  void onSelect(dynamic value) async {
+    await AppearanceConfigStorage().set(AppearanceConfig.psalterFontSize, value);
     // re-init singleton
-    AppearanceConfigSingleton().initAppearanceSettings();
+    await AppearanceConfigSingleton().initAppearanceSettings();
   }
 }

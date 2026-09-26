@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:orth_psalter/models/enums/appearance_config.dart';
 import 'package:orth_psalter/models/enums/font_size.dart';
 import 'package:orth_psalter/models/notifiers/page_notifier.dart';
-import 'package:orth_psalter/singleton/appearance_config_singleton.dart';
 import 'package:orth_psalter/storage/system/appearance_config_storage.dart';
 import 'package:orth_psalter/theme/app_colors.dart';
 
@@ -35,15 +34,8 @@ class _FontSizeButtonState extends State<FontSizeButton> {
           fontSizeOptionId = 0;
         }
 
-        AppearanceConfigStorage().set(
-          AppearanceConfig.psalterFontSize,
-          fontSizeOptionId,
-        );
-
-        AppearanceConfigSingleton().initAppearanceSettings();
-
         if (widget.notifier != null) {
-          widget.notifier!.changePsalterFontSize();
+          await widget.notifier!.changePsalterFontSize(fontSizeOptionId);
         }
       },
     );

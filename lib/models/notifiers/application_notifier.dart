@@ -9,11 +9,12 @@ class ApplicationNotifier with ChangeNotifier {
 
   void switchTheme(ThemeOptions option) async{
     this._themeOption = option;
-    AppearanceConfigStorage().set(
+    await AppearanceConfigStorage().set(
       AppearanceConfig.themeOptions,
       option.index,
     );
     await AppearanceConfigSingleton().initAppearanceSettings();
+
     notifyListeners();
   }
 

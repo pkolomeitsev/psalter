@@ -10,8 +10,8 @@ mixin FontSizeStorageMixin {
   }
 
   Future<void> setPsalterFontSize(int fontSize) async {
-    AppearanceConfigStorage().set(AppearanceConfig.psalterFontSize, fontSize);
+    await AppearanceConfigStorage().set(AppearanceConfig.psalterFontSize, fontSize);
     // re-init singleton
-    AppearanceConfigSingleton().initAppearanceSettings();
+    await AppearanceConfigSingleton().initAppearanceSettings();
   }
 }
