@@ -1,8 +1,10 @@
 {
   "@@locale": "ru",
 
-  "leftSideBarWisdom": "\"Псалтирь есть хлеб Ангельский, имже питаются души, Бога алчущие.\"",
-  "leftSideBarWisdomAuthor": "(Святитель Григорий Богослов)",
+  "leftSideBarWisdom1": "\"Псалтирь есть хлеб Ангельский, имже питаются души, Бога алчущие.\"",
+  "leftSideBarWisdom1Author": "(Святитель Григорий Богослов)",
+  "leftSideBarWisdom2": "\"Те, которые призывают к себе Давида с Псалтирью, через него призывают к себе Христа.\"",
+  "leftSideBarWisdom2Author": "(Святитель Иоанн Златоуст)",
   "prayersBeforePsalterReading": "Молитвы перед чтением Псалтири",
   "prayersAfterPsalterReading": "Молитвы после чтения Псалтири"
 }
