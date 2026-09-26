@@ -4,7 +4,6 @@ import 'package:orth_psalter/storage/system/psalter_translation_storage.dart';
 import 'package:orth_psalter/storage/thanks_storage.dart';
 import 'package:orth_psalter/ui/components/app_icon.dart';
 import 'package:orth_psalter/ui/components/app_title.dart';
-import 'package:orth_psalter/ui/components/information/donation_list_tile.dart';
 import 'package:orth_psalter/ui/components/buttons/link_button.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_font_size_widget.dart';
 import 'package:orth_psalter/ui/components/settings/appearance_theme_widget.dart';
@@ -78,8 +77,6 @@ class _SettingsState extends State<Settings> {
             SettingsCardTitle(text: context.tr('info')),
             SettingsCard(
               children: [
-                DonationListTile(),
-                Divider(height: 0),
                 SendEmailListTile(
                   email: this.adminContact,
                   subject: context.tr('contactSubject'),
