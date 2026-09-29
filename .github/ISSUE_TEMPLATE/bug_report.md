@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: "[Bug]: "
 labels: bug
 assignees: pkolomeitsev
 type: Bug
@@ -14,7 +14,7 @@ A clear and concise description of what the bug is.
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
-2. Click on '....'
+2. Tap on '....'
 3. Scroll down to '....'
 4. See error
 
@@ -25,8 +25,12 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
+ - Device: [e.g. iPhone13, Pixel3]
+ - OS: [e.g. iOS15.1, Android17]
+
+**Application version:**
+Settings > About
+ - 26.9.9
 
 **Additional context**
 Add any other context about the problem here.
