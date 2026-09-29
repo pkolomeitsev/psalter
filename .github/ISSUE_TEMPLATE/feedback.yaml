@@ -1,4 +1,4 @@
-name: Feedback, questions, discussions
+name: 🔉 Feedback, questions, discussions
 description: Anything to discuss please create thread here
 title: '[Discussion thread]: '
 labels: ['support', 'feedback', 'question']
@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         ### Contact Information
-        You still can reach the author with questions and support issues
+        You still can reach the author with questions and support issues:
         - **Email Support**: [p.kolomeitsev@gmail.com](mailto:p.kolomeitsev@gmail.com)
 
   - type: textarea
