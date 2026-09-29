@@ -35,3 +35,9 @@ Maestro Test suites configuration file:`./maestro/screenshots.yaml`
 <img src="maestro/.maestro/screenshots/en/ios/as_needed.png" alt="As Needed" width="250"/>
 <img src="maestro/.maestro/screenshots/en/ios/bookmarks.png" alt="Bookmarks" width="250"/>
 <img src="maestro/.maestro/screenshots/en/ios/settings.png" alt="Settings" width="250"/>
+
+# Support & Feedback
+
+You can contact with author directly from application `App > Settings > Contact`
+
+In addition, for [Bug Report and Feature Request](https://github.com/pkolomeitsev/psalter/issues/new/choose) separate page is available.   
