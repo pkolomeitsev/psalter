@@ -28,8 +28,7 @@ If applicable, add screenshots to help explain your problem.
  - Device: [e.g. iPhone13, Pixel3]
  - OS: [e.g. iOS15.1, Android17]
 
-**Application version:**
-Settings > About
+**Application version [to check version go to App > Settings > About]:**
  - 26.9.9
 
 **Additional context**
