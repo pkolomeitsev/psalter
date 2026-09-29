@@ -14,8 +14,7 @@ body:
 
   - type: textarea
     attributes:
-      label: Description
-      description: Describe the question, issue or feedback you have
+      label: "Describe the question, issue or feedback you have:"
       placeholder: ex. Don't know if it could be implemented within this app, please suggest, my experience was...
     validations:
       required: true
