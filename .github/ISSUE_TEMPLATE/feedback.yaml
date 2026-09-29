@@ -1,0 +1,21 @@
+name: Feedback, questions, discussions
+description: Anything to discuss please create thread here
+title: '[Discussion thread]: '
+labels: ['support', 'feedback', 'question']
+assignees:
+  - pkolomeitsev
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Contact Information
+        You still can reach the author with questions and support issues
+        - **Email Support**: [p.kolomeitsev@gmail.com](mailto:p.kolomeitsev@gmail.com)
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Describe the question, issue or feedback you have
+      placeholder: ex. Don't know if it could be implemented within this app, please suggest, my experience was...
+    validations:
+      required: true
