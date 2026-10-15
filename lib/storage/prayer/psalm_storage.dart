@@ -18,8 +18,8 @@ class PsalmStorage {
 
     return Psalm(
       num: psalmId,
-      description: data[PsalmStorage.getPsalmDescriptionKey(psalmId)] ?? '',
-      verses: PsalmStorage.getPsalmVersesFromDataById(psalmId, data),
+      description: data[PsalmStorage._getPsalmDescriptionKey(psalmId)] ?? '',
+      verses: PsalmStorage._getPsalmVersesFromDataById(psalmId, data),
     );
   }
 
@@ -27,27 +27,28 @@ class PsalmStorage {
     final List<Psalm> result = [];
     final data = await PsalmStorage.getJsonData();
 
-    for(final id in ids){
-      result.add(Psalm(
-        num: id,
-        description: data[PsalmStorage.getPsalmDescriptionKey(id)] ?? '',
-        verses: PsalmStorage.getPsalmVersesFromDataById(id, data),
-      ));
+    for (final id in ids) {
+      String description = data[PsalmStorage._getPsalmDescriptionKey(id)] ?? '';
+      List<VerseDto> verses = PsalmStorage._getPsalmVersesFromDataById(
+        id,
+        data,
+      );
+      result.add(Psalm(num: id, description: description, verses: verses));
     }
 
     return result;
   }
 
-  static List<VerseDto> getPsalmVersesFromDataById(int psalmId, data) {
+  static List<VerseDto> _getPsalmVersesFromDataById(int psalmId, data) {
     List<VerseDto> versesList = [];
 
-    for(final verse in data[PsalmStorage.getPsalmVersesKey(psalmId)]) {
+    for (final verse in data[PsalmStorage._getPsalmVersesKey(psalmId)]) {
       verse.forEach((key, value) => versesList.add(VerseDto(key, value)));
     }
 
     return versesList;
   }
 
-  static String getPsalmDescriptionKey(int id) => 'psalmDesc$id';
-  static String getPsalmVersesKey(int id) => 'psalmVerses$id';
+  static String _getPsalmDescriptionKey(int id) => 'psalmDesc$id';
+  static String _getPsalmVersesKey(int id) => 'psalmVerses$id';
 }
