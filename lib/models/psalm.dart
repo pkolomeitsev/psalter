@@ -5,7 +5,6 @@ class Psalm {
   String? title;
   String description;
   List<VerseDto> verses;
-  String? text;
 
   Psalm({
     required this.num,
@@ -14,27 +13,23 @@ class Psalm {
     required this.verses
   });
 
-  setTitle(String title) {
+  void setTitle(String title) {
     this.title = title;
   }
 
-  getNumber() {
+  int getNumber() {
     return this.num;
   }
 
-  getTitle() {
+  String? getTitle() {
     return this.title;
   }
 
-  getDescription() {
+  String getDescription() {
     return this.description;
   }
 
-  getPsalmVerses() {
+  List<VerseDto> getPsalmVerses() {
     return this.verses;
-  }
-
-  getText() {
-    return this.text;
   }
 }
