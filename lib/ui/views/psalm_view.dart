@@ -96,13 +96,15 @@ class PsalmView extends StatelessWidget {
       );
     }
 
-    final List<String> verses = psalmVerses
-        .map((verse) => verse.getValue())
-        .toList();
-
     return DefaultTextStyle.merge(
       style: TextStyle(fontSize: AppearanceConfigSingleton().getBodyFontSize()),
-      child: SelectableText(verses.join(' ').toString()),
+      child: SelectableText(
+        psalmVerses
+            .map((verse) => verse.getValue())
+            .toList()
+            .join(' ')
+            .toString(),
+      ),
     );
   }
 }
