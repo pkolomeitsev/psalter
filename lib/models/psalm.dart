@@ -1,33 +1,35 @@
+import 'package:orth_psalter/models/dto/verse_dto.dart';
+
 class Psalm {
   int num;
   String? title;
   String description;
-  String text;
+  List<VerseDto> verses;
 
   Psalm({
     required this.num,
     this.title,
     required this.description,
-    required this.text
+    required this.verses
   });
 
-  setTitle(String title) {
+  void setTitle(String title) {
     this.title = title;
   }
 
-  getNumber() {
+  int getNumber() {
     return this.num;
   }
 
-  getTitle() {
+  String? getTitle() {
     return this.title;
   }
 
-  getDescription() {
+  String getDescription() {
     return this.description;
   }
 
-  getText() {
-    return this.text;
+  List<VerseDto> getPsalmVerses() {
+    return this.verses;
   }
 }
