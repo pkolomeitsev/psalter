@@ -1,4 +1,5 @@
 import 'package:orth_psalter/helpers/json_helper.dart';
+import 'package:orth_psalter/models/dto/verse_dto.dart';
 import 'package:orth_psalter/models/psalm.dart';
 import 'package:orth_psalter/storage/system/psalter_translation_storage.dart';
 
@@ -13,15 +14,12 @@ class PsalmStorage {
   }
 
   static Future<Psalm> getPsalmById(int psalmId) async {
-    String psalmKey = 'psalm$psalmId';
-    String psalmDescriptionKey = 'psalmDesc$psalmId';
-
     final data = await PsalmStorage.getJsonData();
 
     return Psalm(
       num: psalmId,
-      description: data[psalmDescriptionKey] ?? '',
-      text: data[psalmKey] ?? '',
+      description: data[PsalmStorage._getPsalmDescriptionKey(psalmId)] ?? '',
+      verses: PsalmStorage._getPsalmVersesFromDataById(psalmId, data),
     );
   }
 
@@ -29,17 +27,28 @@ class PsalmStorage {
     final List<Psalm> result = [];
     final data = await PsalmStorage.getJsonData();
 
-    for(final id in ids){
-      String psalmKey = 'psalm$id';
-      String psalmDescriptionKey = 'psalmDesc$id';
-
-      result.add(Psalm(
-        num: id,
-        description: data[psalmDescriptionKey] ?? '',
-        text: data[psalmKey] ?? '',
-      ));
+    for (final id in ids) {
+      String description = data[PsalmStorage._getPsalmDescriptionKey(id)] ?? '';
+      List<VerseDto> verses = PsalmStorage._getPsalmVersesFromDataById(
+        id,
+        data,
+      );
+      result.add(Psalm(num: id, description: description, verses: verses));
     }
 
     return result;
   }
+
+  static List<VerseDto> _getPsalmVersesFromDataById(int psalmId, data) {
+    List<VerseDto> versesList = [];
+
+    for (final verse in data[PsalmStorage._getPsalmVersesKey(psalmId)]) {
+      verse.forEach((key, value) => versesList.add(VerseDto(key, value)));
+    }
+
+    return versesList;
+  }
+
+  static String _getPsalmDescriptionKey(int id) => 'psalmDesc$id';
+  static String _getPsalmVersesKey(int id) => 'psalmVerses$id';
 }
