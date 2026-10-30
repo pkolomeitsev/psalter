@@ -53,9 +53,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        actions: [
-          FontSizeButton(notifier: pageNotifier)
-        ],
+        actions: [FontSizeButton(notifier: pageNotifier)],
       ),
       body: FutureBuilder<kathisma_model.Kathisma>(
         future: this.fetchData(context),
@@ -121,6 +119,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
     List<Widget> psalmWidgets = [];
     List<Psalm> psalms = kathisma!.getPsalms() ?? [];
     List<int> gloryAfter = kathisma.getGloryAfter() ?? [];
+    bool hasThirdGlory = false;
 
     for (final psalm in psalms) {
       psalm.setTitle(
@@ -136,18 +135,17 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
       // short glory forever after 150 psalm
       if (psalm.getNumber() == 150) {
         psalmWidgets.add(
-          GloryForeverShortWidget(
-            commonPrayers: kathisma.getCommonPrayers(),
-          ),
+          GloryForeverShortWidget(commonPrayers: kathisma.getCommonPrayers()),
         );
+        hasThirdGlory = true;
       }
     }
     // add 3rd glory
-    psalmWidgets.add(
-      GloryForeverShortWidget(
-        commonPrayers: kathisma.getCommonPrayers(),
-      ),
-    );
+    if(!hasThirdGlory) {
+      psalmWidgets.add(
+        GloryForeverShortWidget(commonPrayers: kathisma.getCommonPrayers()),
+      );
+    }
 
     return Column(children: psalmWidgets);
   }
@@ -155,9 +153,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
   Widget renderTrisagion2OurFather(kathisma_model.Kathisma? kathisma) {
     return Column(
       children: [
-        Trisagion2OurFatherWidget(
-          commonPrayers: kathisma!.getCommonPrayers(),
-        ),
+        Trisagion2OurFatherWidget(commonPrayers: kathisma!.getCommonPrayers()),
       ],
     );
   }
