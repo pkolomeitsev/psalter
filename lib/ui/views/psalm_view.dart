@@ -62,7 +62,7 @@ class PsalmView extends StatelessWidget {
                 child: Transform.translate(
                   offset: Offset(0, expOffset),
                   child: Text(
-                    verse.getNum(),
+                    verse.getNum().toString(),
                     textScaler: TextScaler.linear(0.7),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

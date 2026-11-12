@@ -1,11 +1,11 @@
 class VerseDto {
-  String _num;
+  int _num;
   String _value;
 
   VerseDto(this._num, this._value);
 
-  String getNum() => _num;
-  void setNum(String value) {
+  int getNum() => _num;
+  void setNum(int value) {
     _num = value;
   }
 

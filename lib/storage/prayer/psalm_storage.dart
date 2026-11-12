@@ -43,7 +43,7 @@ class PsalmStorage {
     List<VerseDto> versesList = [];
 
     for (final verse in data[PsalmStorage._getPsalmVersesKey(psalmId)]) {
-      verse.forEach((key, value) => versesList.add(VerseDto(key, value)));
+      verse.forEach((key, value) => versesList.add(VerseDto(int.parse(key), value)));
     }
 
     return versesList;
