@@ -17,6 +17,7 @@ import 'package:orth_psalter/ui/components/text/prayers/glory_forever_widget.dar
 import 'package:orth_psalter/ui/components/text/prayers/trisagion_2_our_father_widget.dart';
 import 'package:orth_psalter/ui/components/text/prayers/kathisma/troparion_widget.dart';
 import 'package:orth_psalter/ui/views/prayer_view.dart';
+import 'package:orth_psalter/ui/views/psalm118_view.dart';
 import 'package:orth_psalter/ui/views/psalm_view.dart';
 import 'package:orth_psalter/ui/views/text_page_view_wrapper.dart';
 
@@ -53,9 +54,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        actions: [
-          FontSizeButton(notifier: pageNotifier)
-        ],
+        actions: [FontSizeButton(notifier: pageNotifier)],
       ),
       body: FutureBuilder<kathisma_model.Kathisma>(
         future: this.fetchData(context),
@@ -103,8 +102,8 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
                       SizedBox(height: 10),
                     ],
                     scrollController: this.routerExtra.isEnableScrollStorage()
-                      ? this.getScrollController()
-                      : null,
+                        ? this.getScrollController()
+                        : null,
                   );
                 },
               ),
@@ -121,12 +120,20 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
     List<Widget> psalmWidgets = [];
     List<Psalm> psalms = kathisma!.getPsalms() ?? [];
     List<int> gloryAfter = kathisma.getGloryAfter() ?? [];
+    bool hasThirdGlory = false;
 
     for (final psalm in psalms) {
       psalm.setTitle(
         "${kathisma.getCommonPrayers().getPsalmLabel()} ${psalm.getNumber()}",
       );
-      psalmWidgets.add(PsalmView(psalm: psalm));
+      psalmWidgets.add(
+        psalm.getNumber() == 118
+            ? Psalm118View(
+                psalm: psalm,
+                commonPrayers: kathisma.getCommonPrayers(),
+              )
+            : PsalmView(psalm: psalm),
+      );
       // add 1, 2 glory
       if (gloryAfter.contains(psalm.getNumber())) {
         psalmWidgets.add(
@@ -136,18 +143,17 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
       // short glory forever after 150 psalm
       if (psalm.getNumber() == 150) {
         psalmWidgets.add(
-          GloryForeverShortWidget(
-            commonPrayers: kathisma.getCommonPrayers(),
-          ),
+          GloryForeverShortWidget(commonPrayers: kathisma.getCommonPrayers()),
         );
+        hasThirdGlory = true;
       }
     }
     // add 3rd glory
-    psalmWidgets.add(
-      GloryForeverShortWidget(
-        commonPrayers: kathisma.getCommonPrayers(),
-      ),
-    );
+    if (!hasThirdGlory) {
+      psalmWidgets.add(
+        GloryForeverShortWidget(commonPrayers: kathisma.getCommonPrayers()),
+      );
+    }
 
     return Column(children: psalmWidgets);
   }
@@ -155,9 +161,7 @@ class _KathismaState extends State<Kathisma> with ScrollPositionStorageMixin {
   Widget renderTrisagion2OurFather(kathisma_model.Kathisma? kathisma) {
     return Column(
       children: [
-        Trisagion2OurFatherWidget(
-          commonPrayers: kathisma!.getCommonPrayers(),
-        ),
+        Trisagion2OurFatherWidget(commonPrayers: kathisma!.getCommonPrayers()),
       ],
     );
   }
